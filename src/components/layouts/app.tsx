@@ -6,7 +6,7 @@ export const AppLayout:FC<PropsWithChildren> = ({ children }) => {
       return (
             
                   <main className="h-dvh w-dvw relative">
-                        <DevMode where="Main Layout" />
+                        {/* <DevMode where="Main Layout" /> */}
                         {children}
                   </main>
       )

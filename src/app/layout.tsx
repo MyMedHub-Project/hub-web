@@ -53,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn("style-scrollbar", inter.className)}
+        className={`bg-white cn("style-scrollbar", inter.className)`}
       >
         <AppLayout>
             {children}
