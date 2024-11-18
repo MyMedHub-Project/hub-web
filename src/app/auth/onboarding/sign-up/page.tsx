@@ -1,11 +1,8 @@
-import React from 'react'
+import SignUpPage from "@/view/auth/sign-up";
+import React from "react";
 
 const SignUp = () => {
-  return (
-      <div className='text-black'>
-          SignUp
-      </div>
-  )
-}
+	return <SignUpPage />;
+};
 
-export default SignUp
+export default SignUp;
