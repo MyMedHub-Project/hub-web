@@ -49,14 +49,14 @@ const Support = () => {
 				));
 			case "terms":
 				return termsContent.map((item) => (
-					<div className="flex flex-col">
+					<div className="flex flex-col" key={item.title}>
 						<h2 className="text-gray-700">{item.title}</h2>
 						<p>{item.content}</p>
 					</div>
 				));
 			case "privacy":
 				return privacyContent.map((item) => (
-					<div className="flex flex-col">
+					<div className="flex flex-col" key={item.title}>
 						<h2 className="text-gray-700">{item.title}</h2>
 						<p>{item.content}</p>
 					</div>
