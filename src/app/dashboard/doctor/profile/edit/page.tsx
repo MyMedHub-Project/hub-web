@@ -11,6 +11,7 @@ import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
+	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger
@@ -375,27 +376,33 @@ const Edit = () => {
 				</form>
 			</Form>
 
-			{/* <Dialog>
-				<DialogTrigger> */}
-			<Button className="bg-transparent text-hubRed hover:bg-transparent mx-auto block">
-				Delete Account
-			</Button>
-			{/* </DialogTrigger>
+			<Dialog>
+				<DialogTrigger asChild className=" mx-auto block">
+					<Button className="bg-transparent text-hubRed hover:bg-transparent">
+						Delete Account
+					</Button>
+				</DialogTrigger>
 				<DialogContent>
-					<DialogHeader>
-						<DialogTitle>Are you absolutely sure?</DialogTitle>
-						<DialogDescription>
+					<DialogHeader className="text-center text-hubBlack">
+						<DialogTitle className="text-center text-xl mb-4">
+							Delete Account
+						</DialogTitle>
+						<DialogDescription className="text-center text-lg">
 							Are you sure you want to delete your account? This
 							action cannot be undone and all your data will be
 							permanently removed.
 						</DialogDescription>
 					</DialogHeader>
-					<DialogFooter>
-						<Button className="bg-hubGrey text-hubBlack">Cancel</Button>
-						<Button className="bg-hubRed text-hubGrey">Delete</Button>
+					<DialogFooter className="gap-x-3 mt-2">
+						<Button className="bg-hubGrey hover:bg-hubGrey text-hubBlack w-1/2 h-10 py-4">
+							Cancel
+						</Button>
+						<Button className="bg-hubRed hover:bg-hubRed text-hubGrey w-1/2 h-10 py-4">
+							Delete
+						</Button>
 					</DialogFooter>
 				</DialogContent>
-			</Dialog> */}
+			</Dialog>
 		</div>
 	);
 };

@@ -1,11 +1,9 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { HomeIconSVGComponent } from "../icons";
 import { role } from "@/lib/data";
 
 const menuItems = [
@@ -38,7 +36,7 @@ const menuItems = [
 			{
 				icon: "",
 				label: "Orders",
-				href: "/orders",
+				href: "/dashboard/sections/orders",
 				visible: ["patient", "doctor", "institution"]
 			},
 			{
@@ -56,7 +54,7 @@ const menuItems = [
 			{
 				icon: "",
 				label: "My Family",
-				href: "/family",
+				href: "/dashboard/sections/family",
 				visible: ["patient", "doctor", "institution"]
 			},
 			{

@@ -1,12 +1,18 @@
 "use client";
 
 import { Button } from "@/components/button";
+import { Label } from "@/components/form";
+import { Input } from "@/components/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
-import { ToggleLeftIcon } from "lucide-react";
+import { Eye, EyeOff, Mail, Phone, ToggleLeftIcon } from "lucide-react";
 import React, { useState } from "react";
 
 const Settings = () => {
 	const [isActive, setIsActive] = useState("");
+	const [showOldPassword, setShowOldPassword] = useState(false);
+	const [showNewPassword, setShowNewPassword] = useState(false);
+
 	const notifications = [
 		{
 			title: "Push Notifications",
@@ -56,11 +62,165 @@ const Settings = () => {
 				));
 			case "passwordRecovery":
 				return passwordRecovery.map((item) => (
-					<div className="flex flex-col m-6" key={item.title}>
-						<h2 className="text-base font-bold leading-normal">
-							{item.title}
-						</h2>
-						<p className="text-sm">{item.description}</p>
+					<div
+						className="flex flex-col mt-4 space-y-4"
+						key={item.title}
+					>
+						<div className="space-y-1">
+							<h2 className="text-lg font-semibold">
+								{item.title}
+							</h2>
+							<p className="text-sm text-muted-foreground">
+								{item.description}
+							</p>
+						</div>
+						<RadioGroup defaultValue="email" className="space-y-2">
+							<div
+								className={`flex items-center space-x rounded-md border p-4 data-[state=checked]:bg-green-50 data-[state=checked]:border-green-100`}
+							>
+								<RadioGroupItem
+									value="email"
+									id="email"
+									className="border-green-500"
+								/>
+								<Label
+									htmlFor="email"
+									className="flex flex-1 items-center justify-between"
+								>
+									<div className="space-y-1">
+										<div className="flex items-center space-x-2">
+											<Mail className="h-4 w-4" />
+											<span className="font-medium">
+												Email
+											</span>
+										</div>
+										<p className="text-sm text-muted-foreground">
+											Your password reset code would be
+											sent to johndoe@exmaple.com
+										</p>
+									</div>
+								</Label>
+							</div>
+
+							<div
+								className={`flex items-center space-x rounded-md border p-4 data-[state=checked]:bg-green-50 data-[state=checked]:border-green-100`}
+							>
+								<RadioGroupItem
+									value="phone"
+									id="phone"
+									className="border-green-500"
+								/>
+								<Label
+									htmlFor="phone"
+									className="flex flex-1 items-center justify-between"
+								>
+									<div className="space-y-1">
+										<div className="flex items-center space-x-2">
+											<Phone className="h-4 w-4" />
+											<span className="font-medium">
+												Phone Number
+											</span>
+										</div>
+										<p className="text-sm text-muted-foreground">
+											Your password reset code would be
+											sent to{" "}
+											<strong>+234818123456789</strong>
+										</p>
+									</div>
+								</Label>
+							</div>
+						</RadioGroup>
+					</div>
+				));
+			case "passwordSetting":
+				return passwordSetting.map((item) => (
+					<div
+						className="flex flex-col mt-4 space-y-4"
+						key={item.title}
+					>
+						<div className="space-y-1">
+							<h2 className="text-lg font-semibold">
+								{item.title}
+							</h2>
+							<p className="text-sm text-muted-foreground">
+								{item.description}
+							</p>
+						</div>
+						<div className="space-y-4">
+							<div className="space-y-2">
+								<Label htmlFor="old-password">
+									Old Password
+								</Label>
+								<div className=" relative">
+									<Input
+										id="old-password"
+										type={
+											showOldPassword
+												? "text"
+												: "password"
+										}
+										className="pr-10 bg-muted"
+										placeholder="********"
+									/>
+									<Button
+										variant="ghost"
+										size="icon"
+										className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+										onClick={() =>
+											setShowOldPassword(!showOldPassword)
+										}
+									>
+										{showOldPassword ? (
+											<EyeOff className="h-4 w-4 text-muted-foreground" />
+										) : (
+											<Eye className="h-4 w-4 text-muted-foreground" />
+										)}
+										<span className="sr-only">
+											{showOldPassword
+												? "Hide password"
+												: "Show password"}
+										</span>
+									</Button>
+								</div>
+							</div>
+
+							<div className="space-y-2">
+								<Label htmlFor="new-password">
+									New Password
+								</Label>
+								<div className=" relative">
+									<Input
+										id="new-password"
+										type={
+											showNewPassword
+												? "text"
+												: "password"
+										}
+										className="pr-10 bg-muted"
+										placeholder="********"
+									/>
+									<Button
+										variant="ghost"
+										size="icon"
+										className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+										onClick={() =>
+											setShowNewPassword(!showNewPassword)
+										}
+									>
+										{showNewPassword ? (
+											<EyeOff className="h-4 w-4 text-muted-foreground" />
+										) : (
+											<Eye className="h-4 w-4 text-muted-foreground" />
+										)}
+										<span className="sr-only">
+											{showNewPassword
+												? "Hide password"
+												: "Show password"}
+										</span>
+									</Button>
+								</div>
+							</div>
+						</div>
 					</div>
 				));
 
