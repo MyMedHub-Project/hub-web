@@ -4,7 +4,7 @@ import NotificationCard from "@/components/widgets/notification-card";
 import PatientsAndTreatments from "@/components/widgets/patient-treatments";
 import React from "react";
 
-const AdminPage = () => {
+const PatientPage = () => {
 	return (
 		<div className="p-4 flex gap-4 flex-col md:flex-row">
 			<div className="w-full lg:w-2/3 px-5 space-y-7">
@@ -20,4 +20,4 @@ const AdminPage = () => {
 	);
 };
 
-export default AdminPage;
+export default PatientPage;
