@@ -9,14 +9,14 @@ import Note from "./schedule/note";
 
 const ProfilePage = () => {
 	return (
-		<div className="w-full px-10 flex justify-center gap-x-10">
-			<div className="flex-1 space-y-5">
+		<div className="w-full px-10 flex flex-col lg:flex-row justify-center gap-x-10">
+			<div className="flex-1 lg:w-2/3 space-y-5">
 				<About />
 				<Edit />
 				<Bio />
 				<Services />
 			</div>
-			<div className="w-[35%] h-full py-5 px-3 space-y-5 border border-hubGrey rounded-xl">
+			<div className="lg:w-1/3 h-full py-5 px-3 space-y-5 border border-hubGrey rounded-xl">
 				<Card className="bg-transparent shadow-none border-t-0 border-x-0 border-b-2 rounded-none border-hubGrey space-y-2">
 					<CardTitle className="text-xl">
 						Set Your Appointment Availability

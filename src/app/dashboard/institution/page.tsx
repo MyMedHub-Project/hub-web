@@ -6,7 +6,7 @@ import React from "react";
 
 const HospitalPage = () => {
 	return (
-		<div className="p-4 flex gap-4 flex-col md:flex-row">
+		<div className="p-4 flex gap-4 flex-col lg:flex-row">
 			<div className="w-full lg:w-2/3 px-5 space-y-7">
 				{/* ACTION CARDS */}
 				<HeroCards />
