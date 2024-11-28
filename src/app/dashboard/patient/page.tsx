@@ -18,5 +18,5 @@ const PatientPage = () => {
 			</div>
 		</div>
 	);
-
+};
 export default PatientPage;
