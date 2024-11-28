@@ -55,7 +55,6 @@ const DashboardNavbar = () => {
 					</div>
 				</div>
 			</div>
-			<Separator />
 		</div>
 	);
 };

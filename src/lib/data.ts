@@ -1,4 +1,4 @@
-export let role = "doctor";
+export let role = "patient";
 
 export const doctorData = [
 	{
