@@ -1,12 +1,20 @@
+"use client";
+
 import { Label } from "@/components/form";
 import { Input } from "@/components/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronDown, X } from "lucide-react";
+import { useState } from "react";
 
-const Interval = () => {
+const Interval: React.FC<{
+	hasInterval: boolean;
+	setHasInterval: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ hasInterval, setHasInterval }) => {
+	const [availability, setAvailability] = useState(true);
+
 	return (
-		<div className="space-y-2 pt-3">
+		<div className="space-y-4 pt-3">
 			<div className="grid grid-cols-2 gap-x-2">
 				<div className="">
 					<p className="text-sm ml-2 mb-2">Start time</p>
@@ -22,16 +30,25 @@ const Interval = () => {
 				</div>
 			</div>
 			<div className="flex justify-between gap-x-2">
-				<Card className="p-4 flex-1 flex items-center">
+				<Button
+					className="p-6 px-4  flex-1 justify-start rounded-xl bg-white text-hubBlack hover:bg-white disabled:bg-hubGrey200 disabled:opacity-100"
+					disabled={!hasInterval}
+				>
 					<Input
 						type="checkbox"
-						className="size-6 border-2 border-hubGreen"
+						checked={hasInterval ? availability : true}
+						onChange={() => setAvailability(!availability)}
+						className="size-5 border-2 border-hubGreen"
 					/>
 					<Label className="ml-2">Mark as Unavailable</Label>
-				</Card>
-				<Card className="p-4">
-					<X />
-				</Card>
+				</Button>
+				<Button
+					className="p-6 rounded-xl bg-white text-hubBlack hover:bg-white disabled:bg-hubGrey200 disabled:opacity-100"
+					disabled={!hasInterval}
+					onClick={() => setHasInterval(false)}
+				>
+					<X className="size-5" />
+				</Button>
 			</div>
 		</div>
 	);
