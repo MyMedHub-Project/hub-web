@@ -3,9 +3,10 @@ import About from "./about";
 import Bio from "./bio";
 import Edit from "./edit";
 import Services from "./services";
-import Days from "./schedule/available-days";
-import HourSetting from "./schedule/hour-setting";
+import Days from "./schedule/days";
+import Time from "./schedule/time";
 import Note from "./schedule/note";
+import { ScheduleProvider } from "./context/Schedule";
 
 const ProfilePage = () => {
 	return (
@@ -28,8 +29,10 @@ const ProfilePage = () => {
 						appointments.
 					</CardContent>
 				</Card>
-				<Days />
-				<HourSetting />
+				<ScheduleProvider>
+					<Days />
+					<Time />
+				</ScheduleProvider>
 				<Note />
 			</div>
 		</div>
