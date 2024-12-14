@@ -1,6 +1,6 @@
 "use client";
 
-import { LogoSVGComponent } from "@/components/icons";
+import { LogoSVGComponent, Spinner } from "@/components/icons";
 import {
 	Card,
 	CardContent,
@@ -9,77 +9,176 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/button";
 import Link from "next/link";
 import { Input } from "@/components/input";
-import { useRouter } from "next/router";
+import { Check, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import axiosInstance from "@/core/axios";
+import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
+import { useRouter } from "next/navigation";
+
+const ProgressAnimation: React.FC<{ isVerified: boolean }> = ({
+	isVerified
+}) => {
+	return (
+		<div className="w-full flex items-center">
+			<div
+				className={cn(
+					"flex-1 h-1 bg-hubGrey relative overflow-hidden before:absolute before:w-full before:left-0 before:h-1 before:bg-hubGreen before:transition before:duration-150",
+					!isVerified
+						? "before:-translate-x-1/2"
+						: " before:-translate-x-0"
+				)}
+			></div>
+			<p className="text-xs rounded-full border border-hubGreen p-1 ml-2">
+				{!isVerified ? 1 : 2}/2
+			</p>
+		</div>
+	);
+};
 
 const VerifyPhonePage = () => {
-	const [code, setCode] = useState(["", "", "", "", "", ""]);
+	const router = useRouter();
+	const [code, setCode] = useState(Array(6).fill(""));
+	const [isVerifying, setIsVerifying] = useState(false);
+	const [isVerified, setIsVerified] = useState(false);
+	const [failed, setFailed] = useState(false);
+	const { verificationData } = useContext(OnboardingContext);
 
-	const handleChange = (index: number, value: number) => {
-		if (value <= 1) {
-			const newCode = [...code];
-			newCode[index] = value;
-			setCode(newCode);
-			if (value && index < 5) {
-				document.getElementById(`code-${index + 1}`)?.focus();
+	const handleChange = (index: number, value: string) => {
+		if (value.length > 1 || isNaN(Number(value))) return;
+
+		const newCode = [...code];
+		newCode[index] = value;
+		setCode(newCode);
+
+		if (value && index < code.length - 1) {
+			document.getElementById(`code-${index + 1}`)?.focus();
+		}
+
+		if (index === code.length - 1 && value) {
+			handleSubmit(newCode.join(""));
+		}
+	};
+
+	const handleKeyDown = (index: number, event: React.KeyboardEvent) => {
+		if (event.key === "Backspace" && code[index] === "") {
+			if (index > 0) {
+				document.getElementById(`code-${index - 1}`)?.focus();
+			} else {
+				setFailed(false);
 			}
 		}
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		console.log("Verification Code:", code.join(""));
+	const handleSubmit = (code: string) => {
+		setIsVerifying(true);
+		axiosInstance
+			.post(
+				"https://hub-api-dsem.onrender.com/api/v1/auth/verification/user",
+				{
+					countryCode: "NG",
+					type: "phone",
+					id: verificationData.phone,
+					token: code
+				}
+			)
+			.then((res) => {
+				console.log(res.data);
+				setIsVerifying(false);
+				setIsVerified(true);
+			})
+			.catch((err) => {
+				console.log(err);
+				setIsVerifying(false);
+				setFailed(true);
+			});
 	};
 
 	return (
 		<div className="flex items-center justify-center min-h-screen">
-			<Card className="w-[500px] mx-auto flex flex-col items-center text-center">
+			<Card className="w-[500px] mx-auto flex flex-col items-center text-center shadow-none border-none">
 				<CardHeader className="justify-center space-y-4 items-center">
 					<motion.div
 						initial={{ scale: 0 }}
 						animate={{ scale: 1 }}
 						transition={{ duration: 0.5 }}
 					>
-						<LogoSVGComponent width={280} height={35} />
+						<LogoSVGComponent width={300} height={40} />
 					</motion.div>
-					<CardTitle className="text-xl font-semibold">
+					<CardTitle className="text-2xl font-semibold">
 						Verify Your Phone Number
 					</CardTitle>
-					<CardDescription>
+					<ProgressAnimation isVerified={isVerified} />
+					<CardDescription className="text-sm px-2">
 						You&apos;ll receive a verification code via SMS. Enter
 						the code to verify your phone number.
 					</CardDescription>
 				</CardHeader>
-				<CardContent>
-					<form onSubmit={handleSubmit}>
-						<div className="flex justify-center space-x-2 mb-4">
+				<CardContent className="w-full pb-5">
+					<form>
+						<div
+							className={`w-full grid grid-cols-6 justify-items-center`}
+						>
 							{code.map((digit, index) => (
 								<Input
 									key={index}
 									id={`code-${index}`}
-									className="w-10 text-center"
+									className={cn(
+										"size-12 text-center",
+										failed
+											? "border-hubRed"
+											: "border-inherit"
+									)}
 									maxLength={1}
 									value={digit}
 									onChange={(e) =>
 										handleChange(index, e.target.value)
 									}
+									onKeyDown={(e) => handleKeyDown(index, e)}
 								/>
 							))}
 						</div>
 					</form>
+					<div className="w-full px-5 mt-3 flex justify-between">
+						<Button
+							variant={"link"}
+							className="text-sm p-0 h-fit flex items-start justify-start"
+						>
+							Resend Code: {"1:00"}
+						</Button>
+						{isVerified ? (
+							<div className="text-hubGreen flex">
+								<Check className="size-5" />
+								<span className="text-sm">verified</span>
+							</div>
+						) : isVerifying ? (
+							<Spinner className="text-hubGreen/70 size-5" />
+						) : (
+							failed && (
+								<div className="text-hubRed flex">
+									<X className="size-5 mr-2" />
+									<span className="text-sm">
+										Invalid code
+									</span>
+								</div>
+							)
+						)}
+					</div>
 				</CardContent>
-				<Button
-					variant={"link"}
-					className="text-sm flex items-start justify-start"
-				>
-					Resend Code
-				</Button>
-				<CardFooter className="flex flex-col w-full">
-					<Button className="w-full mb-2 bg-green-600">
+
+				<CardFooter className="flex flex-col w-full px-10">
+					<Button
+						disabled={!isVerified}
+						className="w-full mb-2 bg-green-600 disabled:bg-hubGreen/50"
+						onClick={() => {
+							isVerified &&
+								router.push("/auth/onboarding/account-created");
+						}}
+					>
 						Continue
 					</Button>
 					<div className="text-sm text-center mt-4">

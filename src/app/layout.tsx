@@ -43,23 +43,19 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+	children
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-    // logDev("App is initializing in development mode", "🚀");
-    // logDev("Construction in progress...", "🚧🏗️")
+	// logDev("App is initializing in development mode", "🚀");
+	// logDev("Construction in progress...", "🚧🏗️")
 
-  return (
-    <html lang="en">
-      <body
-        className={`bg-white cn("style-scrollbar", inter.className)`}
-      >
-        <AppLayout>
-            {children}
-        </AppLayout>
-        <Toaster />
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className={`bg-white cn("style-scrollbar", inter.className)`}>
+				<AppLayout>{children}</AppLayout>
+				<Toaster />
+			</body>
+		</html>
+	);
 }

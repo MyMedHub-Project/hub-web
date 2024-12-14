@@ -25,6 +25,8 @@ import { Input } from "@/components/input";
 import { Button } from "@/components/button";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
+import axiosInstance from "@/core/axios";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
 	email: z.string().email({
@@ -33,10 +35,13 @@ const formSchema = z.object({
 	password: z
 		.string()
 		.min(8, { message: "Password must be at least 8 characters." })
-		.regex(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, {
-			message:
-				"Password must include at least one number, one lowercase and one uppercase letter."
-		})
+		.regex(
+			/(?=.*[\d!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[a-z])(?=.*[A-Z])/,
+			{
+				message:
+					"Password must include at least one number or symbol, one lowercase letter, and one uppercase letter."
+			}
+		)
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -50,12 +55,12 @@ const passwordFormats: Array<{
 	{
 		id: "number & symbol",
 		label: "Least one number (0-9) or symbol",
-		regex: /\d/
+		regex: /[0-9!@#$%^&*(),.?":{}|<>]/
 	},
 	{
 		id: "textcase",
 		label: "Lowercase (a-z) and uppercase (A-Z)",
-		regex: /({a-z}), ({A-Z})/
+		regex: /(?=.*[a-z])(?=.*[A-Z])/
 	}
 ];
 
@@ -113,6 +118,7 @@ const PassStrengthAnimation: React.FC<PassStrengthAnimationProps> = ({
 };
 
 const SignInPage: React.FC = () => {
+	const router = useRouter();
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState<string>("");
 
@@ -124,12 +130,40 @@ const SignInPage: React.FC = () => {
 		}
 	});
 
-	function onSubmit(values: FormValues) {
+	const onSubmit = (values: FormValues) => {
 		console.log(values);
-	}
+
+		const loginCredentials = {
+			email: values.email,
+			password: values.password,
+			device: {
+				id: "device123",
+				name: "My Laptop",
+				version: "v2.0",
+				ipAddress: "192.168.1.100",
+				os: "Windows 10",
+				platform: "web",
+				pushNotificationToken:
+					"dEnFPzweKQI:APA91bFZ2o2WZr0v2cV1ljZGv0GxJZxou3K9bYlsf1U1D7K-Bzkt3iHc4KPU3Wi_jxJCDzZT8X9cFZu1Fbc_LMvi-L8d02DJVKHAGXrf9Ue1tJbH5XoUeqc1Kl0P_1XHmDPqHe5i7R1y"
+			}
+		};
+
+		axiosInstance
+			.post(
+				"https://hub-api-dsem.onrender.com/api/v1/auth/login",
+				loginCredentials
+			)
+			.then((res) => {
+				console.log(res.data);
+				router.push("/");
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 	return (
-		<Card className=" w-[500px] flex flex-col">
+		<Card className=" w-[500px] mt-5 flex flex-col shadow-none border-none">
 			<CardHeader className="items-center">
 				<LogoSVGComponent />
 				<CardTitle className="text-2xl font-bold pt-5">Login</CardTitle>
@@ -150,6 +184,7 @@ const SignInPage: React.FC = () => {
 										<Input
 											placeholder="johndoe@gmail.com"
 											{...field}
+											className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -171,6 +206,7 @@ const SignInPage: React.FC = () => {
 														: "password"
 												}
 												placeholder="*********"
+												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 												{...field}
 												onChange={(e) => {
 													field.onChange(e);
@@ -203,15 +239,15 @@ const SignInPage: React.FC = () => {
 								</FormItem>
 							)}
 						/>
-						<div className="space-y-5">
+						<div className="space-y-3">
 							<Link
-								href="/"
-								className="text-sm font-semibold text-blue-500 hover:underline"
+								href="/auth/sign-in/forgot-password"
+								className="text-sm text-hubBlue hover:underline"
 							>
 								Forgot Password
 							</Link>
 							<Button
-								className="w-full bg-green-600 hover:bg-green-500"
+								className="w-full bg-hubGreen hover:bg-hubGreen/95"
 								type="submit"
 							>
 								Log In
@@ -221,9 +257,9 @@ const SignInPage: React.FC = () => {
 				</Form>
 			</CardContent>
 			<CardFooter className="flex flex-col">
-				<p className="mt-2 text-sm text-center">
+				<p className="text-sm text-center">
 					Don&apos;t have an account?{" "}
-					<Link href="/" className="text-blue-500 hover:underline">
+					<Link href="/" className="text-hubBlue hover:underline">
 						Sign Up
 					</Link>
 				</p>
