@@ -24,7 +24,7 @@ import {
 } from "@/components/form";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
-import { CalendarCheckIcon, Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import {
 	Select,
@@ -33,47 +33,27 @@ import {
 	SelectTrigger,
 	SelectValue
 } from "@/components/ui/select";
-import { Popover, PopoverContent } from "@/components/ui/popover";
-import { PopoverTrigger } from "@radix-ui/react-popover";
-import { cn } from "@/lib/utils";
-import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
-import axios from "axios";
 import axiosInstance from "@/core/axios";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 import { useRouter } from "next/navigation";
 import { PhoneInput } from "@/components/ui/phone-input";
-import CountrySelect from "@/components/ui/country-select";
 import RegionSelect from "@/components/ui/region-select";
+import CountrySelect from "@/components/ui/country-select";
 
 const formSchema = z.object({
-	firstName: z
+	type: z.string(),
+	name: z
 		.string()
 		.trim()
 		.max(80)
-		.regex(/^[A-Za-z]{2,}$/),
-	lastName: z
-		.string()
-		.trim()
-		.max(80)
-		.regex(/^[A-Za-z]{2,}$/),
-	otherName: z
-		.string()
-		.trim()
-		.max(80)
-		.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*$/)
-		.optional(),
+		.regex(/^[A-Za-z]+(?:\s[A-Za-z]+)*$/),
 	email: z.string().trim().email().toLowerCase(),
-	tel: z.string(),
 	street: z.string(),
 	city: z.string(),
 	state: z.string(),
 	country: z.string(),
-	gender: z.string(),
-	language: z.string(),
-	dob: z.date({
-		required_error: "A date of birth is required"
-	}),
+	tel: z.string().trim(),
+	license: z.string(),
 	password: z
 		.string()
 		.min(8, { message: "Password must be at least 8 characters." })
@@ -165,13 +145,12 @@ const PassStrengthAnimation: React.FC<PassStrengthAnimationProps> = ({
 	);
 };
 
-const SignUpPage = () => {
+const InstutitionSignUpPage: React.FC = () => {
 	const router = useRouter();
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState<string>("");
 	const [countryCode, setCountryCode] = useState("");
-	const { termsAgreed, role, setVerificationData } =
-		useContext(OnboardingContext);
+	const { termsAgreed, setVerificationData } = useContext(OnboardingContext);
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
@@ -185,19 +164,14 @@ const SignUpPage = () => {
 		const { countryName, countryShortCode } = JSON.parse(values.country);
 
 		const userData = {
-			type: role,
+			name: values.name,
+			license: values.license,
 			email: values.email,
 			countryCode: countryShortCode,
 			phone: values.tel,
-			firstname: values.firstName,
-			lastname: values.lastName,
-			otherNames: values.otherName,
-			password: values.password,
 			acceptedTerms: termsAgreed,
-			language: values.language,
-			institutionName: null,
-			gender: values.gender.toLowerCase(),
-			dob: format(values.dob, "yyyy-MM-dd"),
+			password: values.password,
+			type: values.type,
 			address: {
 				street: values.street,
 				city: values.city,
@@ -210,14 +184,14 @@ const SignUpPage = () => {
 
 		axiosInstance
 			.post(
-				"https://hub-api-dsem.onrender.com/api/v1/auth/sign-up/user",
+				"https://hub-api-dsem.onrender.com/api/v1/auth/sign-up/institution",
 				userData
 			)
 			.then((res) => {
 				console.log(res.data);
 				setVerificationData({
 					countryCode: countryShortCode,
-					phone: res.data.data.user.phone
+					phone: res.data.data.institution.phone
 				});
 				router.push("/auth/onboarding/verify-phone");
 			})
@@ -250,49 +224,38 @@ const SignUpPage = () => {
 						<div className="grid grid-cols-2 gap-4">
 							<FormField
 								control={form.control}
-								name="firstName"
+								name="type"
 								render={({ field }) => (
-									<FormItem>
-										<FormLabel>First Name</FormLabel>
-										<FormControl>
-											<Input
-												placeholder="John"
-												{...field}
-												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
-											/>
-										</FormControl>
+									<FormItem className="col-span-2">
+										<FormLabel>Institution Type</FormLabel>
+										<Select
+											onValueChange={field.onChange}
+											defaultValue={field.value}
+										>
+											<FormControl>
+												<SelectTrigger className="col-span-2 px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
+													<SelectValue placeholder="Choose your city" />
+												</SelectTrigger>
+											</FormControl>
+											<SelectContent>
+												<SelectItem value="hospital">
+													Hospital
+												</SelectItem>
+											</SelectContent>
+										</Select>
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
 							<FormField
 								control={form.control}
-								name="lastName"
+								name="name"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Last Name</FormLabel>
+										<FormLabel>Name</FormLabel>
 										<FormControl>
 											<Input
-												placeholder="Doe"
-												{...field}
-												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="otherName"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>
-											Other Names (optional)
-										</FormLabel>
-										<FormControl>
-											<Input
-												placeholder="Ogbeni"
+												placeholder=""
 												{...field}
 												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 											/>
@@ -310,86 +273,11 @@ const SignUpPage = () => {
 										<FormControl>
 											<Input
 												type="email"
-												placeholder="johndoe@gmail.com"
+												placeholder=""
 												{...field}
 												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 											/>
 										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="tel"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Phone Number</FormLabel>
-										<FormControl>
-											<PhoneInput
-												defaultCountry="NG"
-												placeholder="Phone number"
-												{...field}
-												className="bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="dob"
-								render={({ field }) => (
-									<FormItem className="flex flex-col mt-2">
-										<FormLabel>Date of Birth</FormLabel>
-										<Popover>
-											<PopoverTrigger
-												asChild
-												className="w-full px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
-											>
-												<FormControl>
-													<Button
-														variant={"outline"}
-														className={cn(
-															"w-full px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg",
-															!field.value &&
-																"text-muted-foreground"
-														)}
-													>
-														{field.value ? (
-															format(
-																field.value,
-																"dd/MM/yyy"
-															)
-														) : (
-															<span>
-																Pick a date
-															</span>
-														)}
-														<CalendarCheckIcon className="ml-auto h-4 w-4 opacity-50" />
-													</Button>
-												</FormControl>
-											</PopoverTrigger>
-											<PopoverContent
-												className="w-auto p-0"
-												align="start"
-											>
-												<Calendar
-													mode="single"
-													selected={field.value}
-													onSelect={field.onChange}
-													disabled={(date) =>
-														date > new Date() ||
-														date <
-															new Date(
-																"1900-01-01"
-															)
-													}
-													initialFocus
-												/>
-											</PopoverContent>
-										</Popover>
 										<FormMessage />
 									</FormItem>
 								)}
@@ -476,59 +364,37 @@ const SignUpPage = () => {
 							/>
 							<FormField
 								control={form.control}
-								name="gender"
+								name="license"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Gender</FormLabel>
-										<Select
-											onValueChange={field.onChange}
-											defaultValue={field.value}
-										>
-											<FormControl>
-												<SelectTrigger className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
-													<SelectValue placeholder="Choose your city" />
-												</SelectTrigger>
-											</FormControl>
-											<SelectContent>
-												<SelectItem
-													value="Male"
-													defaultChecked
-												>
-													Male
-												</SelectItem>
-												<SelectItem value="Female">
-													Female
-												</SelectItem>
-											</SelectContent>
-										</Select>
+										<FormLabel>
+											Accreditation/License Number
+										</FormLabel>
+										<FormControl>
+											<Input
+												placeholder=""
+												{...field}
+												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+											/>
+										</FormControl>
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
 							<FormField
 								control={form.control}
-								name="language"
+								name="tel"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Language</FormLabel>
-										<Select
-											onValueChange={field.onChange}
-											defaultValue={field.value}
-										>
-											<FormControl>
-												<SelectTrigger className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
-													<SelectValue placeholder="English" />
-												</SelectTrigger>
-											</FormControl>
-											<SelectContent>
-												<SelectItem
-													value="en-US"
-													defaultChecked
-												>
-													English (US)
-												</SelectItem>
-											</SelectContent>
-										</Select>
+										<FormLabel>Phone Number</FormLabel>
+										<FormControl>
+											<PhoneInput
+												defaultCountry="NG"
+												placeholder="Phone number"
+												{...field}
+												className="bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+											/>
+										</FormControl>
 										<FormMessage />
 									</FormItem>
 								)}
@@ -609,4 +475,4 @@ const SignUpPage = () => {
 	);
 };
 
-export default SignUpPage;
+export default InstutitionSignUpPage;

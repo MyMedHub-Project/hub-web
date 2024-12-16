@@ -1,10 +1,7 @@
-import OnboardingPage from '@/view/onboarding-page'
-import React from 'react'
+import OnboardingPage from "@/view/onboarding-page";
 
 const Onboarding = () => {
-  return (
-    <OnboardingPage />
-  )
-}
+	return <OnboardingPage />;
+};
 
-export default Onboarding
+export default Onboarding;
