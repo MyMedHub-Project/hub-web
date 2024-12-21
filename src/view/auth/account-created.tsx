@@ -12,7 +12,7 @@ import React from "react";
 
 const AccountCreatedPage = () => {
 	return (
-		<Card className="flex flex-col w-[500px]">
+		<Card className="flex flex-col w-[500px] shadow-none border-none">
 			<CardHeader className="flex items-center space-y-5">
 				<SuccessSVGComponent />
 				<CardTitle className="text-xl font-semibold">
@@ -23,14 +23,10 @@ const AccountCreatedPage = () => {
 					Now let&apos;s go explore the app.
 				</CardDescription>
 			</CardHeader>
-			<CardFooter>
-				<div>
-					<Link href="/auth/sign-in">
-						<Button className="w-full bg-[#068513] text-xs">
-							Proceed to Log In
-						</Button>
-					</Link>
-				</div>
+			<CardFooter className="">
+				<Button className="w-full bg-hubGreen text-sm">
+					<Link href="/">Proceed to Log In</Link>
+				</Button>
 			</CardFooter>
 		</Card>
 	);
