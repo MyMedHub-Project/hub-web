@@ -7,6 +7,7 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
+import { Routes } from "@/core/routing";
 import Link from "next/link";
 import React from "react";
 
@@ -25,7 +26,9 @@ const AccountCreatedPage = () => {
 			</CardHeader>
 			<CardFooter className="">
 				<Button className="w-full bg-hubGreen text-sm">
-					<Link href="/">Proceed to Log In</Link>
+					<Link href={Routes.auth["sign-in"]} className="size-full">
+						Proceed to Log In
+					</Link>
 				</Button>
 			</CardFooter>
 		</Card>

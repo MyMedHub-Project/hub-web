@@ -12,7 +12,7 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
-import { LogoSVGComponent } from "@/components/icons";
+import { LogoSVGComponent, Spinner } from "@/components/icons";
 import {
 	Form,
 	FormControl,
@@ -25,8 +25,9 @@ import { Input } from "@/components/input";
 import { Button } from "@/components/button";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
-import axiosInstance from "@/core/axios";
 import { useRouter } from "next/navigation";
+import { handleSignIn } from "@/actions/sign-in-action";
+import { Routes } from "@/core/routing";
 
 const formSchema = z.object({
 	email: z.string().email({
@@ -117,10 +118,12 @@ const PassStrengthAnimation: React.FC<PassStrengthAnimationProps> = ({
 	);
 };
 
-const SignInPage: React.FC = () => {
+const SignInPage = () => {
 	const router = useRouter();
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState<string>("");
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState<string | null>(null);
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
@@ -130,40 +133,26 @@ const SignInPage: React.FC = () => {
 		}
 	});
 
-	const onSubmit = (values: FormValues) => {
-		console.log(values);
+	const onSubmit = async (values: FormValues) => {
+		setError(null);
+		setIsLoading(true);
 
-		const loginCredentials = {
-			email: values.email,
-			password: values.password,
-			device: {
-				id: "device123",
-				name: "My Laptop",
-				version: "v2.0",
-				ipAddress: "192.168.1.100",
-				os: "Windows 10",
-				platform: "web",
-				pushNotificationToken:
-					"dEnFPzweKQI:APA91bFZ2o2WZr0v2cV1ljZGv0GxJZxou3K9bYlsf1U1D7K-Bzkt3iHc4KPU3Wi_jxJCDzZT8X9cFZu1Fbc_LMvi-L8d02DJVKHAGXrf9Ue1tJbH5XoUeqc1Kl0P_1XHmDPqHe5i7R1y"
-			}
-		};
+		const err = await handleSignIn(values);
 
-		axiosInstance
-			.post(
-				"https://hub-api-dsem.onrender.com/api/v1/auth/login",
-				loginCredentials
-			)
-			.then((res) => {
-				console.log(res.data);
-				router.push("/");
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		if (err) {
+			const errMessage = err.split(":")[0];
+			setError(errMessage);
+			setIsLoading(false);
+		} else router.push("/");
 	};
 
 	return (
 		<Card className=" w-[500px] mt-5 flex flex-col shadow-none border-none">
+			{error && (
+				<div className="w-full my-1 py-1 rounded bg-red-600 text-red-50 text-center text-sm">
+					{error}
+				</div>
+			)}
 			<CardHeader className="items-center">
 				<LogoSVGComponent />
 				<CardTitle className="text-2xl font-bold pt-5">Login</CardTitle>
@@ -171,8 +160,8 @@ const SignInPage: React.FC = () => {
 			<CardContent>
 				<Form {...form}>
 					<form
-						onSubmit={form.handleSubmit(onSubmit)}
 						className="space-y-4"
+						onSubmit={form.handleSubmit(onSubmit)}
 					>
 						<FormField
 							control={form.control}
@@ -246,11 +235,14 @@ const SignInPage: React.FC = () => {
 							>
 								Forgot Password
 							</Link>
+
 							<Button
-								className="w-full bg-hubGreen hover:bg-hubGreen/95"
+								disabled={isLoading}
+								className="w-full gap-x-2 bg-hubGreen hover:bg-hubGreen/95 disabled:bg-hubGreen/90 disabled:text-secondary"
 								type="submit"
 							>
-								Log In
+								Log In{" "}
+								{isLoading && <Spinner className="size-4" />}
 							</Button>
 						</div>
 					</form>
@@ -258,8 +250,11 @@ const SignInPage: React.FC = () => {
 			</CardContent>
 			<CardFooter className="flex flex-col">
 				<p className="text-sm text-center">
-					Don&apos;t have an account?{" "}
-					<Link href="/" className="text-hubBlue hover:underline">
+					Don't have an account?{" "}
+					<Link
+						href={Routes.onboarding}
+						className="text-hubBlue hover:underline"
+					>
 						Sign Up
 					</Link>
 				</p>

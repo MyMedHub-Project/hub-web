@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
 export default async function RootLayout({
-  children
+	children
 }: Readonly<{
-  children: React.ReactNode
+	children: React.ReactNode;
 }>) {
-
-  return (
-      <div className="min-h-[80svh] flex justify-center items-center">{children}</div>
-
-  )
+	return (
+		<div className="min-h-[80svh] flex justify-center items-center">
+			{children}
+		</div>
+	);
 }

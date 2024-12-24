@@ -1,4 +1,4 @@
-import { LogoSVGComponent } from "@/components/icons";
+import { LogoSVGComponent, Spinner } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -20,9 +20,11 @@ import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 const TermsModal = () => {
 	const router = useRouter();
 	const [termsData, setTermsData] = useState<TermsType[]>([]);
+	const [isLoading, setIsLoading] = useState(false);
 	const { role, termsAgreed, setTermsAgreed } = useContext(OnboardingContext);
 
 	const handleClick = (btn: HTMLButtonElement) => {
+		setIsLoading(true);
 		if (!termsAgreed) {
 			btn.disabled;
 		} else {
@@ -96,13 +98,14 @@ const TermsModal = () => {
 
 				<DialogFooter className="mt-3.5">
 					<Button
-						className="w-1/2 mx-auto bg-hubGreen hover:bg-hubGreen"
-						disabled={!termsAgreed}
+						className="w-1/2 gap-x-2 mx-auto bg-hubGreen hover:bg-hubGreen"
+						disabled={!termsAgreed || isLoading}
 						onClick={(e) =>
 							handleClick(e.target as HTMLButtonElement)
 						}
 					>
 						Continue
+						{isLoading && <Spinner className="size-4" />}
 					</Button>
 				</DialogFooter>
 			</div>

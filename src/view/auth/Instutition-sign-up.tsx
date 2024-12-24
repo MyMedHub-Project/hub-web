@@ -13,7 +13,7 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
-import { LogoSVGComponent } from "@/components/icons";
+import { LogoSVGComponent, Spinner } from "@/components/icons";
 import {
 	Form,
 	FormControl,
@@ -39,6 +39,8 @@ import { useRouter } from "next/navigation";
 import { PhoneInput } from "@/components/ui/phone-input";
 import RegionSelect from "@/components/ui/region-select";
 import CountrySelect from "@/components/ui/country-select";
+import { handleSignUp } from "@/actions/sign-up-action";
+import { Routes } from "@/core/routing";
 
 const formSchema = z.object({
 	type: z.string(),
@@ -150,17 +152,27 @@ const InstutitionSignUpPage: React.FC = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState<string>("");
 	const [countryCode, setCountryCode] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState<string | null>(null);
 	const { termsAgreed, setVerificationData } = useContext(OnboardingContext);
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			email: "",
-			password: ""
+			password: "",
+			type: "",
+			name: "",
+			street: "",
+			city: "",
+			state: "",
+			country: "",
+			tel: "",
+			license: ""
 		}
 	});
 
-	const onSubmit = (values: FormValues) => {
+	const onSubmit = async (values: FormValues) => {
 		const { countryName, countryShortCode } = JSON.parse(values.country);
 
 		const userData = {
@@ -180,22 +192,43 @@ const InstutitionSignUpPage: React.FC = () => {
 			}
 		};
 
-		console.log(userData);
+		setError(null);
+		setIsLoading(true);
 
-		axiosInstance
-			.post(
-				"https://hub-api-dsem.onrender.com/api/v1/auth/sign-up/institution",
-				userData
-			)
-			.then((res) => {
-				console.log(res.data);
+		const response = await handleSignUp(userData, "institution");
+
+		if (response) {
+			if (typeof response !== "string") {
+				console.log(response);
+				const {
+					data: { institution, onboardingToken, token }
+				} = response;
+
 				setVerificationData({
 					countryCode: countryShortCode,
-					phone: res.data.data.institution.phone
+					phone: institution.phone,
+					email: institution.email,
+					role: "institution",
+					onboardingToken: onboardingToken,
+					token: {
+						email: token.emailToken,
+						phone: token.phoneToken
+					}
 				});
-				router.push("/auth/onboarding/verify-phone");
-			})
-			.catch((err) => console.log(err));
+
+				router.push(Routes.auth["verify-phone"]);
+			} else {
+				const errMessage = (response as string).split(":");
+
+				const message =
+					errMessage.length > 1
+						? `${errMessage[0]}:${errMessage[1]}`
+						: errMessage[0];
+
+				setError(message);
+				setIsLoading(false);
+			}
+		}
 	};
 
 	useEffect(() => {
@@ -206,6 +239,11 @@ const InstutitionSignUpPage: React.FC = () => {
 
 	return (
 		<Card className="w-[700px] my-5 border-none shadow-none">
+			{error && (
+				<div className="w-full my-1 py-1 rounded bg-red-600 text-red-50 text-center text-sm">
+					{error}
+				</div>
+			)}
 			<CardHeader className="items-center">
 				<LogoSVGComponent className="mb-3" />
 				<CardTitle className="w-full text-2xl text-center font-bold pt-4 border-t-[3px]">
@@ -451,10 +489,12 @@ const InstutitionSignUpPage: React.FC = () => {
 
 						<div className="space-y-5">
 							<Button
-								className="w-full bg-green-600 hover:bg-green-500"
+								disabled={isLoading}
+								className="w-full gap-x-2 bg-hubGreen hover:bg-hubGreen/95 disabled:bg-hubGreen/90 disabled:text-secondary"
 								type="submit"
 							>
 								Continue
+								{isLoading && <Spinner className="size-4" />}
 							</Button>
 						</div>
 					</form>

@@ -2,7 +2,18 @@
 
 import { createContext, useState } from "react";
 
-type VerificationCodeTypes = { countryCode: string; phone: string };
+/**
+ * @todo email, token to be removed from types for production
+ */
+type VerificationCodeTypes = {
+	countryCode: string;
+	phone: string;
+	role?: string;
+	onboardingToken?: string;
+
+	email: string;
+	token: { email: string; phone: string };
+};
 
 type OnboardingVariableTypes = {
 	role: string;

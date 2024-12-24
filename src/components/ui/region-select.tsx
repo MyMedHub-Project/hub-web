@@ -71,7 +71,7 @@ function RegionSelect({
 			</SelectTrigger>
 			<SelectContent>
 				{regions.map(({ name, shortCode }) => (
-					<SelectItem key={shortCode} value={shortCode}>
+					<SelectItem key={shortCode} value={name}>
 						{name}
 					</SelectItem>
 				))}

@@ -16,9 +16,10 @@ import Link from "next/link";
 import { Input } from "@/components/input";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import axiosInstance from "@/core/axios";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 import { useRouter } from "next/navigation";
+import { verifyPhone } from "@/actions/verify-phone-action";
+import { Routes } from "@/core/routing";
 
 const ProgressAnimation: React.FC<{ isVerified: boolean }> = ({
 	isVerified
@@ -46,20 +47,32 @@ const VerifyPhonePage = () => {
 	const [isVerifying, setIsVerifying] = useState(false);
 	const [isVerified, setIsVerified] = useState(false);
 	const [failed, setFailed] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const { verificationData } = useContext(OnboardingContext);
 
 	const handleChange = (index: number, value: string) => {
-		if (value.length > 1 || isNaN(Number(value))) return;
+		// Allow only a single alphanumeric character
+		if (value.length > 1 || !/^[a-zA-Z0-9]$/.test(value)) {
+			const newCode = [...code];
+			newCode[index] = ""; // Clear invalid input
+			setCode(newCode);
+			return;
+		}
+
+		// Convert to uppercase if lowercase
+		const formattedValue = value.toUpperCase();
 
 		const newCode = [...code];
-		newCode[index] = value;
+		newCode[index] = formattedValue;
 		setCode(newCode);
 
-		if (value && index < code.length - 1) {
+		// Move to the next input field if there is a next field
+		if (formattedValue && index < code.length - 1) {
 			document.getElementById(`code-${index + 1}`)?.focus();
 		}
 
-		if (index === code.length - 1 && value) {
+		// Submit the code if all fields are filled
+		if (index === code.length - 1 && formattedValue) {
 			handleSubmit(newCode.join(""));
 		}
 	};
@@ -74,28 +87,41 @@ const VerifyPhonePage = () => {
 		}
 	};
 
-	const handleSubmit = (code: string) => {
+	const handleSubmit = async (code: string) => {
+		const verData = {
+			countryCode: "NG",
+			type: "phone",
+			id: verificationData.phone,
+			token: code
+		};
+
 		setIsVerifying(true);
-		axiosInstance
-			.post(
-				"https://hub-api-dsem.onrender.com/api/v1/auth/verification/user",
-				{
-					countryCode: "NG",
-					type: "phone",
-					id: verificationData.phone,
-					token: code
-				}
-			)
-			.then((res) => {
-				console.log(res.data);
-				setIsVerifying(false);
-				setIsVerified(true);
-			})
-			.catch((err) => {
-				console.log(err);
-				setIsVerifying(false);
-				setFailed(true);
-			});
+		const response = await verifyPhone(verData, verificationData.role);
+
+		if (response.status === "success") {
+			console.log(response.data);
+			setIsVerifying(false);
+			setIsVerified(true);
+		}
+
+		if (response.status === "failed") {
+			console.log(response);
+			setIsVerifying(false);
+			setFailed(true);
+		}
+	};
+
+	const handleContinue = () => {
+		if (isVerified) {
+			if (
+				verificationData.role &&
+				verificationData.role === "institution"
+			) {
+				router.push(Routes.auth["create-admin"]);
+			} else router.push(Routes.auth["account-created"]);
+		}
+
+		setIsLoading(true);
 	};
 
 	return (
@@ -172,18 +198,19 @@ const VerifyPhonePage = () => {
 
 				<CardFooter className="flex flex-col w-full px-10">
 					<Button
-						disabled={!isVerified}
-						className="w-full mb-2 bg-green-600 disabled:bg-hubGreen/50"
-						onClick={() => {
-							isVerified &&
-								router.push("/auth/onboarding/account-created");
-						}}
+						disabled={!isVerified || isLoading}
+						className="w-full gap-x-2 bg-hubGreen hover:bg-hubGreen/95 disabled:bg-hubGreen/90 disabled:text-secondary"
+						onClick={handleContinue}
 					>
 						Continue
+						{isLoading && <Spinner className="size-4" />}
 					</Button>
 					<div className="text-sm text-center mt-4">
 						Already have an account?{" "}
-						<Link href="/auth/sign-in" className="text-blue-600">
+						<Link
+							href={Routes.auth["sign-in"]}
+							className="text-blue-600"
+						>
 							Log In
 						</Link>
 					</div>

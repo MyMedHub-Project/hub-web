@@ -13,7 +13,7 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
-import { LogoSVGComponent } from "@/components/icons";
+import { LogoSVGComponent, Spinner } from "@/components/icons";
 import {
 	Form,
 	FormControl,
@@ -24,7 +24,7 @@ import {
 } from "@/components/form";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
-import { CalendarCheckIcon, Eye, EyeOff } from "lucide-react";
+import { CalendarCheckIcon, Eye, EyeOff, Route } from "lucide-react";
 import Link from "next/link";
 import {
 	Select,
@@ -38,13 +38,13 @@ import { PopoverTrigger } from "@radix-ui/react-popover";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
-import axios from "axios";
-import axiosInstance from "@/core/axios";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 import { useRouter } from "next/navigation";
 import { PhoneInput } from "@/components/ui/phone-input";
 import CountrySelect from "@/components/ui/country-select";
 import RegionSelect from "@/components/ui/region-select";
+import { handleSignUp } from "@/actions/sign-up-action";
+import { Routes } from "@/core/routing";
 
 const formSchema = z.object({
 	firstName: z
@@ -72,7 +72,8 @@ const formSchema = z.object({
 	gender: z.string(),
 	language: z.string(),
 	dob: z.date({
-		required_error: "A date of birth is required"
+		required_error: "A date of birth is required",
+		invalid_type_error: "Select a valid date of birth"
 	}),
 	password: z
 		.string()
@@ -169,6 +170,8 @@ const SignUpPage = () => {
 	const router = useRouter();
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState<string>("");
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState<string | null>(null);
 	const [countryCode, setCountryCode] = useState("");
 	const { termsAgreed, role, setVerificationData } =
 		useContext(OnboardingContext);
@@ -176,12 +179,23 @@ const SignUpPage = () => {
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
+			firstName: "",
+			lastName: "",
+			otherName: "",
 			email: "",
+			tel: "",
+			street: "",
+			city: "",
+			state: "",
+			country: "",
+			gender: "",
+			language: "",
+			dob: "" as unknown as Date,
 			password: ""
 		}
 	});
 
-	const onSubmit = (values: FormValues) => {
+	const onSubmit = async (values: FormValues) => {
 		const { countryName, countryShortCode } = JSON.parse(values.country);
 
 		const userData = {
@@ -206,32 +220,57 @@ const SignUpPage = () => {
 			}
 		};
 
-		console.log(userData);
+		setError(null);
+		setIsLoading(true);
 
-		axiosInstance
-			.post(
-				"https://hub-api-dsem.onrender.com/api/v1/auth/sign-up/user",
-				userData
-			)
-			.then((res) => {
-				console.log(res.data);
+		const response = await handleSignUp(userData);
+
+		if (response) {
+			console.log(response);
+			if (typeof response !== "string") {
+				const {
+					data: { user, token }
+				} = response;
+
 				setVerificationData({
 					countryCode: countryShortCode,
-					phone: res.data.data.user.phone
+					phone: user.phone,
+					email: user.email,
+					token: {
+						email: token.emailToken,
+						phone: token.phoneToken
+					}
 				});
-				router.push("/auth/onboarding/verify-phone");
-			})
-			.catch((err) => console.log(err));
+
+				router.push(Routes.auth["verify-phone"]);
+			} else {
+				const errMessage = response.split(":");
+
+				const message =
+					errMessage.length > 1
+						? `${errMessage[0]}:${errMessage[1]}`
+						: errMessage[0];
+
+				setError(message);
+			}
+		}
+
+		setIsLoading(false);
 	};
 
 	useEffect(() => {
 		if (!termsAgreed) {
 			router.push("/auth/onboarding");
 		}
-	}, []);
+	}, [termsAgreed]);
 
 	return (
 		<Card className="w-[700px] my-5 border-none shadow-none">
+			{error && (
+				<div className="w-full my-1 py-1 rounded bg-red-600 text-red-50 text-center text-sm">
+					{error}
+				</div>
+			)}
 			<CardHeader className="items-center">
 				<LogoSVGComponent className="mb-3" />
 				<CardTitle className="w-full text-2xl text-center font-bold pt-4 border-t-[3px]">
@@ -585,10 +624,12 @@ const SignUpPage = () => {
 
 						<div className="space-y-5">
 							<Button
-								className="w-full bg-green-600 hover:bg-green-500"
+								disabled={isLoading}
+								className="w-full gap-x-2 bg-hubGreen hover:bg-hubGreen/95 disabled:bg-hubGreen/90 disabled:text-secondary"
 								type="submit"
 							>
 								Continue
+								{isLoading && <Spinner className="size-4" />}
 							</Button>
 						</div>
 					</form>
