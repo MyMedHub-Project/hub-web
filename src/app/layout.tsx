@@ -4,6 +4,8 @@ import "./globals.css";
 import { AppLayout } from "@/components/layouts/app";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/toast/toaster";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -42,18 +44,21 @@ export const metadata: Metadata = {
 	description: "" //TODO: add description
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const session = await auth();
 	// logDev("App is initializing in development mode", "🚀");
 	// logDev("Construction in progress...", "🚧🏗️")
 
 	return (
 		<html lang="en">
 			<body className={`bg-white cn("style-scrollbar", inter.className)`}>
-				<AppLayout>{children}</AppLayout>
+				<SessionProvider session={session}>
+					<AppLayout>{children}</AppLayout>
+				</SessionProvider>
 				<Toaster />
 			</body>
 		</html>
