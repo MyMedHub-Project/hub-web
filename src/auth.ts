@@ -1,8 +1,7 @@
-import NextAuth, { AuthError, User } from "next-auth";
+import NextAuth, { User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { retrieveUser } from "./actions/auth-action";
 import { AdapterUser } from "next-auth/adapters";
-import { NextResponse } from "next/server";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
 	providers: [
@@ -26,6 +25,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 			if (user) {
 				token.user = user;
 			}
+
 			return token;
 		},
 		async session({ session, token }) {
@@ -47,7 +47,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 			}
 
 			return false;
-		},
+		}
 	},
 	session: {
 		strategy: "jwt",
