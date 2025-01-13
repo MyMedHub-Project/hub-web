@@ -72,10 +72,12 @@ const menuItems = [
 		]
 	}
 ];
+
 const DashboardSideBar = () => {
 	const pathname = usePathname();
+
 	return (
-		<div className="mt-8 flex-1">
+		<div className="mt-8 flex-1 flex flex-col justify-between">
 			{menuItems.map((section, index) => (
 				<div className="space-y-2" key={index}>
 					{section.items.map((item) => {
@@ -104,6 +106,13 @@ const DashboardSideBar = () => {
 					})}
 				</div>
 			))}
+
+			<Link
+				href="/"
+				className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-hubred"
+			>
+				Logout
+			</Link>
 		</div>
 	);
 };

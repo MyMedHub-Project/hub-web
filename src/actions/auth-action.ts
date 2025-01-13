@@ -23,12 +23,13 @@ export const retrieveUser = async (email: string, passwordHash: string) => {
 	};
 
 	try {
-		let user: User | null = null;
+		let userObj: User | null = null;
 
 		const res = await axiosInstance.post(
 			process.env.NEXT_APP_API_URL + "/auth/login",
 			loginCred,
 			{
+				timeout: 60 * 1000,
 				timeoutErrorMessage:
 					"An error occured, check your internet connection"
 			}
@@ -40,9 +41,15 @@ export const retrieveUser = async (email: string, passwordHash: string) => {
 			);
 		}
 
-		user = res.data.data.user as User;
+		const { user, ...otherData } = res.data.data;
+		const userResponse: any = {
+			...user,
+			...otherData
+		};
 
-		return user;
+		userObj = userResponse as User;
+
+		return userObj;
 	} catch (error) {
 		if (error instanceof AxiosError) {
 			if (error.response && error.response.data) {

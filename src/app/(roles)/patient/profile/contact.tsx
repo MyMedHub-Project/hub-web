@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 
-const Contact = () => {
+const Contact = ({ contactInfo }: { contactInfo: any }) => {
 	return (
 		<Card className="bg-hubGrey divide-y-2">
 			<CardHeader className="pb-2 flex flex-row gap-x-1">
@@ -11,15 +11,15 @@ const Contact = () => {
 			<CardContent className="pt-2 space-y-1">
 				<div className="space-y-1">
 					<span className="text-sm text-gray-500">Name</span>
-					<p>Jane Anderson</p>
+					<p>{contactInfo ? contactInfo.name : "-----"}</p>
 				</div>
 				<div className="space-y-1">
 					<span className="text-sm text-gray-500">Relationship</span>
-					<p>Spouce</p>
+					<p>{contactInfo ? contactInfo.relationship : "-----"}</p>
 				</div>
 				<div className="space-y-1">
 					<span className="text-sm text-gray-500">Phone</span>
-					<p>+234 8012345678</p>
+					<p>{contactInfo ? contactInfo.phone : "-----"}</p>
 				</div>
 			</CardContent>
 		</Card>
