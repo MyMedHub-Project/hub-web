@@ -36,8 +36,8 @@ export const retrieveUser = async (email: string, passwordHash: string) => {
 			);
 		}
 
-		console.log(res.data.data);
-		return;
+		// console.log(res.data.data);
+		// return;
 
 		const { user, ...otherData } = res.data.data;
 		const userResponse: any = {
