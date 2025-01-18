@@ -5,6 +5,7 @@ export const Routes = {
 		"sign-in": "/auth/sign-in",
 		"sign-up": "/auth/onboarding/sign-up/",
 		"verify-phone": "/auth/onboarding/verify-phone",
+		"verify-email": "/auth/onboarding/verify-email",
 		"create-admin": "/auth/onboarding/create-admin",
 		"account-created": "/auth/onboarding/account-created",
 		"forgot-password": "/auth/onboarding/forgot-password",

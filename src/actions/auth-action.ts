@@ -27,12 +27,7 @@ export const retrieveUser = async (email: string, passwordHash: string) => {
 
 		const res = await axiosInstance.post(
 			process.env.NEXT_APP_API_URL + "/auth/login",
-			loginCred,
-			{
-				timeout: 60 * 1000,
-				timeoutErrorMessage:
-					"An error occured, check your internet connection"
-			}
+			loginCred
 		);
 
 		if (!res || !res.data) {
@@ -40,6 +35,9 @@ export const retrieveUser = async (email: string, passwordHash: string) => {
 				"Unexpected Error: API did not return user data."
 			);
 		}
+
+		// console.log(res.data.data);
+		// return;
 
 		const { user, ...otherData } = res.data.data;
 		const userResponse: any = {
