@@ -18,6 +18,8 @@ const DashboardNavbar = async () => {
 		redirect(Routes.auth["sign-in"]);
 	}
 
+	console.log(session);
+
 	const { user } = session;
 
 	return (

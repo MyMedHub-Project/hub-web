@@ -226,7 +226,6 @@ const SignUpPage = () => {
 		const response = await handleSignUp(userData);
 
 		if (response) {
-			console.log(response);
 			if (typeof response !== "string") {
 				const {
 					data: { user, token }
@@ -236,13 +235,14 @@ const SignUpPage = () => {
 					countryCode: countryShortCode,
 					phone: user.phone,
 					email: user.email,
+					role: "patient",
 					token: {
 						email: token.emailToken,
 						phone: token.phoneToken
 					}
 				});
 
-				router.push(Routes.auth["verify-phone"]);
+				router.push(Routes.auth["verify-email"]);
 			} else {
 				const errMessage = response.split(":");
 

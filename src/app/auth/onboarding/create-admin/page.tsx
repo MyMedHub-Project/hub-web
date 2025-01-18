@@ -1,5 +1,7 @@
-const AccountSuccess = () => {
-	return "Create admin";
+import CreateAdminPage from "@/view/auth/create-admin";
+
+const CreatAdmin = () => {
+	return <CreateAdminPage />;
 };
 
-export default AccountSuccess;
+export default CreatAdmin;

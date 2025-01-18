@@ -10,11 +10,7 @@ export const handleSignUp = async (
 	try {
 		const res = await axiosInstance.post(
 			process.env.NEXT_APP_API_URL + "/auth/sign-up/" + signUpType,
-			userData,
-			{
-				timeoutErrorMessage:
-					"An error occured, check your internet connection"
-			}
+			userData
 		);
 
 		const data = res.data;

@@ -3,15 +3,15 @@
 import { createContext, useState } from "react";
 
 /**
- * @todo email, token to be removed from types for production
+ * @todo token to be removed from types for production
  */
 type VerificationCodeTypes = {
 	countryCode: string;
+	email: string;
 	phone: string;
-	role?: string;
+	role: string;
 	onboardingToken?: string;
 
-	email: string;
 	token: { email: string; phone: string };
 };
 

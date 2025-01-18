@@ -18,11 +18,12 @@ import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 import { useRouter } from "next/navigation";
-import { verifyPhone } from "@/actions/verify-phone-action";
+import { verify } from "@/actions/verification-action";
 import { Routes } from "@/core/routing";
 
-const ProgressAnimation: React.FC<{ isVerified: boolean }> = ({
-	isVerified
+const ProgressAnimation: React.FC<{ isVerified: boolean; verFor: string }> = ({
+	isVerified,
+	verFor
 }) => {
 	return (
 		<div className="w-full flex items-center">
@@ -30,48 +31,56 @@ const ProgressAnimation: React.FC<{ isVerified: boolean }> = ({
 				className={cn(
 					"flex-1 h-1 bg-hubGrey relative overflow-hidden before:absolute before:w-full before:left-0 before:h-1 before:bg-hubGreen before:transition before:duration-150",
 					!isVerified
-						? "before:-translate-x-1/2"
-						: " before:-translate-x-0"
+						? verFor === "email"
+							? "before:-translate-x-2/3"
+							: " before:-translate-x-1/3"
+						: verFor === "email"
+							? "before:-translate-x-1/3"
+							: "before:-translate-x-0"
 				)}
 			></div>
 			<p className="text-xs rounded-full border border-hubGreen p-1 ml-2">
-				{!isVerified ? 1 : 2}/2
+				{!isVerified
+					? verFor === "email"
+						? 1
+						: 2
+					: verFor === "email"
+						? 2
+						: 3}
+				/3
 			</p>
 		</div>
 	);
 };
 
-const VerifyPhonePage = () => {
+const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 	const router = useRouter();
 	const [code, setCode] = useState(Array(6).fill(""));
 	const [isVerifying, setIsVerifying] = useState(false);
 	const [isVerified, setIsVerified] = useState(false);
+	const [errorOccured, setErrorOccured] = useState(false);
 	const [failed, setFailed] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const { verificationData } = useContext(OnboardingContext);
 
 	const handleChange = (index: number, value: string) => {
-		// Allow only a single alphanumeric character
 		if (value.length > 1 || !/^[a-zA-Z0-9]$/.test(value)) {
 			const newCode = [...code];
-			newCode[index] = ""; // Clear invalid input
+			newCode[index] = "";
 			setCode(newCode);
 			return;
 		}
 
-		// Convert to uppercase if lowercase
 		const formattedValue = value.toUpperCase();
 
 		const newCode = [...code];
 		newCode[index] = formattedValue;
 		setCode(newCode);
 
-		// Move to the next input field if there is a next field
 		if (formattedValue && index < code.length - 1) {
 			document.getElementById(`code-${index + 1}`)?.focus();
 		}
 
-		// Submit the code if all fields are filled
 		if (index === code.length - 1 && formattedValue) {
 			handleSubmit(newCode.join(""));
 		}
@@ -90,22 +99,29 @@ const VerifyPhonePage = () => {
 	const handleSubmit = async (code: string) => {
 		const verData = {
 			countryCode: "NG",
-			type: "phone",
-			id: verificationData.phone,
+			type: verFor === "email" ? "email" : "phone",
+			id:
+				verFor === "email"
+					? verificationData.email
+					: verificationData.phone,
 			token: code
 		};
 
 		setIsVerifying(true);
-		const response = await verifyPhone(verData, verificationData.role);
+		const response = await verify(verData, verificationData.role);
 
 		if (response.status === "success") {
-			console.log(response.data);
 			setIsVerifying(false);
 			setIsVerified(true);
 		}
 
+		if (response.status === "retry") {
+			setIsVerifying(false);
+			setErrorOccured(true);
+			setFailed(true);
+		}
+
 		if (response.status === "failed") {
-			console.log(response);
 			setIsVerifying(false);
 			setFailed(true);
 		}
@@ -113,12 +129,13 @@ const VerifyPhonePage = () => {
 
 	const handleContinue = () => {
 		if (isVerified) {
-			if (
-				verificationData.role &&
-				verificationData.role === "institution"
-			) {
-				router.push(Routes.auth["create-admin"]);
-			} else router.push(Routes.auth["account-created"]);
+			router.push(
+				verFor === "email"
+					? Routes.auth["verify-phone"]
+					: verificationData.role === "patient"
+						? Routes.auth["account-created"]
+						: Routes.auth["create-admin"]
+			);
 		}
 
 		setIsLoading(true);
@@ -136,12 +153,17 @@ const VerifyPhonePage = () => {
 						<LogoSVGComponent width={300} height={40} />
 					</motion.div>
 					<CardTitle className="text-2xl font-semibold">
-						Verify Your Phone Number
+						{verFor == "email"
+							? "Verify Your Email"
+							: "Verify Your Phone Number"}
 					</CardTitle>
-					<ProgressAnimation isVerified={isVerified} />
+					<ProgressAnimation
+						isVerified={isVerified}
+						verFor={verFor}
+					/>
 					<CardDescription className="text-sm px-2">
-						You&apos;ll receive a verification code via SMS. Enter
-						the code to verify your phone number.
+						{`You&apos;ll receive a verification code via ${verFor === "email" ? "provided Email" : "SMS"}. Enter
+						the code to verify your ${verFor === "email" ? "Email" : "phone number"}.`}
 					</CardDescription>
 				</CardHeader>
 				<CardContent className="w-full pb-5">
@@ -188,7 +210,9 @@ const VerifyPhonePage = () => {
 								<div className="text-hubRed flex">
 									<X className="size-5 mr-2" />
 									<span className="text-sm">
-										Invalid code
+										{errorOccured
+											? "Error, try again"
+											: "Invalid code"}
 									</span>
 								</div>
 							)
@@ -220,4 +244,4 @@ const VerifyPhonePage = () => {
 	);
 };
 
-export default VerifyPhonePage;
+export default VerificationPage;

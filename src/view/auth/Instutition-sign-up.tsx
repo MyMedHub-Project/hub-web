@@ -199,7 +199,6 @@ const InstutitionSignUpPage: React.FC = () => {
 
 		if (response) {
 			if (typeof response !== "string") {
-				console.log(response);
 				const {
 					data: { institution, onboardingToken, token }
 				} = response;
@@ -216,7 +215,7 @@ const InstutitionSignUpPage: React.FC = () => {
 					}
 				});
 
-				router.push(Routes.auth["verify-phone"]);
+				router.push(Routes.auth["verify-email"]);
 			} else {
 				const errMessage = (response as string).split(":");
 
