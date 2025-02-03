@@ -3,10 +3,11 @@
 import axiosInstance from "@/core/axios";
 import { AxiosError } from "axios";
 
-export const verify = async (
-	verData: any,
-	role: string | undefined = "user"
-) => {
+export const verify = async (verData: any, role: string) => {
+	if (role === "patient") {
+		role = "user";
+	}
+
 	try {
 		const res = await axiosInstance.post(
 			process.env.NEXT_APP_API_URL + "/auth/verification/" + role,

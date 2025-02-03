@@ -1,4 +1,4 @@
-import InstutitionSignUpPage from "@/view/auth/Instutition-sign-up";
+import InstutitionSignUpPage from "@/view/auth/instutition-sign-up";
 
 const InstututionSignUp = () => {
 	return <InstutitionSignUpPage />;

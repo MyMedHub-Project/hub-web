@@ -208,12 +208,19 @@ const InstutitionSignUpPage: React.FC = () => {
 					phone: institution.phone,
 					email: institution.email,
 					role: "institution",
-					onboardingToken: onboardingToken,
-					token: {
+					onboardingToken: onboardingToken
+				});
+
+				/**
+				 * @todo: will be removed for production (../../app/token/page will also be deleted)
+				 */
+				localStorage.setItem(
+					"token",
+					JSON.stringify({
 						email: token.emailToken,
 						phone: token.phoneToken
-					}
-				});
+					})
+				);
 
 				router.push(Routes.auth["verify-email"]);
 			} else {

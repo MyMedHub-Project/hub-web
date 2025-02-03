@@ -20,40 +20,10 @@ import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 import { useRouter } from "next/navigation";
 import { verify } from "@/actions/verification-action";
 import { Routes } from "@/core/routing";
+import { useSession } from "next-auth/react";
+import { verifyLogin } from "@/actions/login-verification-action";
 
-const ProgressAnimation: React.FC<{ isVerified: boolean; verFor: string }> = ({
-	isVerified,
-	verFor
-}) => {
-	return (
-		<div className="w-full flex items-center">
-			<div
-				className={cn(
-					"flex-1 h-1 bg-hubGrey relative overflow-hidden before:absolute before:w-full before:left-0 before:h-1 before:bg-hubGreen before:transition before:duration-150",
-					!isVerified
-						? verFor === "email"
-							? "before:-translate-x-2/3"
-							: " before:-translate-x-1/3"
-						: verFor === "email"
-							? "before:-translate-x-1/3"
-							: "before:-translate-x-0"
-				)}
-			></div>
-			<p className="text-xs rounded-full border border-hubGreen p-1 ml-2">
-				{!isVerified
-					? verFor === "email"
-						? 1
-						: 2
-					: verFor === "email"
-						? 2
-						: 3}
-				/3
-			</p>
-		</div>
-	);
-};
-
-const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
+const LoginAuthPage = ({ id }: { id?: string }) => {
 	const router = useRouter();
 	const [code, setCode] = useState(Array(6).fill(""));
 	const [isVerifying, setIsVerifying] = useState(false);
@@ -97,47 +67,32 @@ const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 	};
 
 	const handleSubmit = async (code: string) => {
-		const verData = {
-			countryCode: "NG",
-			type: verFor === "email" ? "email" : "phone",
-			id:
-				verFor === "email"
-					? verificationData.email
-					: verificationData.phone,
-			token: code
-		};
-
 		setIsVerifying(true);
-		const response = await verify(verData, verificationData.role);
+		const err = await verifyLogin(code);
 
-		if (response.status === "success") {
+		console.log(err);
+
+		if (!err) {
 			setIsVerifying(false);
 			setIsVerified(true);
 		}
 
-		if (response.status === "retry") {
+		if (err?.status === "retry") {
 			setIsVerifying(false);
 			setErrorOccured(true);
 			setFailed(true);
 		}
 
-		if (response.status === "failed") {
+		if (err?.status === "failed") {
 			setIsVerifying(false);
 			setFailed(true);
 		}
 	};
 
 	const handleContinue = () => {
-		setIsLoading(true);
-
 		if (isVerified) {
-			router.push(
-				verFor === "email"
-					? Routes.auth["verify-phone"]
-					: verificationData.role === "patient"
-						? Routes.auth["account-created"]
-						: Routes.auth["create-admin"]
-			);
+			setIsLoading(true);
+			router.push(Routes.root);
 		}
 	};
 
@@ -153,17 +108,10 @@ const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 						<LogoSVGComponent width={300} height={40} />
 					</motion.div>
 					<CardTitle className="text-2xl font-semibold">
-						{verFor == "email"
-							? "Verify Your Email"
-							: "Verify Your Phone Number"}
+						Verify Token
 					</CardTitle>
-					<ProgressAnimation
-						isVerified={isVerified}
-						verFor={verFor}
-					/>
 					<CardDescription className="text-sm px-2">
-						{`You&apos;ll receive a verification code via ${verFor === "email" ? "provided Email" : "SMS"}. Enter
-						the code to verify your ${verFor === "email" ? "Email" : "phone number"}.`}
+						Verify token to complete login
 					</CardDescription>
 				</CardHeader>
 				<CardContent className="w-full pb-5">
@@ -229,19 +177,10 @@ const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 						Continue
 						{isLoading && <Spinner className="size-4" />}
 					</Button>
-					<div className="text-sm text-center mt-4">
-						Already have an account?{" "}
-						<Link
-							href={Routes.auth["sign-in"]}
-							className="text-blue-600"
-						>
-							Log In
-						</Link>
-					</div>
 				</CardFooter>
 			</Card>
 		</div>
 	);
 };
 
-export default VerificationPage;
+export default LoginAuthPage;

@@ -3,6 +3,7 @@ export const Routes = {
 	onboarding: "/auth/onboarding",
 	auth: {
 		"sign-in": "/auth/sign-in",
+		"sign-in-verification": "/auth/sign-in/verification",
 		"sign-up": "/auth/onboarding/sign-up/",
 		"verify-phone": "/auth/onboarding/verify-phone",
 		"verify-email": "/auth/onboarding/verify-email",
