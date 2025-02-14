@@ -28,6 +28,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { handleSignIn } from "@/actions/sign-in-action";
 import { Routes } from "@/core/routing";
+import { useSession } from "next-auth/react";
 
 const formSchema = z.object({
 	email: z.string().email({
@@ -120,6 +121,7 @@ const PassStrengthAnimation: React.FC<PassStrengthAnimationProps> = ({
 
 const SignInPage = () => {
 	const router = useRouter();
+	const { data: session } = useSession();
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState<string>("");
 	const [isLoading, setIsLoading] = useState(false);
@@ -143,7 +145,9 @@ const SignInPage = () => {
 			const errMessage = err.split(":")[0];
 			setError(errMessage);
 			setIsLoading(false);
-		} else router.push("/");
+		} else {
+			router.push(Routes.auth["sign-in-verification"]);
+		}
 	};
 
 	return (
@@ -160,6 +164,7 @@ const SignInPage = () => {
 			<CardContent>
 				<Form {...form}>
 					<form
+						method="POST"
 						className="space-y-4"
 						onSubmit={form.handleSubmit(onSubmit)}
 					>

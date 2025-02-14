@@ -45,6 +45,7 @@ import CountrySelect from "@/components/ui/country-select";
 import RegionSelect from "@/components/ui/region-select";
 import { handleSignUp } from "@/actions/sign-up-action";
 import { Routes } from "@/core/routing";
+import Cookies from "js-cookie";
 
 const formSchema = z.object({
 	firstName: z
@@ -173,7 +174,7 @@ const SignUpPage = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [countryCode, setCountryCode] = useState("");
-	const { termsAgreed, role, setVerificationData } =
+	const { termsAgreed, role, verificationData, setVerificationData } =
 		useContext(OnboardingContext);
 
 	const form = useForm<FormValues>({
@@ -235,12 +236,25 @@ const SignUpPage = () => {
 					countryCode: countryShortCode,
 					phone: user.phone,
 					email: user.email,
-					role: "patient",
-					token: {
+					role: "patient"
+				});
+
+				/**
+				 * @todo: will be removed for production
+				 */
+				localStorage.setItem(
+					"token",
+					JSON.stringify({
 						email: token.emailToken,
 						phone: token.phoneToken
-					}
-				});
+					})
+				);
+
+				Cookies.set(
+					"verificationData",
+					JSON.stringify(verificationData),
+					{ expires: 1 }
+				);
 
 				router.push(Routes.auth["verify-email"]);
 			} else {

@@ -3,11 +3,13 @@ import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
 	interface Session {
+		loginVerified: boolean;
 		user?: User;
 	}
 
 	interface User {
 		id: string;
+		type: string;
 		firstname?: string;
 		lastname?: string;
 		email?: string;
@@ -20,6 +22,9 @@ declare module "next-auth" {
 		};
 		cat: string;
 		refreshCat: string;
-		twofactor: string | null;
+		twoFactor: {
+			id: string;
+			token: string;
+		} | null;
 	}
 }

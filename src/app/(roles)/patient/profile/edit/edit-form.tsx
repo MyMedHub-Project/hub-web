@@ -45,8 +45,9 @@ import {
 import { DialogClose } from "@radix-ui/react-dialog";
 import RegionSelect from "@/components/ui/region-select";
 import CountrySelect from "@/components/ui/country-select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PhoneInput } from "@/components/ui/phone-input";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
 	firstName: z
@@ -77,6 +78,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const EditForm = ({ profile }: { profile: any }) => {
+	const route = useRouter();
 	const [countryCode, setCountryCode] = useState("");
 
 	const {
