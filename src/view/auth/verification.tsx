@@ -9,7 +9,7 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/button";
 import Link from "next/link";
@@ -20,6 +20,7 @@ import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 import { useRouter } from "next/navigation";
 import { verify } from "@/actions/verification-action";
 import { Routes } from "@/core/routing";
+import { resendVerificationCode } from "@/actions/verification-resend-action";
 
 const ProgressAnimation: React.FC<{ isVerified: boolean; verFor: string }> = ({
 	isVerified,
@@ -55,6 +56,8 @@ const ProgressAnimation: React.FC<{ isVerified: boolean; verFor: string }> = ({
 
 const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 	const router = useRouter();
+	const [secs, setSecs] = useState(60);
+	const [resendDisabled, setResendDisabled] = useState(true);
 	const [code, setCode] = useState(Array(6).fill(""));
 	const [isVerifying, setIsVerifying] = useState(false);
 	const [isVerified, setIsVerified] = useState(false);
@@ -141,8 +144,41 @@ const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 		}
 	};
 
+	const handleCodeResend = async () => {
+		setSecs(60);
+
+		const data = {
+			countryCode: verificationData.countryCode,
+			role: verificationData.role,
+			type: verFor,
+			id:
+				verFor === "phone"
+					? verificationData.phone
+					: verificationData.email
+		};
+
+		const res = await resendVerificationCode(data);
+
+		console.log(res);
+	};
+
+	useEffect(() => {
+		if (secs <= 0) {
+			setResendDisabled(false);
+			return;
+		}
+
+		setResendDisabled(true);
+		const interval = setInterval(() => {
+			setSecs((prev) => prev - 1);
+		}, 1000);
+
+		return () => clearInterval(interval);
+	}, [secs]);
+
 	return (
 		<div className="flex items-center justify-center min-h-screen">
+			<p>&lt;</p>
 			<Card className="w-[500px] mx-auto flex flex-col items-center text-center shadow-none border-none">
 				<CardHeader className="justify-center space-y-4 items-center">
 					<motion.div
@@ -193,10 +229,17 @@ const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 					</form>
 					<div className="w-full px-5 mt-3 flex justify-between">
 						<Button
+							onClick={handleCodeResend}
+							disabled={resendDisabled}
 							variant={"link"}
 							className="text-sm p-0 h-fit flex items-start justify-start"
 						>
-							Resend Code: {"1:00"}
+							Resend Code
+							{secs === 60
+								? ": 1:00"
+								: !resendDisabled
+									? ""
+									: `: ${secs}`}
 						</Button>
 						{isVerified ? (
 							<div className="text-hubGreen flex">

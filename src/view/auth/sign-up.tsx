@@ -45,6 +45,7 @@ import CountrySelect from "@/components/ui/country-select";
 import RegionSelect from "@/components/ui/region-select";
 import { handleSignUp } from "@/actions/sign-up-action";
 import { Routes } from "@/core/routing";
+import Cookies from "js-cookie";
 
 const formSchema = z.object({
 	firstName: z
@@ -239,7 +240,7 @@ const SignUpPage = () => {
 				});
 
 				/**
-				 * @todo: will be removed for production (../../app/token/page will also be deleted)
+				 * @todo: will be removed for production
 				 */
 				localStorage.setItem(
 					"token",
@@ -247,6 +248,12 @@ const SignUpPage = () => {
 						email: token.emailToken,
 						phone: token.phoneToken
 					})
+				);
+
+				Cookies.set(
+					"verificationData",
+					JSON.stringify(verificationData),
+					{ expires: 1 }
 				);
 
 				router.push(Routes.auth["verify-email"]);

@@ -41,6 +41,7 @@ import RegionSelect from "@/components/ui/region-select";
 import CountrySelect from "@/components/ui/country-select";
 import { handleSignUp } from "@/actions/sign-up-action";
 import { Routes } from "@/core/routing";
+import Cookies from "js-cookie";
 
 const formSchema = z.object({
 	type: z.string(),
@@ -154,7 +155,8 @@ const InstutitionSignUpPage: React.FC = () => {
 	const [countryCode, setCountryCode] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
-	const { termsAgreed, setVerificationData } = useContext(OnboardingContext);
+	const { termsAgreed, verificationData, setVerificationData } =
+		useContext(OnboardingContext);
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
@@ -212,7 +214,7 @@ const InstutitionSignUpPage: React.FC = () => {
 				});
 
 				/**
-				 * @todo: will be removed for production (../../app/token/page will also be deleted)
+				 * @todo: will be removed for production
 				 */
 				localStorage.setItem(
 					"token",
@@ -220,6 +222,12 @@ const InstutitionSignUpPage: React.FC = () => {
 						email: token.emailToken,
 						phone: token.phoneToken
 					})
+				);
+
+				Cookies.set(
+					"verificationData",
+					JSON.stringify(verificationData),
+					{ expires: 1 }
 				);
 
 				router.push(Routes.auth["verify-email"]);

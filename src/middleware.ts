@@ -10,15 +10,20 @@ export async function middleware(request: NextRequest) {
 
 	const path = request.nextUrl.pathname;
 	const session = await auth();
+	const verificationData = request.cookies.get("verificationData");
 
-	if (!session) {
+	if (!session && !path.includes("auth")) {
 		return NextResponse.redirect(
 			new URL(Routes.auth["sign-in"], request.url)
 		);
 	}
 
+	if (path.includes("onboarding/") && !verificationData) {
+		return NextResponse.redirect(new URL(Routes.onboarding, request.url));
+	}
+
 	if (path === "/") {
-		const role = session.user?.type;
+		const role = session?.user?.type;
 
 		if (!role) {
 			return NextResponse.redirect(
@@ -43,8 +48,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: [
-		"/((?!api|auth|token|_next/static|_next/image|favicon.ico).*)",
-		"/"
-	]
+	matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)", "/"]
 };

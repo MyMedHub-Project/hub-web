@@ -4,13 +4,14 @@ import { auth } from "@/auth";
 import axiosInstance from "@/core/axios";
 import { AxiosError } from "axios";
 import { signIn } from "@/auth";
+import { Endpoints } from "@/core/endpoints";
 
 export const verifyLogin = async (code: any) => {
 	const session = await auth();
 
 	try {
 		const response = await axiosInstance.post(
-			process.env.NEXT_APP_API_URL + "/auth/login/v-2fa",
+			Endpoints.auth["sign-in-verification"],
 			{
 				id: session?.user?.twoFactor?.id,
 				token: code

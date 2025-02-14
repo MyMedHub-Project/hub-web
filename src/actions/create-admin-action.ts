@@ -1,12 +1,13 @@
 "use server";
 
 import axiosInstance from "@/core/axios";
+import { Endpoints } from "@/core/endpoints";
 import { AxiosError } from "axios";
 
 export const createAdmin = async (values: any) => {
 	try {
 		const res = await axiosInstance.post(
-			process.env.NEXT_APP_API_URL + "/auth/sign-up/institution-admin",
+			Endpoints.auth["create-admin"],
 			values
 		);
 

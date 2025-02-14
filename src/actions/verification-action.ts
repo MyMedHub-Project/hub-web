@@ -1,6 +1,7 @@
 "use server";
 
 import axiosInstance from "@/core/axios";
+import { Endpoints } from "@/core/endpoints";
 import { AxiosError } from "axios";
 
 export const verify = async (verData: any, role: string) => {
@@ -10,7 +11,7 @@ export const verify = async (verData: any, role: string) => {
 
 	try {
 		const res = await axiosInstance.post(
-			process.env.NEXT_APP_API_URL + "/auth/verification/" + role,
+			Endpoints.auth["verification"] + role,
 			{
 				countryCode: verData.countryCode,
 				type: verData.type,

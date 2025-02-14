@@ -1,6 +1,7 @@
-'use server'
+"use server";
 
 import axiosInstance from "@/core/axios";
+import { Endpoints } from "@/core/endpoints";
 import { AxiosError } from "axios";
 
 export const getProfile = async (
@@ -8,14 +9,11 @@ export const getProfile = async (
 	role: string | undefined = "patient"
 ) => {
 	try {
-		const profile = await axiosInstance.get(
-			process.env.NEXT_APP_API_URL + "/account/profile/" + role,
-			{
-				headers: {
-					cat: cat
-				}
+		const profile = await axiosInstance.get(Endpoints.profile + role, {
+			headers: {
+				cat: cat
 			}
-		);
+		});
 
 		return profile.data.data ?? null;
 	} catch (error) {

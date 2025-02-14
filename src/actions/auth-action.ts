@@ -1,5 +1,5 @@
-import { auth } from "@/auth";
 import axiosInstance from "@/core/axios";
+import { Endpoints } from "@/core/endpoints";
 import { AxiosError } from "axios";
 import { AuthError, User } from "next-auth";
 
@@ -29,23 +29,20 @@ export const retrieveUser = async (
 	}
 
 	try {
-		const res = await axiosInstance.post(
-			process.env.NEXT_APP_API_URL + "/auth/login",
-			{
-				email: email,
-				password: password,
-				device: {
-					id: "device123",
-					name: "My Laptop",
-					version: "v2.0",
-					ipAddress: "192.168.1.100",
-					os: "Windows 10",
-					platform: "web",
-					pushNotificationToken:
-						"dEnFPzweKQI:APA91bFZ2o2WZr0v2cV1ljZGv0GxJZxou3K9bYlsf1U1D7K-Bzkt3iHc4KPU3Wi_jxJCDzZT8X9cFZu1Fbc_LMvi-L8d02DJVKHAGXrf9Ue1tJbH5XoUeqc1Kl0P_1XHmDPqHe5i7R1y"
-				}
+		const res = await axiosInstance.post(Endpoints.auth["sign-in"], {
+			email: email,
+			password: password,
+			device: {
+				id: "device123",
+				name: "My Laptop",
+				version: "v2.0",
+				ipAddress: "192.168.1.100",
+				os: "Windows 10",
+				platform: "web",
+				pushNotificationToken:
+					"dEnFPzweKQI:APA91bFZ2o2WZr0v2cV1ljZGv0GxJZxou3K9bYlsf1U1D7K-Bzkt3iHc4KPU3Wi_jxJCDzZT8X9cFZu1Fbc_LMvi-L8d02DJVKHAGXrf9Ue1tJbH5XoUeqc1Kl0P_1XHmDPqHe5i7R1y"
 			}
-		);
+		});
 
 		if (!res || !res.data) {
 			return null;
