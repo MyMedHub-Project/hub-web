@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/button";
 import { SuccessSVGComponent } from "@/components/icons";
 import {
@@ -9,9 +11,14 @@ import {
 } from "@/components/ui/card";
 import { Routes } from "@/core/routing";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 const AccountCreatedPage = () => {
+	useEffect(() => {
+		localStorage.removeItem("token");
+		localStorage.removeItem("verification_data");
+	}, []);
+
 	return (
 		<Card className="flex flex-col w-[500px] shadow-none border-none">
 			<CardHeader className="flex items-center space-y-5">

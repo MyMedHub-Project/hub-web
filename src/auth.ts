@@ -8,12 +8,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 		Credentials({
 			credentials: {
 				email: { label: "Email Address", type: "text" },
-				password: { label: "Password", type: "password" }
+				password: { label: "Password", type: "password" },
+				data: {}
 			},
 			authorize: async (credentials, request) => {
 				const user = await retrieveUser(
 					credentials.email as string,
-					credentials.password as string
+					credentials.password as string,
+					credentials.data
 				);
 
 				return user;
@@ -24,6 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 		async jwt({ token, user }) {
 			if (user) {
 				token.user = user;
+				token.loginVerified = !!user.cat;
 			}
 
 			return token;
@@ -31,6 +34,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 		async session({ session, token }) {
 			if (token.user) {
 				session.user = token.user as AdapterUser & User;
+				session.loginVerified = token.loginVerified as boolean;
 			} else {
 				console.warn("Token does not have a user field:", token);
 			}

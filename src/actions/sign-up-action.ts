@@ -1,6 +1,7 @@
 "use server";
 
 import axiosInstance from "@/core/axios";
+import { Endpoints } from "@/core/endpoints";
 import { AxiosError } from "axios";
 
 export const handleSignUp = async (
@@ -9,7 +10,7 @@ export const handleSignUp = async (
 ) => {
 	try {
 		const res = await axiosInstance.post(
-			process.env.NEXT_APP_API_URL + "/auth/sign-up/" + signUpType,
+			Endpoints.auth["sign-up"] + signUpType,
 			userData
 		);
 

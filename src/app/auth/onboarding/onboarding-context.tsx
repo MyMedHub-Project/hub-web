@@ -1,27 +1,25 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 /**
  * @todo token to be removed from types for production
  */
-type VerificationCodeTypes = {
+type VerificationDataTypes = {
 	countryCode: string;
 	email: string;
 	phone: string;
-	role: string;
+	role: "patient" | "institution";
 	onboardingToken?: string;
-
-	token: { email: string; phone: string };
 };
 
 type OnboardingVariableTypes = {
-	role: string;
-	setRole: React.Dispatch<React.SetStateAction<string>>;
+	role: "patient" | "institution";
+	setRole: React.Dispatch<React.SetStateAction<"patient" | "institution">>;
 	termsAgreed: boolean;
 	setTermsAgreed: React.Dispatch<boolean>;
-	verificationData: VerificationCodeTypes;
-	setVerificationData: React.Dispatch<VerificationCodeTypes>;
+	verificationData: VerificationDataTypes;
+	setVerificationData: React.Dispatch<VerificationDataTypes>;
 };
 
 const OnboardingContext = createContext<OnboardingVariableTypes>(
@@ -29,11 +27,25 @@ const OnboardingContext = createContext<OnboardingVariableTypes>(
 );
 
 export const OnboardingProvider = ({ children }: { children: any }) => {
-	const [role, setRole] = useState("patient");
+	const [role, setRole] = useState<"patient" | "institution">("patient");
 	const [termsAgreed, setTermsAgreed] = useState(false);
-	const [verificationData, setVerificationData] = useState(
-		{} as VerificationCodeTypes
+	const [verificationData, setVerificationDataState] = useState(
+		{} as VerificationDataTypes
 	);
+
+	const setVerificationData = (data: VerificationDataTypes) => {
+		localStorage.setItem("verification_data", JSON.stringify(data));
+		setVerificationDataState(data); // Update the state
+	};
+
+	useEffect(() => {
+		const getVerificationData = () => {
+			const storedData = window.localStorage.getItem("verification_data");
+			setVerificationDataState(storedData ? JSON.parse(storedData) : {});
+		};
+
+		getVerificationData();
+	}, []);
 
 	return (
 		<OnboardingContext.Provider
