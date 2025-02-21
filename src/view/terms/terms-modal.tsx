@@ -37,9 +37,9 @@ const TermsModal = () => {
 			case "patient":
 				setTermsData(PatientTermsData);
 				break;
-			case "doctor":
-				setTermsData(DoctorTermsData);
-				break;
+			// case "doctor":
+			// 	setTermsData(DoctorTermsData);
+			// 	break;
 			case "institution":
 				setTermsData(InstitutionTermsData);
 				break;
@@ -67,11 +67,9 @@ const TermsModal = () => {
 			<div className="flex-1 overflow-y-auto text-sm px-10 text-hubBlack">
 				<ul className="space-y-2">
 					{termsData.map((term, index) => {
-						const [heading, desc] = Object.entries(term)[0];
-
 						return (
 							<li key={index}>
-								<strong>{heading}: </strong> {desc as string}
+								<strong>{term.title}: </strong> {term.content}
 							</li>
 						);
 					})}

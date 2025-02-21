@@ -44,10 +44,9 @@ export default async function DashboardLayout({
 				<DashboardSideBar />
 			</aside>
 
-			{/* Main */}
-			<div className="min-h-screen transition-all duration-300 ease-in-out ml-32 max-w-screen overflow-x-clip">
+			<div className="min-h-screen flex flex-col transition-all duration-300 ease-in-out ml-32 max-w-screen overflow-x-clip">
 				<DashboardNavbar />
-				<main className="p-4 h-full">{children}</main>
+				<main className="p-4 flex-1 flex flex-col">{children}</main>
 			</div>
 		</div>
 	);

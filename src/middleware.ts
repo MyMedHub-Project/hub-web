@@ -4,45 +4,45 @@ import { auth } from "./auth";
 import { Routes } from "./core/routing";
 
 export async function middleware(request: NextRequest) {
-	if (request.method === "POST") {
-		NextResponse.next();
-	}
+	// if (request.method === "POST") {
+	// 	NextResponse.next();
+	// }
 
-	const path = request.nextUrl.pathname;
-	const session = await auth();
-	const verificationData = request.cookies.get("verificationData");
+	// const path = request.nextUrl.pathname;
+	// const session = await auth();
+	// const verificationData = request.cookies.get("verificationData");
 
-	if (!session && !path.includes("auth")) {
-		return NextResponse.redirect(
-			new URL(Routes.auth["sign-in"], request.url)
-		);
-	}
+	// if (!session && !path.includes("auth")) {
+	// 	return NextResponse.redirect(
+	// 		new URL(Routes.auth["sign-in"], request.url)
+	// 	);
+	// }
 
-	if (path.includes("onboarding/") && !verificationData) {
-		return NextResponse.redirect(new URL(Routes.onboarding, request.url));
-	}
+	// if (path.includes("onboarding/") && !verificationData) {
+	// 	return NextResponse.redirect(new URL(Routes.onboarding, request.url));
+	// }
 
-	if (path === "/") {
-		const role = session?.user?.type;
+	// if (path === "/") {
+	// 	const role = session?.user?.type;
 
-		if (!role) {
-			return NextResponse.redirect(
-				new URL(Routes.auth["sign-in"], request.url)
-			);
-		}
+	// 	if (!role) {
+	// 		return NextResponse.redirect(
+	// 			new URL(Routes.auth["sign-in"], request.url)
+	// 		);
+	// 	}
 
-		switch (role) {
-			case "patient":
-				return NextResponse.redirect(new URL("/patient", request.url));
-			case "institution_provider":
-				return NextResponse.redirect(new URL("/doctor", request.url));
-			default:
-				//could redirect to error page or a default role page
-				return NextResponse.redirect(
-					new URL(Routes.auth["sign-in"], request.url)
-				);
-		}
-	}
+	// 	switch (role) {
+	// 		case "patient":
+	// 			return NextResponse.redirect(new URL("/patient", request.url));
+	// 		case "institution_provider":
+	// 			return NextResponse.redirect(new URL("/doctor", request.url));
+	// 		default:
+	// 			//could redirect to error page or a default role page
+	// 			return NextResponse.redirect(
+	// 				new URL(Routes.auth["sign-in"], request.url)
+	// 			);
+	// 	}
+	// }
 
 	return NextResponse.next();
 }
