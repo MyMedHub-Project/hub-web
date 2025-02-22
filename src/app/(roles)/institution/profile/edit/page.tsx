@@ -28,32 +28,64 @@ import { z } from "zod";
 
 const Edit = () => {
 	const formSchema = z.object({
-		firstName: z
+		// Hospital Basic Information
+		name: z
 			.string()
 			.trim()
-			.max(80)
-			.regex(/^(?=\S{2,})(?!\d)\S+ \S{2,}(?!\d)$/),
-		lastName: z
+			.min(3, "Hospital name must be at least 3 characters")
+			.max(100, "Hospital name must be less than 100 characters"),
+
+		email: z
 			.string()
 			.trim()
-			.max(80)
-			.regex(/^(?=\S{2,})(?!\d)\S+ \S{2,}(?!\d)$/),
-		otherName: z
+			.email("Please enter a valid email address")
+			.toLowerCase(),
+
+		phoneNumber: z
 			.string()
 			.trim()
-			.max(80)
-			.regex(/^(?=\S{2,})(?!\d)\S+ \S{2,}(?!\d)$/),
-		email: z.string().trim().email().toLowerCase(),
-		password: z
+			.regex(/^\+?[1-9]\d{1,14}$/, "Please enter a valid phone number"),
+
+		// Address Information
+		street: z
 			.string()
-			.min(8, { message: "Password must be at least 8 characters." })
-			.regex(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, {
-				message:
-					"Password must include at least one number, one lowercase and one uppercase letter."
-			}),
-		dob: z.date({
-			required_error: "A date of birth is required"
-		})
+			.trim()
+			.min(5, "Street address must be at least 5 characters")
+			.max(100, "Street address must be less than 100 characters"),
+
+		city: z
+			.string()
+			.trim()
+			.min(2, "City must be at least 2 characters")
+			.max(50, "City must be less than 50 characters"),
+
+		state: z.string().trim().min(2, "State must be at least 2 characters"),
+
+		country: z
+			.string()
+			.trim()
+			.min(2, "Country must be at least 2 characters"),
+
+		// Online Presence
+		website: z
+			.string()
+			.trim()
+			.url("Please enter a valid website URL")
+			.optional()
+			.transform((val) => val || undefined),
+
+		// Hospital Details
+		bio: z
+			.string()
+			.trim()
+			.min(20, "Bio must be at least 20 characters")
+			.max(1000, "Bio must be less than 1000 characters")
+			.optional(),
+
+		services: z
+			.string()
+			.trim()
+			.min(2, "Service must be at least 2 characters")
 	});
 
 	type FormValues = z.infer<typeof formSchema>;
@@ -61,8 +93,16 @@ const Edit = () => {
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
+			name: "",
 			email: "",
-			password: ""
+			phoneNumber: "",
+			street: "",
+			city: "",
+			state: "",
+			country: "",
+			website: "",
+			bio: "",
+			services: ""
 		}
 	});
 
@@ -106,7 +146,7 @@ const Edit = () => {
 					/>
 					<FormField
 						control={form.control}
-						name="phone-number"
+						name="phoneNumber"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Phone Number</FormLabel>

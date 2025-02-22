@@ -37,32 +37,95 @@ import { z } from "zod";
 
 const Edit = () => {
 	const formSchema = z.object({
+		// Personal Information
 		firstName: z
 			.string()
 			.trim()
-			.max(80)
-			.regex(/^(?=\S{2,})(?!\d)\S+ \S{2,}(?!\d)$/),
+			.min(2, "First name must be at least 2 characters")
+			.max(80, "First name must be less than 80 characters"),
+
 		lastName: z
 			.string()
 			.trim()
-			.max(80)
-			.regex(/^(?=\S{2,})(?!\d)\S+ \S{2,}(?!\d)$/),
+			.min(2, "Last name must be at least 2 characters")
+			.max(80, "Last name must be less than 80 characters"),
+
 		otherName: z
 			.string()
 			.trim()
-			.max(80)
-			.regex(/^(?=\S{2,})(?!\d)\S+ \S{2,}(?!\d)$/),
-		email: z.string().trim().email().toLowerCase(),
-		password: z
+			.max(80, "Other name must be less than 80 characters")
+			.optional(),
+
+		email: z
 			.string()
-			.min(8, { message: "Password must be at least 8 characters." })
-			.regex(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/, {
-				message:
-					"Password must include at least one number, one lowercase and one uppercase letter."
-			}),
-		dob: z.date({
-			required_error: "A date of birth is required"
-		})
+			.trim()
+			.email("Please enter a valid email address")
+			.toLowerCase(),
+
+		phoneNumber: z
+			.string()
+			.trim()
+			.regex(/^\+?[1-9]\d{1,14}$/, "Please enter a valid phone number"),
+
+		// Address Information
+		street: z
+			.string()
+			.trim()
+			.min(5, "Street address must be at least 5 characters")
+			.max(100, "Street address must be less than 100 characters"),
+
+		city: z
+			.string()
+			.trim()
+			.min(2, "City must be at least 2 characters")
+			.max(50, "City must be less than 50 characters"),
+
+		state: z.string().trim().min(2, "State must be at least 2 characters"),
+
+		country: z
+			.string()
+			.trim()
+			.min(2, "Country must be at least 2 characters"),
+
+		// Personal Details
+		gender: z.enum(["Male", "Female"], {
+			required_error: "Please select a gender"
+		}),
+
+		dob: z
+			.date({
+				required_error: "Date of birth is required"
+			})
+			.refine((date) => {
+				const age = new Date().getFullYear() - date.getFullYear();
+				return age >= 18 && age <= 100;
+			}, "You must be at least 18 years old"),
+
+		bio: z
+			.string()
+			.trim()
+			.max(500, "Bio must be less than 500 characters")
+			.optional(),
+
+		// Professional Information
+		speciality: z
+			.string()
+			.trim()
+			.min(2, "Speciality must be at least 2 characters"),
+
+		services: z
+			.string()
+			.trim()
+			.min(2, "Service must be at least 2 characters"),
+
+		experience: z
+			.string()
+			.trim()
+			.regex(/^\d+$/, "Years of experience must be a number")
+			.transform(Number)
+			.refine((years) => years >= 0 && years <= 70, {
+				message: "Years of experience must be between 0 and 70"
+			})
 	});
 
 	type FormValues = z.infer<typeof formSchema>;
@@ -70,8 +133,19 @@ const Edit = () => {
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
+			firstName: "",
+			lastName: "",
+			otherName: "",
 			email: "",
-			password: ""
+			phoneNumber: "",
+			street: "",
+			city: "",
+			state: "",
+			country: "",
+			bio: "",
+			speciality: "",
+			services: "",
+			experience: 1
 		}
 	});
 
@@ -136,7 +210,7 @@ const Edit = () => {
 					/>
 					<FormField
 						control={form.control}
-						name="phone-number"
+						name="phoneNumber"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Phone Number</FormLabel>
