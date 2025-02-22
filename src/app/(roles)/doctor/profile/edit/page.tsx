@@ -85,7 +85,7 @@ const Edit = () => {
 				<form className="grid grid-cols-2 gap-5">
 					<FormField
 						control={form.control}
-						name="first Name"
+						name="firstName"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Firstname</FormLabel>
@@ -97,7 +97,7 @@ const Edit = () => {
 					/>
 					<FormField
 						control={form.control}
-						name="lastname"
+						name="lastName"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Last Name</FormLabel>
@@ -109,7 +109,7 @@ const Edit = () => {
 					/>
 					<FormField
 						control={form.control}
-						name="othername"
+						name="otherName"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Other Name</FormLabel>
