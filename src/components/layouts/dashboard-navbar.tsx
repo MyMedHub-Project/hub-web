@@ -2,33 +2,31 @@ import { AvatarIcon, SpeakerLoudIcon } from "@radix-ui/react-icons";
 import { ChevronDown, MessageCircleIcon, Search, Speaker } from "lucide-react";
 import {
 	BellSVGComponent,
-	ChatIconSVGComponent,
+	// ChatIconSVGComponent,
 	SearchIconSVGComponent
 } from "../icons";
-import { Separator } from "../ui/separator";
+// import { Separator } from "../ui/separator";
 import { auth } from "@/auth";
 import { format } from "date-fns";
 import { redirect } from "next/navigation";
 import { Routes } from "@/core/routing";
-import { User } from "next-auth";
+// import { User } from "next-auth";
 
 const DashboardNavbar = async () => {
-	// const session = await auth();
+	const session = await auth();
 
-	// if (!session) {
-	// 	redirect(Routes.auth["sign-in"]);
-	// }
+	if (!session?.user) {
+		redirect(Routes.auth["sign-in"]);
+	}
 
-	// const { user } = session;
-
-	const user: User | null = null;
+	const { user } = session;
 
 	return (
 		<div className="grid grid-cols-3 gap-5 items-center justify-between p-5 text-hubBlack max-w-screen top-0 sticky bg-[#f7f8fa] shadow-sm z-50">
 			{/* USER NAME */}
 			<div className="flex flex-col leading-relaxed">
 				<h2 className="text-xl font-bold leading-tight">
-					Hello {user?.firstname}.
+					Hello {user?.firstname || "John Doe"}.
 				</h2>
 				<p className="">How are you feeling today?</p>
 				<span className="text-gray-400 text-sm">
