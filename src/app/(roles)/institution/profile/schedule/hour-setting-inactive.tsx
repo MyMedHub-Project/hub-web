@@ -1,7 +1,11 @@
 import { Card, CardTitle } from "@/components/ui/card";
 import { Plus } from "lucide-react";
 
-const HourSettingInactive = ({ day }) => {
+interface HourSettingInactiveProps {
+	day: string;
+}
+
+const HourSettingInactive = ({ day }: HourSettingInactiveProps) => {
 	return (
 		<Card className="bg-hubGrey p-4">
 			<CardTitle className="flex justify-between text-hubBlack font-semibold">

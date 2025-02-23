@@ -13,7 +13,11 @@ import { UserRound } from "lucide-react";
 import React, { useState } from "react";
 import ProviderDetails from "./provider-details";
 
-const ProviderCard = ({ provider }) => {
+interface ProviderCardProps {
+	provider: Provider;
+}
+
+const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
 	const [showDetails, setShowDetails] = useState(false);
 
 	return (

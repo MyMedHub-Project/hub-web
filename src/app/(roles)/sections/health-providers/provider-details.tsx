@@ -9,7 +9,15 @@ import {
 import { UserRound } from "lucide-react";
 import React from "react";
 
-const ProviderDetails = ({ provider, onClose }) => {
+interface ProviderDetailsProps {
+	provider: Provider;
+	onClose: () => void;
+}
+
+const ProviderDetails: React.FC<ProviderDetailsProps> = ({
+	provider,
+	onClose
+}) => {
 	const handleSuspend = () => {
 		onClose();
 		console.log("User is Suspended");
@@ -22,7 +30,7 @@ const ProviderDetails = ({ provider, onClose }) => {
 			<DialogContent>
 				<DialogHeader>
 					<Avatar>
-						<AvatarImage />
+						<AvatarImage src={provider.avatar} />
 						<AvatarFallback>
 							<UserRound className="w-12 h-12" />
 						</AvatarFallback>

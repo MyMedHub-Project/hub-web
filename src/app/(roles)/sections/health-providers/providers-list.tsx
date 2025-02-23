@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React, { useState } from "react";
 import ProviderCard from "./provider-card";
 
-const providers = [
+const providers: Provider[] = [
 	{
 		id: 1,
 		name: "John Doe",
@@ -17,7 +17,7 @@ const providers = [
 		licenseNumber: "ACD1234"
 	}
 ];
-const ProvidersList = () => {
+const ProvidersList: React.FC = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [activeProviders, setActiveProviders] = useState(
 		providers.filter((p) => p.role !== "Invitee")
