@@ -1,7 +1,5 @@
 import MessagingPage from "./components/messaging-page";
 
-const Messaging = () => {
-	return <MessagingPage />;
-};
+const Messaging = () => <MessagingPage />;
 
 export default Messaging;

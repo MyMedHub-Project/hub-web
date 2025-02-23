@@ -1,5 +1,12 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AvatarIcon } from "@radix-ui/react-icons";
+import { SelectContent, SelectItem } from "@radix-ui/react-select";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import {
 	Form,
 	FormControl,
@@ -27,13 +34,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { AvatarIcon } from "@radix-ui/react-icons";
-import { SelectContent, SelectItem } from "@radix-ui/react-select";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 const Edit = () => {
 	const formSchema = z.object({
@@ -336,7 +336,7 @@ const Edit = () => {
 									<PopoverTrigger asChild>
 										<FormControl>
 											<Button
-												variant={"outline"}
+												variant="outline"
 												className={cn(
 													"w-full pl-3 text-left font-normal",
 													!field.value &&

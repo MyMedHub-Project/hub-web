@@ -1,8 +1,8 @@
 "use client";
 
+import React, { useState } from "react";
 import { Input } from "@/components/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import React, { useState } from "react";
 import ProviderCard from "./provider-card";
 
 const providers: Provider[] = [

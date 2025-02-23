@@ -1,7 +1,7 @@
 "use server";
 
-import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
+import { signIn } from "@/auth";
 
 export const handleSignIn = async (values: any) => {
 	try {

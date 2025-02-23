@@ -1,5 +1,10 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AvatarIcon } from "@radix-ui/react-icons";
+import { SelectContent, SelectItem } from "@radix-ui/react-select";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import {
 	Form,
 	FormControl,
@@ -20,11 +25,6 @@ import { Input } from "@/components/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { AvatarIcon } from "@radix-ui/react-icons";
-import { SelectContent, SelectItem } from "@radix-ui/react-select";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 const Edit = () => {
 	const formSchema = z.object({

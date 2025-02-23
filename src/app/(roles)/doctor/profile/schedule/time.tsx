@@ -1,11 +1,11 @@
 "use client";
 
+import { useContext, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import HourSetting from "./hour-setting";
-import { useContext, useState } from "react";
-import ScheduleContext from "../context/Schedule";
 import { cn } from "@/lib/utils";
+import ScheduleContext from "../context/Schedule";
+import HourSetting from "./hour-setting";
 import Hour from "./hour";
 
 const Time = () => {
@@ -43,13 +43,13 @@ const Time = () => {
 				</Card>
 			) : (
 				<>
-					{availableDays.mon && <Hour day="Monday" />}
-					{availableDays.tue && <Hour day="Tuesday" />}
-					{availableDays.wed && <Hour day="Wednesday" />}
-					{availableDays.thur && <Hour day="Thursday" />}
-					{availableDays.fri && <Hour day="Friday" />}
-					{availableDays.sat && <Hour day="Saturday" />}
-					{availableDays.sun && <Hour day="Sunday" />}
+					{availableDays.mon ? <Hour day="Monday" /> : null}
+					{availableDays.tue ? <Hour day="Tuesday" /> : null}
+					{availableDays.wed ? <Hour day="Wednesday" /> : null}
+					{availableDays.thur ? <Hour day="Thursday" /> : null}
+					{availableDays.fri ? <Hour day="Friday" /> : null}
+					{availableDays.sat ? <Hour day="Saturday" /> : null}
+					{availableDays.sun ? <Hour day="Sunday" /> : null}
 				</>
 			)}
 		</div>

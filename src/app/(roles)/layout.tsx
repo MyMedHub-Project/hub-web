@@ -1,13 +1,9 @@
-import {
-	LogoSVGComponent,
-	MedHub,
-	MedHubLogoSVGComponent
-} from "@/components/icons";
+import Link from "next/link";
+import React from "react";
+import { MedHubLogoSVGComponent } from "@/components/icons";
 import DashboardNavbar from "@/components/layouts/dashboard-navbar";
 import DashboardSideBar from "@/components/layouts/dashboard-sidebar";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
-import React from "react";
 
 export default async function DashboardLayout({
 	children

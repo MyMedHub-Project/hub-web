@@ -1,9 +1,9 @@
 import NextAuth, { User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { retrieveUser } from "./actions/auth-action";
 import { AdapterUser } from "next-auth/adapters";
+import { retrieveUser } from "./actions/auth-action";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { auth, handlers, signIn, signOut } = NextAuth({
 	providers: [
 		Credentials({
 			credentials: {
@@ -41,7 +41,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
 			return session;
 		},
-		async authorized({ request, auth }) {
+		async authorized({ auth, request }) {
 			if (auth) {
 				return true;
 			}

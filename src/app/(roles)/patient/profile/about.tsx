@@ -1,15 +1,16 @@
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { AvatarIcon } from "@radix-ui/react-icons";
 import { LocateFixedIcon, Mail, Phone } from "lucide-react";
+import Image from "next/image";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 
 const About = ({ info }: { info: any }) => {
-	const { firstname, lastname, phone, email, profileImage, address } = info;
+	const { address, email, firstname, lastname, phone, profileImage } = info;
 
 	return (
 		<Card className="bg-transparent border-none shadow-none flex items-center gap-x-5">
 			<div className="rounded-full border-4 size-[200px] border-gray-300">
 				{profileImage && profileImage !== "" ? (
-					<img
+					<Image
 						src={profileImage}
 						alt="profile"
 						className="size-full"
@@ -20,7 +21,7 @@ const About = ({ info }: { info: any }) => {
 			</div>
 			<div className="flex flex-col items-start">
 				<CardTitle className="flex items-center gap-x-3 text-2xl mb-1">
-					{firstname + " " + lastname}
+					{`${firstname} ${lastname}`}
 					<span className="rounded-full bg-green-600 size-2"></span>{" "}
 				</CardTitle>
 				<CardContent className="pl-0 space-y-2">

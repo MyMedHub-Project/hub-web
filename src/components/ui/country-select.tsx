@@ -1,3 +1,5 @@
+import countryRegionData from "country-region-data/dist/data-umd";
+import { useEffect, useState } from "react";
 import {
 	Select,
 	SelectContent,
@@ -7,8 +9,6 @@ import {
 } from "@/components/ui/select";
 import { filterCountries } from "./helpers";
 //@ts-ignore
-import countryRegionData from "country-region-data/dist/data-umd";
-import { useEffect, useState } from "react";
 
 export interface Region {
 	name: string;
@@ -31,12 +31,12 @@ interface CountrySelectProps {
 }
 
 function CountrySelect({
-	priorityOptions = [],
-	whitelist = [],
 	blacklist = [],
-	onChange = () => {},
 	className,
-	placeholder = "Country"
+	onChange = () => {},
+	placeholder = "Country",
+	priorityOptions = [],
+	whitelist = []
 }: CountrySelectProps) {
 	const [countries, setCountries] = useState<CountryRegion[]>([]);
 

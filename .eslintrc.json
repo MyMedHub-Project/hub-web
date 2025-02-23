@@ -1,3 +1,82 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+	"extends": ["next/core-web-vitals", "prettier"],
+	"plugins": [
+		"@typescript-eslint",
+		"react-hooks",
+		"import",
+		"jsx-a11y",
+		"prefer-arrow",
+		"prettier",
+		"security",
+		"sort-destructure-keys",
+		"sort-keys-fix",
+		"typescript-sort-keys"
+	],
+	"rules": {
+		// "@typescript-eslint/no-explicit-any": "error",
+		"@typescript-eslint/no-unused-vars": ["error"],
+		"arrow-body-style": ["error", "as-needed"],
+		"eqeqeq": ["error", "always"],
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"js": "never",
+				"jsx": "never",
+				"ts": "never",
+				"tsx": "never",
+				"": "never"
+			}
+		],
+		"import/order": [
+			"error",
+			{
+				"groups": [
+					"builtin",
+					"external",
+					"internal",
+					"parent",
+					"sibling",
+					"index"
+				],
+				"newlines-between": "never"
+			}
+		],
+		"no-nested-ternary": "off",
+		"object-shorthand": ["error", "always"],
+		"react/display-name": "off",
+		"prefer-arrow/prefer-arrow-functions": [
+			"error",
+			{
+				"classPropertiesAllowed": true,
+				"disallowPrototype": true,
+				"singleReturnOnly": true
+			}
+		],
+		"prefer-template": "error",
+		"prettier/prettier": "error",
+		"react/jsx-curly-brace-presence": [
+			"error",
+			{
+				"children": "never",
+				"propElementValues": "always",
+				"props": "never"
+			}
+		],
+		"react/jsx-no-leaked-render": [
+			"error",
+			{
+				"validStrategies": ["ternary"]
+			}
+		],
+		"react/no-deprecated": 0,
+		"react-hooks/exhaustive-deps": "error",
+		"security/detect-object-injection": "off",
+		"sort-destructure-keys/sort-destructure-keys": [
+			"error",
+			{
+				"caseSensitive": false
+			}
+		]
+	}
 }

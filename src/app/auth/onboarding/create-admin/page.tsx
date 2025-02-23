@@ -1,7 +1,5 @@
 import CreateAdminPage from "@/view/auth/create-admin";
 
-const CreatAdmin = () => {
-	return <CreateAdminPage />;
-};
+const CreatAdmin = () => <CreateAdminPage />;
 
 export default CreatAdmin;

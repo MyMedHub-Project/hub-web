@@ -1,5 +1,7 @@
 "use client";
 
+import { UserRound } from "lucide-react";
+import React, { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,8 +11,6 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
-import { UserRound } from "lucide-react";
-import React, { useState } from "react";
 import ProviderDetails from "./provider-details";
 
 interface ProviderCardProps {
@@ -40,12 +40,12 @@ const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
 					<Button variant="destructive">Delete</Button>
 				</CardFooter>
 			</Card>
-			{showDetails && (
+			{showDetails ? (
 				<ProviderDetails
 					provider={provider}
 					onClose={() => setShowDetails(false)}
 				/>
-			)}
+			) : null}
 		</>
 	);
 };

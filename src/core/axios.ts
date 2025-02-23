@@ -14,13 +14,12 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-	(config) => {
+	(config) =>
 		// const token = getCookie(StorageKeys.TOKEN);
 		// if (token) {
 		// 	config.headers.cat = token;
 		// }
-		return config;
-	},
+		config,
 	(error) => Promise.reject(error)
 );
 

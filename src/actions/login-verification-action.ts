@@ -1,8 +1,8 @@
 "use server";
 
+import { AxiosError } from "axios";
 import { auth } from "@/auth";
 import axiosInstance from "@/core/axios";
-import { AxiosError } from "axios";
 import { signIn } from "@/auth";
 import { Endpoints } from "@/core/endpoints";
 

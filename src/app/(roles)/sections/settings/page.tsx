@@ -1,12 +1,12 @@
 "use client";
 
+import { Eye, EyeOff, Mail, Phone, ToggleLeftIcon } from "lucide-react";
+import React, { useState } from "react";
 import { Button } from "@/components/button";
 import { Label } from "@/components/form";
 import { Input } from "@/components/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
-import { Eye, EyeOff, Mail, Phone, ToggleLeftIcon } from "lucide-react";
-import React, { useState } from "react";
 
 const Settings = () => {
 	const [isActive, setIsActive] = useState("");
@@ -75,9 +75,7 @@ const Settings = () => {
 							</p>
 						</div>
 						<RadioGroup defaultValue="email" className="space-y-2">
-							<div
-								className={`flex items-center space-x rounded-md border p-4 data-[state=checked]:bg-green-50 data-[state=checked]:border-green-100`}
-							>
+							<div className="flex items-center space-x rounded-md border p-4 data-[state=checked]:bg-green-50 data-[state=checked]:border-green-100">
 								<RadioGroupItem
 									value="email"
 									id="email"
@@ -102,9 +100,7 @@ const Settings = () => {
 								</Label>
 							</div>
 
-							<div
-								className={`flex items-center space-x rounded-md border p-4 data-[state=checked]:bg-green-50 data-[state=checked]:border-green-100`}
-							>
+							<div className="flex items-center space-x rounded-md border p-4 data-[state=checked]:bg-green-50 data-[state=checked]:border-green-100">
 								<RadioGroupItem
 									value="phone"
 									id="phone"

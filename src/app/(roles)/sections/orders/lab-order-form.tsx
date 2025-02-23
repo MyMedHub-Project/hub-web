@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import { CalendarIcon, Check, ChevronDown, FileUp, X } from "lucide-react";
+import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/input";
@@ -19,16 +21,7 @@ import {
 	CommandInput,
 	CommandItem
 } from "@/components/ui/command";
-import {
-	CalendarIcon,
-	Check,
-	ChevronDown,
-	ChevronsUpDown,
-	FileUp,
-	X
-} from "lucide-react";
 import { cn } from "@/lib/utils";
-import { format } from "date-fns";
 
 const labs = [
 	{
@@ -78,7 +71,8 @@ export default function LabOrderForm() {
 							Place a Lab Order
 						</h2>
 						<p className="text-sm text-muted-foreground">
-							Submit your doctor's prescriptions for lab tests
+							Submit your doctor&apos;s prescriptions for lab
+							tests
 						</p>
 					</div>
 

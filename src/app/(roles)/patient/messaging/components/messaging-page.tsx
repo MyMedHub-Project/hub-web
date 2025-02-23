@@ -1,6 +1,6 @@
+import { CheckCheck, Search, User2 } from "lucide-react";
 import { Input } from "@/components/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { CheckCheck, Search, User2 } from "lucide-react";
 import Conversation from "./conversation";
 
 const MessagingPage = () => {

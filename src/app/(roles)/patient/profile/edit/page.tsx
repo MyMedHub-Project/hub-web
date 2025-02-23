@@ -1,8 +1,8 @@
-import { auth } from "@/auth";
-import EditForm from "./edit-form";
 import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 import { getProfile } from "@/actions/profile-action";
 import { Routes } from "@/core/routing";
+import EditForm from "./edit-form";
 
 const EditPage = async () => {
 	const session = await auth();

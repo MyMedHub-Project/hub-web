@@ -1,5 +1,7 @@
 "use client";
 
+import { Plus, Search, Trash2, UserRound } from "lucide-react";
+import React, { useState } from "react";
 import { Label } from "@/components/form";
 import { Input } from "@/components/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -21,9 +23,6 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { AvatarIcon } from "@radix-ui/react-icons";
-import { Plus, Search, Trash2, User, UserRound } from "lucide-react";
-import React, { experimental_taintObjectReference, useState } from "react";
 
 interface FamilyMember {
 	id: string;

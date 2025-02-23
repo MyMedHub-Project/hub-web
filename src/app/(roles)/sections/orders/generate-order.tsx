@@ -1,5 +1,9 @@
 "use client";
 
+import { DialogTrigger } from "@radix-ui/react-dialog";
+import { CaretRightIcon } from "@radix-ui/react-icons";
+import { Plus, Search, UserRound } from "lucide-react";
+import React, { useState } from "react";
 import { Input } from "@/components/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -11,10 +15,6 @@ import {
 	DialogHeader,
 	DialogTitle
 } from "@/components/ui/dialog";
-import { DialogTrigger } from "@radix-ui/react-dialog";
-import { CaretRightIcon, TextAlignBottomIcon } from "@radix-ui/react-icons";
-import { Plus, Search, UserRound } from "lucide-react";
-import React, { useState } from "react";
 import LabOrderForm from "./lab-order-form";
 
 const GenerateOrder = () => {
@@ -137,7 +137,8 @@ const GenerateOrder = () => {
 												<span className="text-xs font-thin">
 													Order medications from our
 													registered pharmacies using
-													your doctor's prescripttion.
+													your doctor&apos;s
+													prescripttion.
 												</span>
 											</div>
 											<div className="flex items-center">
@@ -215,17 +216,17 @@ const GenerateOrder = () => {
 												{order.institution}
 											</p>
 										</div>
-										{order.status === "processing" && (
+										{order.status === "processing" ? (
 											<div className="w-2 h-2 bg-hubOrange rounded-full"></div>
-										)}
+										) : null}
 									</div>
 								</div>
 							))}
-						{filteredOrders.length === 0 && (
+						{filteredOrders.length === 0 ? (
 							<div className="text-center py-4 text-gray-500">
 								No orders found.
 							</div>
-						)}
+						) : null}
 					</div>
 				</CardContent>
 			</Card>

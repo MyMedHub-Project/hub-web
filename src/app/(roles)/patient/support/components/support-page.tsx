@@ -1,8 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import TermsAndConditions from "./terms";
 import PrivacyPolicy from "./privacy-policy";

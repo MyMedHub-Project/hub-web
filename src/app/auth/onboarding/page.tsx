@@ -1,7 +1,5 @@
 import OnboardingPage from "@/view/onboarding-page";
 
-const Onboarding = () => {
-	return <OnboardingPage />;
-};
+const Onboarding = () => <OnboardingPage />;
 
 export default Onboarding;

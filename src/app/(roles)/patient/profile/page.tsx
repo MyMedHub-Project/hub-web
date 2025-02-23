@@ -1,13 +1,13 @@
+import { redirect } from "next/navigation";
+// import { Session } from "next-auth";
 import { auth } from "@/auth";
+import { Routes } from "@/core/routing";
+import { getProfile } from "@/actions/profile-action";
 import About from "./about";
 import Bio from "./bio";
 import Contact from "./contact";
 import EditButton from "./edit-button";
 import Health from "./health";
-import { Routes } from "@/core/routing";
-import { redirect } from "next/navigation";
-import { getProfile } from "@/actions/profile-action";
-import { Session } from "next-auth";
 
 const ProfilePage = async () => {
 	// todo: fetch user profile here and pass it down to needing component. EMERGNECY CONTACT IS AVAILABLE ON PROFILE.
@@ -26,26 +26,26 @@ const ProfilePage = async () => {
 	}
 
 	const {
-		id,
-		type,
-		firstname,
-		lastname,
-		email,
-		emailVerified,
-		phone,
-		phoneVerified,
 		address,
-		gender,
-		dob,
-		maritalStatus,
-		language,
-		passwordRecoveryMode,
+		// dob,
+		email,
+		// emailVerified,
 		emergencyContact,
-		notificationMode,
-		pushNotificationEnabled,
-		lastLogin,
-		profileImage,
-		timezone
+		firstname,
+		// gender,
+		// id,
+		// language,
+		// lastLogin,
+		lastname,
+		// maritalStatus,
+		// notificationMode,
+		// passwordRecoveryMode,
+		phone,
+		// phoneVerified,
+		profileImage
+		// pushNotificationEnabled,
+		// timezone,
+		// type
 	} = profile;
 
 	return (

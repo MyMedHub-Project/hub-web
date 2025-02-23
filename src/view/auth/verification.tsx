@@ -1,5 +1,10 @@
 "use client";
 
+import React, { useContext, useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Check, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { LogoSVGComponent, Spinner } from "@/components/icons";
 import {
 	Card,
@@ -9,15 +14,10 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
-import React, { useContext, useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/button";
-import Link from "next/link";
 import { Input } from "@/components/input";
-import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
-import { useRouter } from "next/navigation";
 import { verify } from "@/actions/verification-action";
 import { Routes } from "@/core/routing";
 import { resendVerificationCode } from "@/actions/verification-resend-action";
@@ -25,34 +25,32 @@ import { resendVerificationCode } from "@/actions/verification-resend-action";
 const ProgressAnimation: React.FC<{ isVerified: boolean; verFor: string }> = ({
 	isVerified,
 	verFor
-}) => {
-	return (
-		<div className="w-full flex items-center">
-			<div
-				className={cn(
-					"flex-1 h-1 bg-hubGrey relative overflow-hidden before:absolute before:w-full before:left-0 before:h-1 before:bg-hubGreen before:transition before:duration-150",
-					!isVerified
-						? verFor === "email"
-							? "before:-translate-x-2/3"
-							: " before:-translate-x-1/3"
-						: verFor === "email"
-							? "before:-translate-x-1/3"
-							: "before:-translate-x-0"
-				)}
-			></div>
-			<p className="text-xs rounded-full border border-hubGreen p-1 ml-2">
-				{!isVerified
+}) => (
+	<div className="w-full flex items-center">
+		<div
+			className={cn(
+				"flex-1 h-1 bg-hubGrey relative overflow-hidden before:absolute before:w-full before:left-0 before:h-1 before:bg-hubGreen before:transition before:duration-150",
+				!isVerified
 					? verFor === "email"
-						? 1
-						: 2
+						? "before:-translate-x-2/3"
+						: " before:-translate-x-1/3"
 					: verFor === "email"
-						? 2
-						: 3}
-				/3
-			</p>
-		</div>
-	);
-};
+						? "before:-translate-x-1/3"
+						: "before:-translate-x-0"
+			)}
+		></div>
+		<p className="text-xs rounded-full border border-hubGreen p-1 ml-2">
+			{!isVerified
+				? verFor === "email"
+					? 1
+					: 2
+				: verFor === "email"
+					? 2
+					: 3}
+			/3
+		</p>
+	</div>
+);
 
 const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 	const router = useRouter();
@@ -189,7 +187,7 @@ const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 						<LogoSVGComponent width={300} height={40} />
 					</motion.div>
 					<CardTitle className="text-2xl font-semibold">
-						{verFor == "email"
+						{verFor === "email"
 							? "Verify Your Email"
 							: "Verify Your Phone Number"}
 					</CardTitle>
@@ -204,9 +202,7 @@ const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 				</CardHeader>
 				<CardContent className="w-full pb-5">
 					<form>
-						<div
-							className={`w-full grid grid-cols-6 justify-items-center`}
-						>
+						<div className="w-full grid grid-cols-6 justify-items-center">
 							{code.map((digit, index) => (
 								<Input
 									key={index}
@@ -231,7 +227,7 @@ const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 						<Button
 							onClick={handleCodeResend}
 							disabled={resendDisabled}
-							variant={"link"}
+							variant="link"
 							className="text-sm p-0 h-fit flex items-start justify-start"
 						>
 							Resend Code
@@ -270,7 +266,7 @@ const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 						onClick={handleContinue}
 					>
 						Continue
-						{isLoading && <Spinner className="size-4" />}
+						{isLoading ? <Spinner className="size-4" /> : null}
 					</Button>
 					<div className="text-sm text-center mt-4">
 						Already have an account?{" "}

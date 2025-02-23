@@ -1,8 +1,8 @@
 "use server";
 
+import { AxiosError } from "axios";
 import axiosInstance from "@/core/axios";
 import { Endpoints } from "@/core/endpoints";
-import { AxiosError } from "axios";
 
 export const getProfile = async (
 	cat: string,
@@ -11,7 +11,7 @@ export const getProfile = async (
 	try {
 		const profile = await axiosInstance.get(Endpoints.profile + role, {
 			headers: {
-				cat: cat
+				cat
 			}
 		});
 

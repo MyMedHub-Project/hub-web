@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "@/components/button";
 import { Separator } from "@radix-ui/react-select";
 import { ChevronRight } from "lucide-react";
 import React, { useState } from "react";
+import { Button } from "@/components/button";
 
 const Support = () => {
 	const [isActive, setIsActive] = useState("");

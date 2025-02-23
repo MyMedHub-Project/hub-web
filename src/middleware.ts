@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { auth } from "./auth";
-import { Routes } from "./core/routing";
+// import { auth } from "./auth";
+// import { Routes } from "./core/routing";
 
-export async function middleware(request: NextRequest) {
-	// if (request.method === "POST") {
+export const middleware = async (
+	request: NextRequest // if (request.method === "POST") {
+) =>
 	// 	NextResponse.next();
 	// }
 
@@ -44,8 +45,7 @@ export async function middleware(request: NextRequest) {
 	// 	}
 	// }
 
-	return NextResponse.next();
-}
+	NextResponse.next();
 
 export const config = {
 	matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)", "/"]

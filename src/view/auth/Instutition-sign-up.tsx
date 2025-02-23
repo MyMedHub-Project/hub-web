@@ -5,6 +5,10 @@ import * as z from "zod";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 import {
 	Card,
 	CardContent,
@@ -24,8 +28,6 @@ import {
 } from "@/components/form";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
-import { Eye, EyeOff } from "lucide-react";
-import Link from "next/link";
 import {
 	Select,
 	SelectContent,
@@ -33,15 +35,13 @@ import {
 	SelectTrigger,
 	SelectValue
 } from "@/components/ui/select";
-import axiosInstance from "@/core/axios";
+// import axiosInstance from "@/core/axios";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
-import { useRouter } from "next/navigation";
 import { PhoneInput } from "@/components/ui/phone-input";
 import RegionSelect from "@/components/ui/region-select";
 import CountrySelect from "@/components/ui/country-select";
 import { handleSignUp } from "@/actions/sign-up-action";
 import { Routes } from "@/core/routing";
-import Cookies from "js-cookie";
 
 const formSchema = z.object({
 	type: z.string(),
@@ -155,7 +155,7 @@ const InstutitionSignUpPage: React.FC = () => {
 	const [countryCode, setCountryCode] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
-	const { termsAgreed, verificationData, setVerificationData } =
+	const { setVerificationData, termsAgreed, verificationData } =
 		useContext(OnboardingContext);
 
 	const form = useForm<FormValues>({
@@ -210,7 +210,7 @@ const InstutitionSignUpPage: React.FC = () => {
 					phone: institution.phone,
 					email: institution.email,
 					role: "institution",
-					onboardingToken: onboardingToken
+					onboardingToken
 				});
 
 				/**
@@ -253,11 +253,11 @@ const InstutitionSignUpPage: React.FC = () => {
 
 	return (
 		<Card className="w-[700px] my-5 border-none shadow-none">
-			{error && (
+			{error ? (
 				<div className="w-full my-1 py-1 rounded bg-red-600 text-red-50 text-center text-sm">
 					{error}
 				</div>
-			)}
+			) : null}
 			<CardHeader className="items-center">
 				<LogoSVGComponent className="mb-3" />
 				<CardTitle className="w-full text-2xl text-center font-bold pt-4 border-t-[3px]">
@@ -508,7 +508,9 @@ const InstutitionSignUpPage: React.FC = () => {
 								type="submit"
 							>
 								Continue
-								{isLoading && <Spinner className="size-4" />}
+								{isLoading ? (
+									<Spinner className="size-4" />
+								) : null}
 							</Button>
 						</div>
 					</form>

@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import React, { useContext } from "react";
 import { Button } from "@/components/button";
 import { Label } from "@/components/form";
 import {
@@ -17,10 +19,8 @@ import {
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
-import React, { useContext } from "react";
-import TermsModal from "./terms/terms-modal";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
+import TermsModal from "./terms/terms-modal";
 
 const OnboardingPage = ({}) => {
 	const { role, setRole } = useContext(OnboardingContext);

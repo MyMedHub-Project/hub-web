@@ -1,3 +1,5 @@
+import { UserRound } from "lucide-react";
+import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -6,8 +8,6 @@ import {
 	DialogFooter,
 	DialogHeader
 } from "@/components/ui/dialog";
-import { UserRound } from "lucide-react";
-import React from "react";
 
 interface ProviderDetailsProps {
 	provider: Provider;
@@ -15,8 +15,8 @@ interface ProviderDetailsProps {
 }
 
 const ProviderDetails: React.FC<ProviderDetailsProps> = ({
-	provider,
-	onClose
+	onClose,
+	provider
 }) => {
 	const handleSuspend = () => {
 		onClose();

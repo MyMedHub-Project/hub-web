@@ -1,3 +1,7 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import {
 	Form,
 	FormControl,
@@ -8,11 +12,7 @@ import {
 } from "@/components/form";
 import { Input } from "@/components/input";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/hooks/use-toast";
-import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+// import { toast } from "@/hooks/use-toast";
 
 const InviteSchema = z.object({
 	email: z.string().email(),

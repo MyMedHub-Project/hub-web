@@ -1,10 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
-import PasswordRecovery from "./password-recovery";
 import { cn } from "@/lib/utils";
+import PasswordRecovery from "./password-recovery";
 import Security from "./security";
 import Notifications from "./notifications";
 

@@ -1,8 +1,8 @@
 "use server";
 
+import { AxiosError } from "axios";
 import axiosInstance from "@/core/axios";
 import { Endpoints } from "@/core/endpoints";
-import { AxiosError } from "axios";
 
 export const handleSignUp = async (
 	userData: any,

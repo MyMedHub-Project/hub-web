@@ -1,7 +1,5 @@
 import SupportPage from "./components/support-page";
 
-const Support = () => {
-	return <SupportPage />;
-};
+const Support = () => <SupportPage />;
 
 export default Support;

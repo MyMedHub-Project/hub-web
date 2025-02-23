@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
 	Card,
 	CardContent,
@@ -7,7 +8,6 @@ import {
 import InstitutionTermsData from "@/view/terms/institution-terms.data";
 import PatientTermsData from "@/view/terms/patient-terms-data";
 import { TermsType } from "@/view/terms/term-data-type";
-import { useEffect, useState } from "react";
 
 const PrivacyPolicy = () => {
 	const [role, setRole] = useState<"patient" | "institution">("patient");
@@ -36,16 +36,12 @@ const PrivacyPolicy = () => {
 			</CardHeader>
 			<CardDescription>Last Updated: 12 April, 2024</CardDescription>
 			<CardContent className="px-0 mt-5 space-y-2">
-				{termsData.map((term, index) => {
-					return (
-						<p key={index} className="text-sm">
-							<span className="font-semibold">
-								{term.title}:{" "}
-							</span>{" "}
-							{term.content}
-						</p>
-					);
-				})}
+				{termsData.map((term, index) => (
+					<p key={index} className="text-sm">
+						<span className="font-semibold">{term.title}: </span>{" "}
+						{term.content}
+					</p>
+				))}
 			</CardContent>
 		</Card>
 	);

@@ -1,5 +1,9 @@
 "use client";
 
+import { PopoverContent } from "@radix-ui/react-popover";
+import { CalendarIcon } from "lucide-react";
+import React, { useState } from "react";
+import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -17,10 +21,6 @@ import {
 	SelectTrigger,
 	SelectValue
 } from "@/components/ui/select";
-import { PopoverContent } from "@radix-ui/react-popover";
-import { CalendarIcon } from "lucide-react";
-import React, { useState } from "react";
-import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
 interface RescheduleModalProps {
@@ -30,9 +30,9 @@ interface RescheduleModalProps {
 }
 
 export function RescheduleModal({
-	open,
 	onOpenChange,
-	onReschedule
+	onReschedule,
+	open
 }: RescheduleModalProps) {
 	const [date, setDate] = useState<Date>();
 	const [time, setTime] = useState("10:00AM");

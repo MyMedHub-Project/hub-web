@@ -1,11 +1,11 @@
 "use client";
 
+import { ChevronDown, X } from "lucide-react";
+import { useState } from "react";
 import { Label } from "@/components/form";
 import { Input } from "@/components/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ChevronDown, X } from "lucide-react";
-import { useState } from "react";
 
 const Interval: React.FC<{
 	hasInterval: boolean;

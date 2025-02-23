@@ -1,8 +1,8 @@
 "use client";
 
+import { useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useContext } from "react";
 import ScheduleContext from "../context/Schedule";
 
 const Days = () => {

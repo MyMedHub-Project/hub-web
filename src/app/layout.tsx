@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SessionProvider } from "next-auth/react";
 import { AppLayout } from "@/components/layouts/app";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/toast/toaster";
-import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 
 const inter = Inter({
@@ -55,7 +55,7 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en">
-			<body className={`bg-white cn("style-scrollbar", inter.className)`}>
+			<body className={cn("bg-white style-scrollbar", inter.className)}>
 				<SessionProvider session={session}>
 					<AppLayout>{children}</AppLayout>
 				</SessionProvider>

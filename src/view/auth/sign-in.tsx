@@ -5,6 +5,10 @@ import * as z from "zod";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import {
 	Card,
 	CardContent,
@@ -23,12 +27,8 @@ import {
 } from "@/components/form";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
-import { Eye, EyeOff } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { handleSignIn } from "@/actions/sign-in-action";
 import { Routes } from "@/core/routing";
-import { useSession } from "next-auth/react";
 
 const formSchema = z.object({
 	email: z.string().email({
@@ -152,11 +152,11 @@ const SignInPage = () => {
 
 	return (
 		<Card className=" w-[500px] mt-5 flex flex-col shadow-none border-none">
-			{error && (
+			{error ? (
 				<div className="w-full my-1 py-1 rounded bg-red-600 text-red-50 text-center text-sm">
 					{error}
 				</div>
-			)}
+			) : null}
 			<CardHeader className="items-center">
 				<LogoSVGComponent />
 				<CardTitle className="text-2xl font-bold pt-5">Login</CardTitle>
@@ -247,7 +247,9 @@ const SignInPage = () => {
 								type="submit"
 							>
 								Log In{" "}
-								{isLoading && <Spinner className="size-4" />}
+								{isLoading ? (
+									<Spinner className="size-4" />
+								) : null}
 							</Button>
 						</div>
 					</form>
@@ -255,7 +257,7 @@ const SignInPage = () => {
 			</CardContent>
 			<CardFooter className="flex flex-col">
 				<p className="text-sm text-center">
-					Don't have an account?{" "}
+					Don&apos;t have an account?{" "}
 					<Link
 						href={Routes.onboarding}
 						className="text-hubBlue hover:underline"

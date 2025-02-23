@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import React, { useEffect } from "react";
 import { Button } from "@/components/button";
 import { SuccessSVGComponent } from "@/components/icons";
 import {
@@ -10,8 +12,6 @@ import {
 	CardTitle
 } from "@/components/ui/card";
 import { Routes } from "@/core/routing";
-import Link from "next/link";
-import React, { useEffect } from "react";
 
 const AccountCreatedPage = () => {
 	useEffect(() => {

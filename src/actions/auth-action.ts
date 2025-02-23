@@ -1,7 +1,7 @@
-import axiosInstance from "@/core/axios";
-import { Endpoints } from "@/core/endpoints";
 import { AxiosError } from "axios";
 import { AuthError, User } from "next-auth";
+import axiosInstance from "@/core/axios";
+import { Endpoints } from "@/core/endpoints";
 
 /**
  * @todo get valid device object
@@ -30,8 +30,8 @@ export const retrieveUser = async (
 
 	try {
 		const res = await axiosInstance.post(Endpoints.auth["sign-in"], {
-			email: email,
-			password: password,
+			email,
+			password,
 			device: {
 				id: "device123",
 				name: "My Laptop",

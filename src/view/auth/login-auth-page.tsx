@@ -1,5 +1,11 @@
 "use client";
 
+import React, { useContext, useState } from "react";
+import { motion } from "framer-motion";
+// import Link from "next/link";
+import { Check, X } from "lucide-react";
+import { useRouter } from "next/navigation";
+// import { useSession } from "next-auth/react";
 import { LogoSVGComponent, Spinner } from "@/components/icons";
 import {
 	Card,
@@ -9,18 +15,12 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
-import React, { useContext, useState } from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/button";
-import Link from "next/link";
 import { Input } from "@/components/input";
-import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
-import { useRouter } from "next/navigation";
-import { verify } from "@/actions/verification-action";
+// import { verify } from "@/actions/verification-action";
 import { Routes } from "@/core/routing";
-import { useSession } from "next-auth/react";
 import { verifyLogin } from "@/actions/login-verification-action";
 
 const LoginAuthPage = ({ id }: { id?: string }) => {
@@ -116,9 +116,7 @@ const LoginAuthPage = ({ id }: { id?: string }) => {
 				</CardHeader>
 				<CardContent className="w-full pb-5">
 					<form>
-						<div
-							className={`w-full grid grid-cols-6 justify-items-center`}
-						>
+						<div className="w-full grid grid-cols-6 justify-items-center">
 							{code.map((digit, index) => (
 								<Input
 									key={index}
@@ -141,10 +139,10 @@ const LoginAuthPage = ({ id }: { id?: string }) => {
 					</form>
 					<div className="w-full px-5 mt-3 flex justify-between">
 						<Button
-							variant={"link"}
+							variant="link"
 							className="text-sm p-0 h-fit flex items-start justify-start"
 						>
-							Resend Code: {"1:00"}
+							Resend Code: 1:00
 						</Button>
 						{isVerified ? (
 							<div className="text-hubGreen flex">
@@ -175,7 +173,7 @@ const LoginAuthPage = ({ id }: { id?: string }) => {
 						onClick={handleContinue}
 					>
 						Continue
-						{isLoading && <Spinner className="size-4" />}
+						{isLoading ? <Spinner className="size-4" /> : null}
 					</Button>
 				</CardFooter>
 			</Card>

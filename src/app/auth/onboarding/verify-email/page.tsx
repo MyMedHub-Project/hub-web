@@ -1,8 +1,6 @@
-import VerificationPage from "@/view/auth/verification";
 import React from "react";
+import VerificationPage from "@/view/auth/verification";
 
-const VerifyPhone = () => {
-	return <VerificationPage for={"email"} />;
-};
+const VerifyPhone = () => <VerificationPage for="email" />;
 
 export default VerifyPhone;

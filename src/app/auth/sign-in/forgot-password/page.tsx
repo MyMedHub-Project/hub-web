@@ -1,5 +1,3 @@
-const ForgotPassword = () => {
-	return "Hello world";
-};
+const ForgotPassword = () => "Hello world";
 
 export default ForgotPassword;

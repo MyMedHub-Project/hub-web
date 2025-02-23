@@ -1,15 +1,10 @@
-import { AvatarIcon, SpeakerLoudIcon } from "@radix-ui/react-icons";
-import { ChevronDown, MessageCircleIcon, Search, Speaker } from "lucide-react";
-import {
-	BellSVGComponent,
-	// ChatIconSVGComponent,
-	SearchIconSVGComponent
-} from "../icons";
-// import { Separator } from "../ui/separator";
-import { auth } from "@/auth";
+import { AvatarIcon } from "@radix-ui/react-icons";
+import { ChevronDown, MessageCircleIcon } from "lucide-react";
 import { format } from "date-fns";
 import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 import { Routes } from "@/core/routing";
+import { BellSVGComponent, SearchIconSVGComponent } from "../icons";
 // import { User } from "next-auth";
 
 const DashboardNavbar = async () => {

@@ -1,8 +1,8 @@
 "use client";
 
-import { Card, CardTitle } from "@/components/ui/card";
 import { ChevronUp, Plus } from "lucide-react";
 import { useState } from "react";
+import { Card, CardTitle } from "@/components/ui/card";
 import HourSetting from "./hour-setting";
 
 const Hour: React.FC<{ day: string }> = ({ day }) => {
@@ -25,7 +25,7 @@ const Hour: React.FC<{ day: string }> = ({ day }) => {
 					/>
 				)}
 			</CardTitle>
-			{active && <HourSetting />}
+			{active ? <HourSetting /> : null}
 		</Card>
 	);
 };

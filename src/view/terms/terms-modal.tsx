@@ -1,4 +1,6 @@
-import { LogoSVGComponent, Spinner } from "@/components/icons";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
+import { Spinner, WhiteLogoSVGComponent } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -9,19 +11,17 @@ import {
 	DialogTitle
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 import PatientTermsData from "./patient-terms-data";
-import DoctorTermsData from "./doctor-terms-data";
+// import DoctorTermsData from "./doctor-terms-data";
 import InstitutionTermsData from "./institution-terms.data";
 import { TermsType } from "./term-data-type";
-import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 
 const TermsModal = () => {
 	const router = useRouter();
 	const [termsData, setTermsData] = useState<TermsType[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
-	const { role, termsAgreed, setTermsAgreed } = useContext(OnboardingContext);
+	const { role, setTermsAgreed, termsAgreed } = useContext(OnboardingContext);
 
 	const handleClick = (btn: HTMLButtonElement) => {
 		setIsLoading(true);
@@ -52,7 +52,7 @@ const TermsModal = () => {
 		<DialogContent className="min-w-[800px] h-full max-h-[550px] flex flex-col bg-hubGrey px-0 pt-0 rounded-3xl overflow-hidden">
 			<DialogHeader className="bg-[#0D1717]  pt-5 pb-3">
 				<div className="flex justify-center">
-					<LogoSVGComponent />
+					<WhiteLogoSVGComponent />
 				</div>
 				<DialogTitle className="text-2xl font-bold text-center pt-5">
 					Terms and Conditions
@@ -66,19 +66,17 @@ const TermsModal = () => {
 
 			<div className="flex-1 overflow-y-auto text-sm px-10 text-hubBlack">
 				<ul className="space-y-2">
-					{termsData.map((term, index) => {
-						return (
-							<li key={index}>
-								<strong>{term.title}: </strong> {term.content}
-							</li>
-						);
-					})}
+					{termsData.map((term, index) => (
+						<li key={index}>
+							<strong>{term.title}: </strong> {term.content}
+						</li>
+					))}
 
 					<li>
 						<strong>
-							By clicking "Agree" or by using MyMedHub, you
-							acknowledge that you have read, understood and
-							agreed to these terms and conditions.
+							By clicking &ldquo;Agree&rdquo; or by using
+							MyMedHub, you acknowledge that you have read,
+							understood and agreed to these terms and conditions.
 						</strong>
 					</li>
 				</ul>
@@ -103,7 +101,7 @@ const TermsModal = () => {
 						}
 					>
 						Continue
-						{isLoading && <Spinner className="size-4" />}
+						{isLoading ? <Spinner className="size-4" /> : null}
 					</Button>
 				</DialogFooter>
 			</div>

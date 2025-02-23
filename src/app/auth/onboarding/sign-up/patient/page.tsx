@@ -1,8 +1,6 @@
-import SignUpPage from "@/view/auth/sign-up";
 import React from "react";
+import SignUpPage from "@/view/auth/sign-up";
 
-const SignUp = () => {
-	return <SignUpPage />;
-};
+const SignUp = () => <SignUpPage />;
 
 export default SignUp;

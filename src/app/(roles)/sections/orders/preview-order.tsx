@@ -1,10 +1,10 @@
 "use client";
 
+import React, { useState } from "react";
+import { Building2, Calendar, Download, FileText, User } from "lucide-react";
 import { Button } from "@/components/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import React, { useState } from "react";
 import { RescheduleModal } from "./reschedule-modal";
-import { Building2, Calendar, Download, FileText, User } from "lucide-react";
 import { StatusBadge } from "./order-status-badge";
 
 type OrderStatus = "pending" | "processing" | "completed" | "declined";
@@ -30,12 +30,12 @@ export default function LabOrderDetails({
 					<CardTitle className="text-xl font-bold">
 						Complete Blood Count (CBC)
 					</CardTitle>
-					{status === "pending" && (
+					{status === "pending" ? (
 						<Button variant="destructive" size="sm">
 							Cancel Order
 						</Button>
-					)}
-					{status === "processing" && (
+					) : null}
+					{status === "processing" ? (
 						<Button
 							variant="secondary"
 							className="bg-muted-foreground"
@@ -44,8 +44,8 @@ export default function LabOrderDetails({
 						>
 							View Results
 						</Button>
-					)}
-					{status === "completed" && (
+					) : null}
+					{status === "completed" ? (
 						<Button
 							variant="default"
 							size="sm"
@@ -53,8 +53,8 @@ export default function LabOrderDetails({
 						>
 							View Results
 						</Button>
-					)}
-					{status === "declined" && (
+					) : null}
+					{status === "declined" ? (
 						<div className="flex gap-2">
 							<Button
 								variant="default"
@@ -71,7 +71,7 @@ export default function LabOrderDetails({
 								Cancel Order
 							</Button>
 						</div>
-					)}
+					) : null}
 				</CardHeader>
 
 				<CardContent className="space-y-6">
@@ -122,7 +122,7 @@ export default function LabOrderDetails({
 										<FileText className="h-4 w-4 text-muted-foreground" />
 										<div className="flex flex-col">
 											<span className="text-sm">
-												Doctor's Prescription
+												Doctor&apos;s Prescription
 											</span>
 											<span className="text-xs text-muted-foreground">
 												3 MB • PDF
@@ -150,7 +150,7 @@ export default function LabOrderDetails({
 						</div>
 					</div>
 
-					{status === "processing" && (
+					{status === "processing" ? (
 						<div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-950">
 							<p className="text-sm text-blue-700 dark:text-blue-400">
 								Lab Order Accepted
@@ -160,9 +160,9 @@ export default function LabOrderDetails({
 								at 10:00 AM
 							</p>
 						</div>
-					)}
+					) : null}
 
-					{status === "completed" && (
+					{status === "completed" ? (
 						<div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-950">
 							<p className="text-sm text-blue-700 dark:text-blue-400">
 								Lab Test Results Ready
@@ -172,9 +172,9 @@ export default function LabOrderDetails({
 								view the results directly in the app.
 							</p>
 						</div>
-					)}
+					) : null}
 
-					{status === "declined" && (
+					{status === "declined" ? (
 						<div className="flex flex-col space-y-2">
 							<div className="rounded-lg bg-destructive/10 p-4">
 								<p className="text-sm text-destructive">
@@ -182,7 +182,7 @@ export default function LabOrderDetails({
 								</p>
 								<p className="mt-1 text-xs text-destructive/90">
 									Unfortunately we cannot accommodate your
-									selected date. But don't worry, you can
+									selected date. But don&apos;t worry, you can
 									easily reschedule your order for a different
 									date.
 								</p>
@@ -197,7 +197,7 @@ export default function LabOrderDetails({
 								</span>
 							</div>
 						</div>
-					)}
+					) : null}
 				</CardContent>
 			</Card>
 

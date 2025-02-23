@@ -3,7 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -20,8 +21,6 @@ import {
 	CardDescription,
 	CardHeader
 } from "@/components/ui/card";
-import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
 
 const formSchema = z.object({
 	oldPassword: z

@@ -1,5 +1,16 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AvatarIcon } from "@radix-ui/react-icons";
+import { SelectContent, SelectItem } from "@radix-ui/react-select";
+import { format } from "date-fns";
+import { CalendarIcon, Pencil } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { useState } from "react";
+// import { useRouter } from "next/navigation";
+import Image from "next/image";
 import {
 	Form,
 	FormControl,
@@ -29,25 +40,15 @@ import { Calendar } from "@/components/ui/calendar";
 import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { AvatarIcon } from "@radix-ui/react-icons";
-import { SelectContent, SelectItem } from "@radix-ui/react-select";
-import { format } from "date-fns";
-import { CalendarIcon, Pencil } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import {
 	Card,
 	CardContent,
 	CardFooter,
 	CardHeader
 } from "@/components/ui/card";
-import { DialogClose } from "@radix-ui/react-dialog";
 import RegionSelect from "@/components/ui/region-select";
 import CountrySelect from "@/components/ui/country-select";
-import { useEffect, useState } from "react";
 import { PhoneInput } from "@/components/ui/phone-input";
-import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
 	firstName: z
@@ -78,30 +79,30 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const EditForm = ({ profile }: { profile: any }) => {
-	const route = useRouter();
+	// const route = useRouter();
 	const [countryCode, setCountryCode] = useState("");
 
 	const {
-		id,
-		type,
-		firstname,
-		lastname,
-		email,
-		emailVerified,
-		phone,
-		phoneVerified,
-		address: { street, city, state, country },
-		gender,
+		address: { city, country, state, street },
 		dob,
+		email,
+		// emailVerified,
+		// emergencyContact,
+		firstname,
+		gender,
+		// id,
+		// language,
+		// lastLogin,
+		lastname,
 		maritalStatus,
-		language,
-		passwordRecoveryMode,
-		emergencyContact,
-		notificationMode,
-		pushNotificationEnabled,
-		lastLogin,
-		profileImage,
-		timezone
+		// notificationMode,
+		// passwordRecoveryMode,
+		phone,
+		// phoneVerified,
+		profileImage
+		// pushNotificationEnabled,
+		// timezone,
+		// type
 	} = profile;
 
 	const form = useForm<FormValues>({
@@ -134,7 +135,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 		<Card className="w-[90%] mx-auto space-y-14 bg-transparent border-none shadow-none">
 			<CardHeader className="relative rounded-full border-4 size-[150px] p-0 border-gray-300">
 				{profileImage && profileImage !== "" ? (
-					<img
+					<Image
 						src={profileImage}
 						alt="profile"
 						className="size-full"
@@ -352,7 +353,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 											>
 												<FormControl>
 													<Button
-														variant={"outline"}
+														variant="outline"
 														className={cn(
 															"w-full pl-3 text-left font-normal",
 															!field.value &&

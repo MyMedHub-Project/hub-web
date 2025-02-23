@@ -5,6 +5,12 @@ import * as z from "zod";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CalendarCheckIcon, Eye, EyeOff, Route } from "lucide-react";
+import Link from "next/link";
+import { PopoverTrigger } from "@radix-ui/react-popover";
+import { format } from "date-fns";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 import {
 	Card,
 	CardContent,
@@ -24,8 +30,6 @@ import {
 } from "@/components/form";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
-import { CalendarCheckIcon, Eye, EyeOff, Route } from "lucide-react";
-import Link from "next/link";
 import {
 	Select,
 	SelectContent,
@@ -34,18 +38,14 @@ import {
 	SelectValue
 } from "@/components/ui/select";
 import { Popover, PopoverContent } from "@/components/ui/popover";
-import { PopoverTrigger } from "@radix-ui/react-popover";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
-import { useRouter } from "next/navigation";
 import { PhoneInput } from "@/components/ui/phone-input";
 import CountrySelect from "@/components/ui/country-select";
 import RegionSelect from "@/components/ui/region-select";
 import { handleSignUp } from "@/actions/sign-up-action";
 import { Routes } from "@/core/routing";
-import Cookies from "js-cookie";
 
 const formSchema = z.object({
 	firstName: z
@@ -174,7 +174,7 @@ const SignUpPage = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [countryCode, setCountryCode] = useState("");
-	const { termsAgreed, role, verificationData, setVerificationData } =
+	const { role, setVerificationData, termsAgreed, verificationData } =
 		useContext(OnboardingContext);
 
 	const form = useForm<FormValues>({
@@ -229,7 +229,7 @@ const SignUpPage = () => {
 		if (response) {
 			if (typeof response !== "string") {
 				const {
-					data: { user, token }
+					data: { token, user }
 				} = response;
 
 				setVerificationData({
@@ -280,11 +280,11 @@ const SignUpPage = () => {
 
 	return (
 		<Card className="w-[700px] my-5 border-none shadow-none">
-			{error && (
+			{error ? (
 				<div className="w-full my-1 py-1 rounded bg-red-600 text-red-50 text-center text-sm">
 					{error}
 				</div>
-			)}
+			) : null}
 			<CardHeader className="items-center">
 				<LogoSVGComponent className="mb-3" />
 				<CardTitle className="w-full text-2xl text-center font-bold pt-4 border-t-[3px]">
@@ -403,7 +403,7 @@ const SignUpPage = () => {
 											>
 												<FormControl>
 													<Button
-														variant={"outline"}
+														variant="outline"
 														className={cn(
 															"w-full px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg",
 															!field.value &&
@@ -643,7 +643,9 @@ const SignUpPage = () => {
 								type="submit"
 							>
 								Continue
-								{isLoading && <Spinner className="size-4" />}
+								{isLoading ? (
+									<Spinner className="size-4" />
+								) : null}
 							</Button>
 						</div>
 					</form>

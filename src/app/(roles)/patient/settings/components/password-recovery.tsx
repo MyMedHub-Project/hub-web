@@ -1,10 +1,3 @@
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader
-} from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import { Label } from "@radix-ui/react-label";
 import {
 	RadioGroup,
@@ -13,6 +6,13 @@ import {
 } from "@radix-ui/react-radio-group";
 import { MailIcon, Phone } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader
+} from "@/components/ui/card";
 
 const PasswordRecovery = () => {
 	const [checked, setChecked] = useState<"phone" | "email">("phone");
@@ -29,7 +29,7 @@ const PasswordRecovery = () => {
 			<CardContent className="pl-0 pt-5">
 				<RadioGroup defaultValue="email" className="space-y-5">
 					<div
-						onClick={(e) => setChecked("email")}
+						onClick={() => setChecked("email")}
 						className={cn(
 							"flex items-center justify-between gap-x-2 bg-hubGrey p-4 rounded border border-transparent",
 							checked === "email"
@@ -63,7 +63,7 @@ const PasswordRecovery = () => {
 					</div>
 
 					<div
-						onClick={(e) => setChecked("phone")}
+						onClick={() => setChecked("phone")}
 						className={cn(
 							"flex items-center justify-between gap-x-2 bg-hubGrey p-4 rounded border border-transparent",
 							checked === "phone"

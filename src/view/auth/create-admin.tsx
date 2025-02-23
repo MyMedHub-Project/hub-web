@@ -1,5 +1,11 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { createAdmin } from "@/actions/create-admin-action";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 import {
@@ -22,12 +28,6 @@ import {
 	CardTitle
 } from "@/components/ui/card";
 import { Routes } from "@/core/routing";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 const formSchema = z.object({
 	firstName: z
@@ -101,11 +101,11 @@ const CreateAdminPage = () => {
 
 	return (
 		<Card className=" w-[500px] mt-5 flex flex-col shadow-none border-none">
-			{error && (
+			{error ? (
 				<div className="w-full my-1 py-1 rounded bg-red-600 text-red-50 text-center text-sm">
 					{error}
 				</div>
-			)}
+			) : null}
 			<CardHeader className="justify-center space-y-4 items-center">
 				<LogoSVGComponent width={300} height={40} />
 				<CardTitle className="text-2xl font-semibold">
@@ -179,7 +179,7 @@ const CreateAdminPage = () => {
 							type="submit"
 						>
 							Continue
-							{isLoading && <Spinner className="size-4" />}
+							{isLoading ? <Spinner className="size-4" /> : null}
 						</Button>
 					</form>
 				</Form>

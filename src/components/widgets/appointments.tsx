@@ -1,11 +1,11 @@
 import React from "react";
-import { Card, CardContent } from "../ui/card";
 import { AvatarIcon } from "@radix-ui/react-icons";
-import { Button } from "../ui/button";
 import { MessageCircle, RefreshCcw, X } from "lucide-react";
+// import { useSession } from "next-auth/react";
+// import { auth } from "@/auth";
 import { Separator } from "../ui/separator";
-import { useSession } from "next-auth/react";
-import { auth } from "@/auth";
+import { Button } from "../ui/button";
+import { Card, CardContent } from "../ui/card";
 
 interface Appointment {
 	id: number;
