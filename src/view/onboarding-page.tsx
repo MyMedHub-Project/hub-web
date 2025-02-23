@@ -41,7 +41,9 @@ const OnboardingPage = ({}) => {
 						Choose Your Role to Get Started
 					</p>
 					<RadioGroup
-						// onValueChange={setRole}
+						onValueChange={(value: "patient" | "institution") =>
+							setRole(value)
+						}
 						defaultValue="patient"
 						className="grid grid-cols-2 gap-x-5"
 					>
