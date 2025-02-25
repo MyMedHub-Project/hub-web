@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Input } from "@/components/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Provider } from "@/types/types";
 import ProviderCard from "./provider-card";
 
 const providers: Provider[] = [
@@ -19,12 +20,14 @@ const providers: Provider[] = [
 ];
 const ProvidersList: React.FC = () => {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [activeProviders, setActiveProviders] = useState(
-		providers.filter((p) => p.role !== "Invitee")
-	);
-	const [inviteeProviders, setInviteProviders] = useState(
-		providers.filter((p) => p.role === "Invitee")
-	);
+	const [
+		activeProviders
+		// setActiveProviders
+	] = useState(providers.filter((p) => p.role !== "Invitee"));
+	const [
+		inviteeProviders
+		// setInviteProviders
+	] = useState(providers.filter((p) => p.role === "Invitee"));
 
 	const filteredProviders = [...activeProviders, ...inviteeProviders].filter(
 		(provider) =>

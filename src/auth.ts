@@ -11,7 +11,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 				password: { label: "Password", type: "password" },
 				data: {}
 			},
-			authorize: async (credentials, request) => {
+			authorize: async (credentials) => {
 				const user = await retrieveUser(
 					credentials.email as string,
 					credentials.password as string,
@@ -57,7 +57,5 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 		strategy: "jwt",
 		maxAge: 60 * 60 * 24 * 5 // 5days
 	},
-	pages: {
-		signIn: "/auth/sign-in"
-	}
+	pages: { signIn: "/auth/sign-in" }
 });

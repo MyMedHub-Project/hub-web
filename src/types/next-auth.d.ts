@@ -1,5 +1,4 @@
-// next-auth.d.ts
-import { DefaultSession } from "next-auth";
+import "next-auth";
 
 declare module "next-auth" {
 	interface Session {
@@ -22,9 +21,6 @@ declare module "next-auth" {
 		};
 		cat: string;
 		refreshCat: string;
-		twoFactor: {
-			id: string;
-			token: string;
-		} | null;
+		twoFactor: { id: string; token: string } | null;
 	}
 }

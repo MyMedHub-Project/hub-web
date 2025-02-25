@@ -21,6 +21,10 @@ const actionTypes = {
 	REMOVE_TOAST: "REMOVE_TOAST"
 } as const;
 
+if (!actionTypes) {
+	console.log("No action types");
+}
+
 let count = 0;
 
 function genId() {
@@ -31,22 +35,10 @@ function genId() {
 type ActionType = typeof actionTypes;
 
 type Action =
-	| {
-			type: ActionType["ADD_TOAST"];
-			toast: ToasterToast;
-	  }
-	| {
-			type: ActionType["UPDATE_TOAST"];
-			toast: Partial<ToasterToast>;
-	  }
-	| {
-			type: ActionType["DISMISS_TOAST"];
-			toastId?: ToasterToast["id"];
-	  }
-	| {
-			type: ActionType["REMOVE_TOAST"];
-			toastId?: ToasterToast["id"];
-	  };
+	| { type: ActionType["ADD_TOAST"]; toast: ToasterToast }
+	| { type: ActionType["UPDATE_TOAST"]; toast: Partial<ToasterToast> }
+	| { type: ActionType["DISMISS_TOAST"]; toastId?: ToasterToast["id"] }
+	| { type: ActionType["REMOVE_TOAST"]; toastId?: ToasterToast["id"] };
 
 interface State {
 	toasts: ToasterToast[];
@@ -61,10 +53,7 @@ const addToRemoveQueue = (toastId: string) => {
 
 	const timeout = setTimeout(() => {
 		toastTimeouts.delete(toastId);
-		dispatch({
-			type: "REMOVE_TOAST",
-			toastId
-		});
+		dispatch({ type: "REMOVE_TOAST", toastId });
 	}, TOAST_REMOVE_DELAY);
 
 	toastTimeouts.set(toastId, timeout);
@@ -103,20 +92,14 @@ export const reducer = (state: State, action: Action): State => {
 				...state,
 				toasts: state.toasts.map((t) =>
 					t.id === toastId || toastId === undefined
-						? {
-								...t,
-								open: false
-							}
+						? { ...t, open: false }
 						: t
 				)
 			};
 		}
 		case "REMOVE_TOAST":
 			if (action.toastId === undefined) {
-				return {
-					...state,
-					toasts: []
-				};
+				return { ...state, toasts: [] };
 			}
 			return {
 				...state,
@@ -142,10 +125,7 @@ function toast({ ...props }: Toast) {
 	const id = genId();
 
 	const update = (props: ToasterToast) =>
-		dispatch({
-			type: "UPDATE_TOAST",
-			toast: { ...props, id }
-		});
+		dispatch({ type: "UPDATE_TOAST", toast: { ...props, id } });
 	const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id });
 
 	dispatch({
@@ -160,11 +140,7 @@ function toast({ ...props }: Toast) {
 		}
 	});
 
-	return {
-		id,
-		dismiss,
-		update
-	};
+	return { id, dismiss, update };
 }
 
 function useToast() {

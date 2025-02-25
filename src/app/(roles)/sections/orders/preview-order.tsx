@@ -16,10 +16,13 @@ interface LabOrderDetailsProps {
 export default function LabOrderDetails({
 	initialStatus = "declined"
 }: LabOrderDetailsProps) {
-	const [status, setStatus] = useState<OrderStatus>(initialStatus);
+	const [
+		status
+		// setStatus
+	] = useState<OrderStatus>(initialStatus);
 	const [showReschedule, setShowReschedule] = useState(false);
 
-	const handleReschedule = (date: Date, time: string) => {
+	const handleReschedule = () => {
 		setShowReschedule(false);
 	};
 

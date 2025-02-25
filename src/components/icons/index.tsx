@@ -13,9 +13,7 @@ export const LogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 	>
 		<mask
 			id="mask0_5588_131557"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={19}
 			y={2}
@@ -35,9 +33,7 @@ export const LogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask1_5588_131557"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={19}
 			y={0}
@@ -57,9 +53,7 @@ export const LogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask2_5588_131557"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={3}
 			y={19}
@@ -79,9 +73,7 @@ export const LogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask3_5588_131557"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={17}
 			y={40}
@@ -125,9 +117,7 @@ export const WhiteLogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 	>
 		<mask
 			id="mask0_5588_131968"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={19}
 			y={2}
@@ -147,9 +137,7 @@ export const WhiteLogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask1_5588_131968"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={19}
 			y={0}
@@ -169,9 +157,7 @@ export const WhiteLogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask2_5588_131968"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={3}
 			y={19}
@@ -191,9 +177,7 @@ export const WhiteLogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask3_5588_131968"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={17}
 			y={40}
@@ -395,6 +379,7 @@ export const EditFFFIconSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		viewBox="0 0 24 24"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
+		{...props}
 	>
 		<path
 			d="M15.8914 3.04807C16.5624 2.37694 17.4725 1.99985 18.4215 1.99976C19.3705 1.99966 20.2807 2.37657 20.9519 3.04757C21.623 3.71857 22.0001 4.62869 22.0002 5.57772C22.0003 6.52674 21.6234 7.43694 20.9524 8.10807L20.0604 9.00107L15.0004 3.94007L15.8914 3.04807ZM13.9404 5.00107L3.94036 15.0001C3.53389 15.4061 3.24827 15.9171 3.11536 16.4761L2.02036 21.0781C1.99071 21.2027 1.99349 21.3329 2.02843 21.4562C2.06337 21.5794 2.12931 21.6917 2.21996 21.7822C2.31061 21.8728 2.42295 21.9386 2.54626 21.9734C2.66957 22.0082 2.79974 22.0109 2.92436 21.9811L7.52536 20.8851C8.08466 20.7523 8.59604 20.4667 9.00236 20.0601L19.0004 10.0611L13.9404 5.00107Z"
@@ -410,6 +395,7 @@ export const EditIconSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		viewBox="0 0 24 24"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
+		{...props}
 	>
 		<path
 			d="M15.8914 3.04807C16.5624 2.37694 17.4725 1.99985 18.4215 1.99976C19.3705 1.99966 20.2807 2.37657 20.9519 3.04757C21.623 3.71857 22.0001 4.62869 22.0002 5.57772C22.0003 6.52674 21.6234 7.43694 20.9524 8.10807L20.0604 9.00107L15.0004 3.94007L15.8914 3.04807ZM13.9404 5.00107L3.94036 15.0001C3.53389 15.4061 3.24827 15.9171 3.11536 16.4761L2.02036 21.0781C1.99071 21.2027 1.99349 21.3329 2.02843 21.4562C2.06337 21.5794 2.12931 21.6917 2.21996 21.7822C2.31061 21.8728 2.42295 21.9386 2.54626 21.9734C2.66957 22.0082 2.79974 22.0109 2.92436 21.9811L7.52536 20.8851C8.08466 20.7523 8.59604 20.4667 9.00236 20.0601L19.0004 10.0611L13.9404 5.00107Z"
@@ -445,9 +431,7 @@ export const MedHubLogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 	>
 		<mask
 			id="mask0_6624_53038"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={13}
 			y={1}
@@ -467,9 +451,7 @@ export const MedHubLogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask1_6624_53038"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={13}
 			y={0}
@@ -489,9 +471,7 @@ export const MedHubLogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask2_6624_53038"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={1}
 			y={13}
@@ -511,9 +491,7 @@ export const MedHubLogoSVGComponent = (props: SVGProps<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask3_6624_53038"
-			style={{
-				maskType: "luminance"
-			}}
+			style={{ maskType: "luminance" }}
 			maskUnits="userSpaceOnUse"
 			x={12}
 			y={27}

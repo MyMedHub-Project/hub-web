@@ -70,18 +70,12 @@ const formSchema = z.object({
 });
 
 export function DatePickerForm() {
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema)
-	});
+	useForm<z.infer<typeof formSchema>>({ resolver: zodResolver(formSchema) });
 }
 
 type FormValues = z.infer<typeof formSchema>;
 
-const passwordFormats: Array<{
-	id: string;
-	label: string;
-	regex: RegExp;
-}> = [
+const passwordFormats: Array<{ id: string; label: string; regex: RegExp }> = [
 	{ id: "length", label: "Atleast 8 characters", regex: /.{8,}/ },
 	{
 		id: "number & symbol",
@@ -249,7 +243,7 @@ const InstutitionSignUpPage: React.FC = () => {
 		if (!termsAgreed) {
 			router.push("/auth/onboarding");
 		}
-	}, []);
+	});
 
 	return (
 		<Card className="w-[700px] my-5 border-none shadow-none">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 // import Link from "next/link";
 import { Check, X } from "lucide-react";
@@ -18,12 +18,11 @@ import {
 import { Button } from "@/components/button";
 import { Input } from "@/components/input";
 import { cn } from "@/lib/utils";
-import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 // import { verify } from "@/actions/verification-action";
 import { Routes } from "@/core/routing";
 import { verifyLogin } from "@/actions/login-verification-action";
 
-const LoginAuthPage = ({ id }: { id?: string }) => {
+const LoginAuthPage = () => {
 	const router = useRouter();
 	const [code, setCode] = useState(Array(6).fill(""));
 	const [isVerifying, setIsVerifying] = useState(false);
@@ -31,7 +30,6 @@ const LoginAuthPage = ({ id }: { id?: string }) => {
 	const [errorOccured, setErrorOccured] = useState(false);
 	const [failed, setFailed] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-	const { verificationData } = useContext(OnboardingContext);
 
 	const handleChange = (index: number, value: string) => {
 		if (value.length > 1 || !/^[a-zA-Z0-9]$/.test(value)) {

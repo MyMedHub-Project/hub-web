@@ -49,7 +49,7 @@ function CountrySelect({
 				blacklist
 			)
 		);
-	}, []);
+	}, [blacklist, priorityOptions, whitelist]);
 
 	return (
 		<Select

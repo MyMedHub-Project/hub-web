@@ -11,6 +11,7 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
+import { Provider } from "@/types/types";
 import ProviderDetails from "./provider-details";
 
 interface ProviderCardProps {

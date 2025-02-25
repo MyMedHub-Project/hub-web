@@ -16,83 +16,87 @@ interface CallDialogPops {
 	type: "video" | "voice";
 }
 
-const CallDialog = ({ children, type }: CallDialogPops) => (
-	<Dialog>
-		<DialogTrigger asChild>
-			<Button
-				variant="outline"
-				className="size-10 flex items-center justify-center rounded bg-hubGrey200 hover:bg-hubGreen/50 cursor-pointer"
-			>
-				{children}
-			</Button>
-		</DialogTrigger>
-		<DialogContent className="max-w-[700px] h-[500px] bg-blue-900 flex flex-col items-center justify-center gap-y-20">
-			<Button className="size-10 rounded-full flex items-center justify-center bg-hubGrey/30 absolute top-10 right-10">
-				<Minimize2 className="size-8 text-primary-foreground" />
-			</Button>
+const CallDialog = ({ children, type }: CallDialogPops) => {
+	console.log("call type", type);
 
-			<DialogHeader className="items-center">
-				<div className="size-[100px] flex items-center justify-center border-4 rounded-full">
-					<User2 className="size-[80%]" />
-				</div>
-				<DialogTitle>Dr Hendricks</DialogTitle>
-				<DialogDescription className="text-primary-foreground">
-					Ringing...
-				</DialogDescription>
-			</DialogHeader>
+	return (
+		<Dialog>
+			<DialogTrigger asChild>
+				<Button
+					variant="outline"
+					className="size-10 flex items-center justify-center rounded bg-hubGrey200 hover:bg-hubGreen/50 cursor-pointer"
+				>
+					{children}
+				</Button>
+			</DialogTrigger>
+			<DialogContent className="max-w-[700px] h-[500px] bg-blue-900 flex flex-col items-center justify-center gap-y-20">
+				<Button className="size-10 rounded-full flex items-center justify-center bg-hubGrey/30 absolute top-10 right-10">
+					<Minimize2 className="size-8 text-primary-foreground" />
+				</Button>
 
-			<DialogFooter className="flex gap-x-5 px-8 py-4 bg-hubGrey/30 rounded-xl shadow">
-				<div className="flex flex-col items-center gap-y-1">
-					<DialogClose asChild>
-						<Button
-							type="button"
-							variant="secondary"
-							className="size-10 bg-white rounded-full flex items-center justify-center"
-						>
-							<Volume2Icon className="size-8" />
-						</Button>
-					</DialogClose>
-					<span className="text-xs">End call</span>
-				</div>
-				<div className="flex flex-col items-center gap-y-1">
-					<DialogClose asChild>
-						<Button
-							type="button"
-							variant="secondary"
-							className="size-10 bg-white/40 rounded-full flex items-center justify-center"
-						>
-							<Mic className="size-8 text-primary-foreground" />
-						</Button>
-					</DialogClose>
-					<span className="text-xs">End call</span>
-				</div>
-				<div className="flex flex-col items-center gap-y-1">
-					<DialogClose asChild>
-						<Button
-							type="button"
-							variant="secondary"
-							className="size-10 bg-white/40 rounded-full flex items-center justify-center"
-						>
-							<Video className="size-8 text-primary-foreground" />
-						</Button>
-					</DialogClose>
-					<span className="text-xs">End call</span>
-				</div>
-				<div className="flex flex-col items-center gap-y-1">
-					<DialogClose asChild>
-						<Button
-							type="button"
-							variant="secondary"
-							className="size-10 bg-hubRed rounded-full flex items-center justify-center"
-						>
-							<Phone className="size-8 fill-white text-white" />
-						</Button>
-					</DialogClose>
-					<span className="text-xs">End call</span>
-				</div>
-			</DialogFooter>
-		</DialogContent>
-	</Dialog>
-);
+				<DialogHeader className="items-center">
+					<div className="size-[100px] flex items-center justify-center border-4 rounded-full">
+						<User2 className="size-[80%]" />
+					</div>
+					<DialogTitle>Dr Hendricks</DialogTitle>
+					<DialogDescription className="text-primary-foreground">
+						Ringing...
+					</DialogDescription>
+				</DialogHeader>
+
+				<DialogFooter className="flex gap-x-5 px-8 py-4 bg-hubGrey/30 rounded-xl shadow">
+					<div className="flex flex-col items-center gap-y-1">
+						<DialogClose asChild>
+							<Button
+								type="button"
+								variant="secondary"
+								className="size-10 bg-white rounded-full flex items-center justify-center"
+							>
+								<Volume2Icon className="size-8" />
+							</Button>
+						</DialogClose>
+						<span className="text-xs">End call</span>
+					</div>
+					<div className="flex flex-col items-center gap-y-1">
+						<DialogClose asChild>
+							<Button
+								type="button"
+								variant="secondary"
+								className="size-10 bg-white/40 rounded-full flex items-center justify-center"
+							>
+								<Mic className="size-8 text-primary-foreground" />
+							</Button>
+						</DialogClose>
+						<span className="text-xs">End call</span>
+					</div>
+					<div className="flex flex-col items-center gap-y-1">
+						<DialogClose asChild>
+							<Button
+								type="button"
+								variant="secondary"
+								className="size-10 bg-white/40 rounded-full flex items-center justify-center"
+							>
+								<Video className="size-8 text-primary-foreground" />
+							</Button>
+						</DialogClose>
+						<span className="text-xs">End call</span>
+					</div>
+					<div className="flex flex-col items-center gap-y-1">
+						<DialogClose asChild>
+							<Button
+								type="button"
+								variant="secondary"
+								className="size-10 bg-hubRed rounded-full flex items-center justify-center"
+							>
+								<Phone className="size-8 fill-white text-white" />
+							</Button>
+						</DialogClose>
+						<span className="text-xs">End call</span>
+					</div>
+				</DialogFooter>
+			</DialogContent>
+		</Dialog>
+	);
+};
 
 export default CallDialog;

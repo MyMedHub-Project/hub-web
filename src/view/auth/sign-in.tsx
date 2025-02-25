@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import {
 	Card,
 	CardContent,
@@ -31,9 +31,7 @@ import { handleSignIn } from "@/actions/sign-in-action";
 import { Routes } from "@/core/routing";
 
 const formSchema = z.object({
-	email: z.string().email({
-		message: "Please enter a valid email address."
-	}),
+	email: z.string().email({ message: "Please enter a valid email address." }),
 	password: z
 		.string()
 		.min(8, { message: "Password must be at least 8 characters." })
@@ -48,11 +46,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const passwordFormats: Array<{
-	id: string;
-	label: string;
-	regex: RegExp;
-}> = [
+const passwordFormats: Array<{ id: string; label: string; regex: RegExp }> = [
 	{ id: "length", label: "Atleast 8 characters", regex: /.{8,}/ },
 	{
 		id: "number & symbol",
@@ -121,7 +115,7 @@ const PassStrengthAnimation: React.FC<PassStrengthAnimationProps> = ({
 
 const SignInPage = () => {
 	const router = useRouter();
-	const { data: session } = useSession();
+	// const { data: session } = useSession();
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState<string>("");
 	const [isLoading, setIsLoading] = useState(false);
@@ -129,10 +123,7 @@ const SignInPage = () => {
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
-		defaultValues: {
-			email: "",
-			password: ""
-		}
+		defaultValues: { email: "", password: "" }
 	});
 
 	const onSubmit = async (values: FormValues) => {
