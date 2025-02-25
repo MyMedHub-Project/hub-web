@@ -8,6 +8,7 @@ import {
 	DialogFooter,
 	DialogHeader
 } from "@/components/ui/dialog";
+import { Provider } from "@/types/types";
 
 interface ProviderDetailsProps {
 	provider: Provider;

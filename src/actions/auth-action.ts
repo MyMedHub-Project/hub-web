@@ -13,10 +13,7 @@ export const retrieveUser = async (
 ) => {
 	const formatData = (data: any) => {
 		const { user, ...otherData } = data;
-		const formattedData: any = {
-			...user,
-			...otherData
-		};
+		const formattedData: any = { ...user, ...otherData };
 
 		return formattedData;
 	};

@@ -5,7 +5,7 @@ import * as z from "zod";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CalendarCheckIcon, Eye, EyeOff, Route } from "lucide-react";
+import { CalendarCheckIcon, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { format } from "date-fns";
@@ -89,18 +89,12 @@ const formSchema = z.object({
 });
 
 export function DatePickerForm() {
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema)
-	});
+	useForm<z.infer<typeof formSchema>>({ resolver: zodResolver(formSchema) });
 }
 
 type FormValues = z.infer<typeof formSchema>;
 
-const passwordFormats: Array<{
-	id: string;
-	label: string;
-	regex: RegExp;
-}> = [
+const passwordFormats: Array<{ id: string; label: string; regex: RegExp }> = [
 	{ id: "length", label: "Atleast 8 characters", regex: /.{8,}/ },
 	{
 		id: "number & symbol",
@@ -276,7 +270,7 @@ const SignUpPage = () => {
 		if (!termsAgreed) {
 			router.push("/auth/onboarding");
 		}
-	}, [termsAgreed]);
+	});
 
 	return (
 		<Card className="w-[700px] my-5 border-none shadow-none">

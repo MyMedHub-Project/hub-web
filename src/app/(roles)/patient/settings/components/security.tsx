@@ -49,14 +49,12 @@ type FormValues = z.infer<typeof formSchema>;
 
 const Security = () => {
 	const [showPassword, setShowPassword] = useState(false);
+
 	const [password, setPassword] = useState<string>("");
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
-		defaultValues: {
-			oldPassword: "",
-			newPassword: ""
-		}
+		defaultValues: { oldPassword: "", newPassword: "" }
 	});
 
 	const onSubmit = (data: FormValues) => {
@@ -92,6 +90,7 @@ const Security = () => {
 												placeholder="*********"
 												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 												{...field}
+												value={password}
 												onChange={(e) => {
 													field.onChange(e);
 													setPassword(e.target.value);

@@ -19,7 +19,10 @@ import LabOrderForm from "./lab-order-form";
 
 const GenerateOrder = () => {
 	const [activeTab, setActiveTab] = useState("all");
-	const [orders, setOrders] = useState([
+	const [
+		orders
+		// setOrders
+	] = useState([
 		{
 			id: 1,
 			title: "Complete Blood Count (CBC)",

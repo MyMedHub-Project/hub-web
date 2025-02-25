@@ -10,7 +10,7 @@ import PatientTermsData from "@/view/terms/patient-terms-data";
 import { TermsType } from "@/view/terms/term-data-type";
 
 const TermsAndConditions = () => {
-	const [role, setRole] = useState<"patient" | "institution">("patient");
+	const [role] = useState<"patient" | "institution">("patient");
 	const [termsData, setTermsData] = useState<TermsType[]>([]);
 
 	useEffect(() => {

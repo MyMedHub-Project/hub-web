@@ -58,7 +58,7 @@ function RegionSelect({
 				)
 			);
 		}
-	}, [countryCode]);
+	}, [countryCode, blacklist, priorityOptions, , whitelist]);
 
 	return (
 		<Select

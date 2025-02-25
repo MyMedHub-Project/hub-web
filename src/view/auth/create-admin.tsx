@@ -40,30 +40,28 @@ const formSchema = z.object({
 		.trim()
 		.max(80)
 		.regex(/^[A-Za-z]{2,}$/),
-	email: z.string().email({
-		message: "Please enter a valid email address."
-	})
+	email: z.string().email({ message: "Please enter a valid email address." })
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
-const passwordFormats: Array<{
-	id: string;
-	label: string;
-	regex: RegExp;
-}> = [
-	{ id: "length", label: "Atleast 8 characters", regex: /.{8,}/ },
-	{
-		id: "number & symbol",
-		label: "Least one number (0-9) or symbol",
-		regex: /[0-9!@#$%^&*(),.?":{}|<>]/
-	},
-	{
-		id: "textcase",
-		label: "Lowercase (a-z) and uppercase (A-Z)",
-		regex: /(?=.*[a-z])(?=.*[A-Z])/
-	}
-];
+// const passwordFormats: Array<{
+// 	id: string;
+// 	label: string;
+// 	regex: RegExp;
+// }> = [
+// 	{ id: "length", label: "Atleast 8 characters", regex: /.{8,}/ },
+// 	{
+// 		id: "number & symbol",
+// 		label: "Least one number (0-9) or symbol",
+// 		regex: /[0-9!@#$%^&*(),.?":{}|<>]/
+// 	},
+// 	{
+// 		id: "textcase",
+// 		label: "Lowercase (a-z) and uppercase (A-Z)",
+// 		regex: /(?=.*[a-z])(?=.*[A-Z])/
+// 	}
+// ];
 
 const CreateAdminPage = () => {
 	const router = useRouter();
@@ -74,11 +72,7 @@ const CreateAdminPage = () => {
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
-		defaultValues: {
-			firstName: "",
-			lastName: "",
-			email: ""
-		}
+		defaultValues: { firstName: "", lastName: "", email: "" }
 	});
 
 	const onSubmit = async (values: FormValues) => {
