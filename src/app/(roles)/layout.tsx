@@ -1,12 +1,12 @@
 import Link from "next/link";
 import React from "react";
+import { redirect } from "next/navigation";
 import { MedHubLogoSVGComponent } from "@/components/icons";
 import DashboardNavbar from "@/components/layouts/dashboard-navbar";
 import DashboardSideBar from "@/components/layouts/dashboard-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { auth } from "@/auth";
 import { Routes } from "@/core/routing";
-import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
 	children

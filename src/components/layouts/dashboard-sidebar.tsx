@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { redirect, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React from "react";
-import { cn } from "@/lib/utils";
-import { User } from "next-auth";
-import { Button } from "../ui/button";
 import { signOut } from "next-auth/react";
+import { User } from "next-auth";
+import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 const DashboardSideBar = ({ user }: { user: User }) => {
 	const { type } = user;
