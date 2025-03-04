@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-// import { useSession } from "next-auth/react";
 import {
 	Card,
 	CardContent,
@@ -115,7 +114,6 @@ const PassStrengthAnimation: React.FC<PassStrengthAnimationProps> = ({
 
 const SignInPage = () => {
 	const router = useRouter();
-	// const { data: session } = useSession();
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState<string>("");
 	const [isLoading, setIsLoading] = useState(false);
