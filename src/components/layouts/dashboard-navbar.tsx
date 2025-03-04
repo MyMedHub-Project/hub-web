@@ -5,17 +5,9 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { Routes } from "@/core/routing";
 import { BellSVGComponent, SearchIconSVGComponent } from "../icons";
-// import { User } from "next-auth";
+import { User } from "next-auth";
 
-const DashboardNavbar = async () => {
-	const session = await auth();
-
-	if (!session?.user) {
-		redirect(Routes.auth["sign-in"]);
-	}
-
-	const { user } = session;
-
+const DashboardNavbar = async ({ user }: { user: User }) => {
 	return (
 		<div className="grid grid-cols-3 gap-5 items-center justify-between p-5 text-hubBlack max-w-screen top-0 sticky bg-[#f7f8fa] shadow-sm z-50">
 			{/* USER NAME */}

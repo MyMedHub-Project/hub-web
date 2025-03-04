@@ -1,79 +1,86 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import React from "react";
 import { cn } from "@/lib/utils";
-import { role } from "@/lib/data";
+import { User } from "next-auth";
+import { Button } from "../ui/button";
+import { signOut } from "next-auth/react";
 
-const menuItems = [
-	{
-		items: [
-			{
-				icon: "",
-				label: "Dashboard",
-				href: "/",
-				visible: ["patient", "doctor", "institution"]
-			},
-			{
-				icon: "",
-				label: "My Conditions",
-				href: "/conditions",
-				visible: ["patient", "institution"]
-			},
-			{
-				icon: "",
-				label: "Treatment Plans",
-				href: "/treatments",
-				visible: ["doctor"]
-			},
-			{
-				icon: "",
-				label: "Appointments",
-				href: "/appointments",
-				visible: ["patient", "doctor", "institution"]
-			},
-			{
-				icon: "",
-				label: "Orders",
-				href: "/dashboard/sections/orders",
-				visible: ["patient", "doctor", "institution"]
-			},
-			{
-				icon: "",
-				label: "Lab Results",
-				href: "/results",
-				visible: ["doctor"]
-			},
-			{
-				icon: "",
-				label: "Messages",
-				href: "/messages",
-				visible: ["patient", "doctor", "institution"]
-			},
-			{
-				icon: "",
-				label: "My Family",
-				href: "/dashboard/sections/family",
-				visible: ["patient", "doctor", "institution"]
-			},
-			{
-				icon: "",
-				label: "Settings",
-				href: "/dashboard/sections/settings",
-				visible: ["patient", "doctor", "institution"]
-			},
-			{
-				icon: "",
-				label: "Help/Support",
-				href: "/dashboard/sections/support",
-				visible: ["patient", "doctor", "institution"]
-			}
-		]
-	}
-];
+const DashboardSideBar = ({ user }: { user: User }) => {
+	const { type } = user;
 
-const DashboardSideBar = () => {
+	const role = type === "institution_provider" ? "doctor" : type;
+
+	const menuItems = [
+		{
+			items: [
+				{
+					icon: "",
+					label: "Dashboard",
+					href: `/${role}`,
+					visible: ["patient", "doctor", "institution"]
+				},
+				{
+					icon: "",
+					label: "My Conditions",
+					href: "/conditions",
+					visible: ["patient", "institution"]
+				},
+				{
+					icon: "",
+					label: "Treatment Plans",
+					href: "/treatments",
+					visible: ["doctor"]
+				},
+				{
+					icon: "",
+					label: "Appointments",
+					href: "/appointments",
+					visible: ["patient", "doctor", "institution"]
+				},
+				{
+					icon: "",
+					label: "Orders",
+					href: "/dashboard/sections/orders",
+					visible: ["patient", "doctor", "institution"]
+				},
+				{
+					icon: "",
+					label: "Lab Results",
+					href: "/results",
+					visible: ["doctor"]
+				},
+				{
+					icon: "",
+					label: "Messages",
+					href: `/${role}/messaging`,
+					visible: ["patient", "doctor", "institution"]
+				},
+				{
+					icon: "",
+					label: "My Family",
+					href: "/dashboard/sections/family",
+					visible: ["patient", "doctor", "institution"]
+				},
+				{
+					icon: "",
+					label: "Settings",
+					href: `/${role}/settings`,
+					visible: ["patient", "doctor", "institution"]
+				},
+				{
+					icon: "",
+					label: "Help/Support",
+					href: `/${user?.type}/support`,
+					// href: "/dashboard/sections/support",
+					visible: ["patient", "doctor", "institution"]
+				}
+			]
+		}
+	];
+
 	const pathname = usePathname();
 
 	return (
@@ -107,12 +114,12 @@ const DashboardSideBar = () => {
 				</div>
 			))}
 
-			<Link
-				href="/"
+			<Button
+				onClick={() => signOut()}
 				className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-hubred"
 			>
 				Logout
-			</Link>
+			</Button>
 		</div>
 	);
 };

@@ -4,12 +4,23 @@ import { MedHubLogoSVGComponent } from "@/components/icons";
 import DashboardNavbar from "@/components/layouts/dashboard-navbar";
 import DashboardSideBar from "@/components/layouts/dashboard-sidebar";
 import { Separator } from "@/components/ui/separator";
+import { auth } from "@/auth";
+import { Routes } from "@/core/routing";
+import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
 	children
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const session = await auth();
+
+	if (!session?.user) {
+		redirect(Routes.auth["sign-in"]);
+	}
+
+	const { user } = session;
+
 	return (
 		// <div className="min-h-screen text-hubBlack w-full flex flex-row justify-between">
 		// 	<aside className="w-1/4 lg:w-1/6 bg-hubBlackSec rounded-r-lg p-4 min-h-screen fixed left-0 top-0">
@@ -37,11 +48,11 @@ export default async function DashboardLayout({
 					<MedHubLogoSVGComponent />
 				</Link>
 				<Separator className="mt-10" />
-				<DashboardSideBar />
+				<DashboardSideBar user={user} />
 			</aside>
 
 			<div className="min-h-screen flex flex-col transition-all duration-300 ease-in-out ml-32 max-w-screen overflow-x-clip">
-				<DashboardNavbar />
+				<DashboardNavbar user={user} />
 				<main className="p-4 flex-1 flex flex-col">{children}</main>
 			</div>
 		</div>
