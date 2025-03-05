@@ -17,7 +17,7 @@ const LoginAuth = async () => {
 		redirect(Routes.root);
 	}
 
-	console.log(session.user?.twoFactor?.token, session);
+	console.log(session.user?.twoFactor?.token);
 
 	return <LoginAuthPage />;
 };

@@ -40,7 +40,7 @@ export default async function DashboardLayout({
 		// 	</div>
 		// </div>
 		<div className="min-h-screen bg-[#f7f8fa] relative">
-			<aside className="fixed top-0 left-0 h-full bg-hubBlackSec rounded-r-lg p-4 transition-transform duration-300 ease-in-out sm:translate-x-0 w-32 -translate-x-full">
+			<aside className="fixed top-0 left-0 h-full flex flex-col bg-hubBlackSec rounded-r-lg p-4 transition-transform duration-300 ease-in-out sm:translate-x-0 w-32 -translate-x-full">
 				<Link
 					href="/"
 					className="flex items-center gap-2 justify-center mt-4"
