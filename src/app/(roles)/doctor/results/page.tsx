@@ -1,5 +1,5 @@
 import React from "react";
 
-const page = () => <div>page</div>;
+const page = () => <div className="text-hubBlack">Lab result page</div>;
 
 export default page;

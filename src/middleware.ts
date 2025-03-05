@@ -9,20 +9,36 @@ export const middleware = async (request: NextRequest) => {
 		return NextResponse.next();
 	}
 
+	const session = await auth();
 	const path = request.nextUrl.pathname;
 
-	const session = await auth();
-	if (!session && !path.includes("auth")) {
-		return NextResponse.redirect(
-			new URL(Routes.auth["sign-in"], request.url)
-		);
+	if (path === "/") {
+		return NextResponse.redirect(new URL("/dashboard", request.url));
+	}
+
+	if (path.startsWith("sections")) {
+		return NextResponse.rewrite(new URL("/404", request.url));
+	}
+
+	if (!session) {
+		if (path.includes("auth")) {
+			return NextResponse.next();
+		} else {
+			return NextResponse.redirect(
+				new URL(Routes.auth["sign-in"], request.url)
+			);
+		}
 	}
 
 	const role = session?.user?.type;
 	if (!role) {
-		return NextResponse.redirect(
-			new URL(Routes.auth["sign-in"], request.url)
-		);
+		if (path.includes("auth")) {
+			return NextResponse.next();
+		} else {
+			return NextResponse.redirect(
+				new URL(Routes.auth["sign-in"], request.url)
+			);
+		}
 	}
 
 	// New Role-Based Dynamic Routing Logic
@@ -33,18 +49,10 @@ export const middleware = async (request: NextRequest) => {
 		];
 	const validRoutes = Object.keys(roleMapping);
 
-	if (pathSegments.length === 0) {
-		return NextResponse.redirect(new URL("/dashboard", request.url));
-	}
-
 	if (pathSegments.length >= 1 && validRoutes.includes(pathSegments[0])) {
 		if (roleMapping && roleMapping[pathSegments[0]]) {
 			// Construct the new path by replacing the first segment
-			const newPath =
-				roleMapping[pathSegments[0]] +
-				(pathSegments.length > 1
-					? "/" + pathSegments.slice(1).join("/")
-					: "");
+			const newPath = `${roleMapping[pathSegments[0]]}${pathSegments.length > 1 ? `/${pathSegments.slice(1).join("/")}` : ""}`;
 
 			return NextResponse.rewrite(new URL(newPath, request.url));
 		}

@@ -1,46 +1,42 @@
-// types/routing.ts
-export type RouteMapping = {
-	[Key in "patient" | "institution_provider" | "institution"]: {
-		[RouteKey: string]: string;
-	};
-};
-
-export const routeMappings: RouteMapping = {
+export const routeMappings: Record<
+	"patient" | "institution_provider" | "institution",
+	Record<string, string>
+> = {
 	patient: {
 		dashboard: "/patient/",
-		conditions: "/patient/",
-		appointments: "/patient/",
-		orders: "/patient/orders",
-		messaging: "/patient/messaging",
-		family: "/patient/",
-		settings: "/patient/settings",
-		support: "/patient/support",
+		conditions: "/patient/conditions",
+		appointments: "/sections/appointments",
+		orders: "/sections/orders",
+		messaging: "/sections/messaging",
+		family: "/sections/family",
+		settings: "/sections/settings",
+		support: "/sections/support",
 
 		profile: "/patient/profile"
 	},
 	institution_provider: {
 		dashboard: "/doctor/",
-		treatment: "/doctor/",
-		appointments: "/doctor/",
-		orders: "/patient/orders",
-		results: "/doctor/",
-		messaging: "/patient/messaging",
-		family: "/doctor/",
-		settings: "/patient/settings",
-		support: "/doctor/",
+		"treatment-plans": "/doctor/treatment-plans",
+		appointments: "/sections/appointments",
+		orders: "/sections/orders",
+		results: "/doctor/results",
+		messaging: "/sections/messaging",
+		family: "/sections/family",
+		settings: "/sections/settings",
+		support: "/sections/support",
 
-		profile: "/patient/profile"
+		profile: "/doctor/profile"
 	},
 	institution: {
 		dashboard: "/institution/",
-		conditions: "/institution/",
-		appointments: "/institution/",
-		orders: "/patient/orders",
-		messaging: "/patient/messaging",
-		family: "/institution/",
-		settings: "/patient/settings",
-		support: "/institution/",
+		conditions: "/institution/conditions",
+		appointments: "/sections/appointments",
+		orders: "/sections/orders",
+		messaging: "/sections/messaging",
+		family: "/sections/family",
+		settings: "/sections/settings",
+		support: "/sections/support",
 
-		profile: "/patient/profile"
+		profile: "/institution/profile"
 	}
 };

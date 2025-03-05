@@ -7,7 +7,6 @@ import { format } from "date-fns";
 import { CalendarIcon, Pencil } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { useState } from "react";
 // import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -21,6 +20,7 @@ import {
 } from "@/components/form";
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogDescription,
 	DialogFooter,
