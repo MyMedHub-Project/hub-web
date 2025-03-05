@@ -8,78 +8,77 @@ import { User } from "next-auth";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 
+const menuItems = [
+	{
+		items: [
+			{
+				icon: "",
+				label: "Dashboard",
+				href: `/`,
+				visible: ["patient", "doctor", "institution"]
+			},
+			{
+				icon: "",
+				label: "My Conditions",
+				href: "/conditions",
+				visible: ["patient", "institution"]
+			},
+			{
+				icon: "",
+				label: "Treatment Plans",
+				href: "/treatments",
+				visible: ["doctor"]
+			},
+			{
+				icon: "",
+				label: "Appointments",
+				href: "/appointments",
+				visible: ["patient", "doctor", "institution"]
+			},
+			{
+				icon: "",
+				label: "Orders",
+				href: "/orders",
+				visible: ["patient", "doctor", "institution"]
+			},
+			{
+				icon: "",
+				label: "Lab Results",
+				href: "/results",
+				visible: ["doctor"]
+			},
+			{
+				icon: "",
+				label: "Messages",
+				href: `/messaging`,
+				visible: ["patient", "doctor", "institution"]
+			},
+			{
+				icon: "",
+				label: "My Family",
+				href: "/family",
+				visible: ["patient", "doctor", "institution"]
+			},
+			{
+				icon: "",
+				label: "Settings",
+				href: `/settings`,
+				visible: ["patient", "doctor", "institution"]
+			},
+			{
+				icon: "",
+				label: "Help/Support",
+				href: `/support`,
+				visible: ["patient", "doctor", "institution"]
+			}
+		]
+	}
+];
+
 const DashboardSideBar = ({ user }: { user: User }) => {
 	const { type } = user;
 
 	const role = type === "institution_provider" ? "doctor" : type;
-
-	const menuItems = [
-		{
-			items: [
-				{
-					icon: "",
-					label: "Dashboard",
-					href: `/${role}`,
-					visible: ["patient", "doctor", "institution"]
-				},
-				{
-					icon: "",
-					label: "My Conditions",
-					href: "/conditions",
-					visible: ["patient", "institution"]
-				},
-				{
-					icon: "",
-					label: "Treatment Plans",
-					href: "/treatments",
-					visible: ["doctor"]
-				},
-				{
-					icon: "",
-					label: "Appointments",
-					href: "/appointments",
-					visible: ["patient", "doctor", "institution"]
-				},
-				{
-					icon: "",
-					label: "Orders",
-					href: "/dashboard/sections/orders",
-					visible: ["patient", "doctor", "institution"]
-				},
-				{
-					icon: "",
-					label: "Lab Results",
-					href: "/results",
-					visible: ["doctor"]
-				},
-				{
-					icon: "",
-					label: "Messages",
-					href: `/${role}/messaging`,
-					visible: ["patient", "doctor", "institution"]
-				},
-				{
-					icon: "",
-					label: "My Family",
-					href: "/dashboard/sections/family",
-					visible: ["patient", "doctor", "institution"]
-				},
-				{
-					icon: "",
-					label: "Settings",
-					href: `/${role}/settings`,
-					visible: ["patient", "doctor", "institution"]
-				},
-				{
-					icon: "",
-					label: "Help/Support",
-					href: `/${user?.type}/support`,
-					// href: "/dashboard/sections/support",
-					visible: ["patient", "doctor", "institution"]
-				}
-			]
-		}
-	];
 
 	const pathname = usePathname();
 

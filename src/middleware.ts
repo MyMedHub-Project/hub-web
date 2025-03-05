@@ -2,50 +2,55 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { auth } from "./auth";
 import { Routes } from "./core/routing";
+import { routeMappings } from "./core/route-maping";
 
 export const middleware = async (request: NextRequest) => {
 	if (request.method === "POST") {
-		NextResponse.next();
+		return NextResponse.next();
 	}
 
 	const path = request.nextUrl.pathname;
-	const session = await auth();
-	// const verificationData = request.cookies.get("verificationData");
-	// console.log(verificationData);
 
+	const session = await auth();
 	if (!session && !path.includes("auth")) {
 		return NextResponse.redirect(
 			new URL(Routes.auth["sign-in"], request.url)
 		);
 	}
 
-	// if (path.includes("onboarding/") && !verificationData) {
-	// 	return NextResponse.redirect(new URL(Routes.onboarding, request.url));
-	// }
+	const role = session?.user?.type;
+	if (!role) {
+		return NextResponse.redirect(
+			new URL(Routes.auth["sign-in"], request.url)
+		);
+	}
 
-	if (path === "/") {
-		const role = session?.user?.type;
+	// New Role-Based Dynamic Routing Logic
+	const pathSegments = path.split("/").filter(Boolean);
+	const roleMapping =
+		routeMappings[
+			role as "patient" | "institution_provider" | "institution"
+		];
+	const validRoutes = Object.keys(roleMapping);
 
-		if (!role) {
-			return NextResponse.redirect(
-				new URL(Routes.auth["sign-in"], request.url)
-			);
-		}
+	if (pathSegments.length === 0) {
+		return NextResponse.redirect(new URL("/dashboard", request.url));
+	}
 
-		switch (role) {
-			case "patient":
-				return NextResponse.redirect(new URL("/patient", request.url));
-			case "institution_provider":
-				return NextResponse.redirect(new URL("/doctor", request.url));
-			default:
-				//could redirect to error page or a default role page
-				return NextResponse.redirect(
-					new URL(Routes.auth["sign-in"], request.url)
-				);
+	if (pathSegments.length >= 1 && validRoutes.includes(pathSegments[0])) {
+		if (roleMapping && roleMapping[pathSegments[0]]) {
+			// Construct the new path by replacing the first segment
+			const newPath =
+				roleMapping[pathSegments[0]] +
+				(pathSegments.length > 1
+					? "/" + pathSegments.slice(1).join("/")
+					: "");
+
+			return NextResponse.rewrite(new URL(newPath, request.url));
 		}
 	}
 
-	NextResponse.next();
+	return NextResponse.next();
 };
 
 export const config = {
