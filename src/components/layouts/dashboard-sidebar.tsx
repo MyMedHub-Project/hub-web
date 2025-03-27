@@ -91,7 +91,10 @@ const DashboardSideBar = ({ user }: { user: User }) => {
 
 	const role = type === "institution_provider" ? "doctor" : type;
 
-	const pathname = usePathname();
+	let pathname = usePathname();
+	if (pathname === "/dashboard") {
+		pathname = "/";
+	}
 
 	return (
 		<div className="mt-8 flex-1 flex flex-col justify-between">
