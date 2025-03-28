@@ -1,13 +1,15 @@
 import React from "react";
-import DoctorsCard from "./doctors-card";
+import DoctorsSection from "./components/doctors-section";
+import Appointments from "./components/appointments";
 
 const Appoinments = () => (
 	<div className="w-full flex flex-col lg:flex-row gap-4 text-hubBlack">
 		<div className="flex flex-1 flex-col lg:w-2/3">
-			LHS
-			<DoctorsCard />
+			<DoctorsSection />
 		</div>
-		<div className="flex flex-col lg:w-1/3">RHS</div>
+		<div className="flex flex-col lg:w-1/3">
+			<Appointments />
+		</div>
 	</div>
 );
 
