@@ -137,7 +137,7 @@ const DashboardSideBar = ({ user }: { user: User }) => {
 					<DialogContent className="bg-white max-w-[500px] px-5 py-10">
 						<DialogHeader className="text-center text-hubBlack">
 							<DialogTitle className="text-center text-xl mb-4">
-								Delete Account
+								Log Out
 							</DialogTitle>
 							<DialogDescription className="text-center text-lg">
 								Are you sure you want to logout?

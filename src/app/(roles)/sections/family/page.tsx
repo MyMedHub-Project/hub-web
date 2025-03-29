@@ -90,18 +90,38 @@ export default function Family() {
 			gender: "Female",
 			healthCondition: "None",
 			note: "Lorem ipsum dolor sit amett"
+		},
+		{
+			id: "3",
+			name: "Jane Doe",
+			image: "",
+			email: "jane@example.com",
+			phone: "+1234567890",
+			relationship: "Father",
+			gender: "Female",
+			healthCondition: "None",
+			note: "Lorem ipsum dolor sit amett"
+		},
+		{
+			id: "4",
+			name: "Jane Doe",
+			image: "",
+			email: "jane@example.com",
+			phone: "+1234567890",
+			relationship: "Father",
+			gender: "Female",
+			healthCondition: "None",
+			note: "Lorem ipsum dolor sit amett"
 		}
 	];
 
-	const familyRequests: Request[] = [
-		{
-			id: "1",
-			name: "Stella Anderson",
-			image: "",
-			relationship: "Sister",
-			status: "pending"
-		}
-	];
+	const familyRequests: Request[] = Array(4).fill({
+		id: "1",
+		name: "Stella Anderson",
+		image: "",
+		relationship: "Sister",
+		status: "pending"
+	});
 
 	const searchResults = [
 		{
@@ -114,8 +134,8 @@ export default function Family() {
 	];
 
 	return (
-		<div className="flex h-screen gap-4 p-4 flex-col md:flex-row">
-			<div className="md:w-3/4 rounded-lg border p-4">
+		<div className="flex h-screen gap-4 p-4 flex-col md:flex-row text-hubBlack">
+			<div className="md:w-4/6 rounded-lg border p-4">
 				<h2 className="mb-4 text-xl font-semibold">Family Members</h2>
 				<div className="relative mb-4 bg-gray-200">
 					<Search className="absolute left-2 top-2.5 h-4 w-4 items-center text-muted-foreground" />
@@ -126,59 +146,60 @@ export default function Family() {
 						onChange={(e) => setSearchQuery(e.target.value)}
 					/>
 				</div>
-				<div className="flex">
-					<div className="grid grid-cols-1 mx-auto sm:grid-cols-3 lg:grid-cols-4 gap-10 sm:mx-10">
-						<div className="flex flex-col">
+				<div className="grid grid-cols-4 mx-auto sm:grid-cols-3 lg:grid-cols-4 gap-10 sm:mx-10">
+					<div className="flex flex-col items-center">
+						<Button
+							variant="outline"
+							className="flex size-24 flex-col items-center justify-center gap-2 rounded-full border-hubGreen border-2"
+							onClick={() => setShowAddMember(true)}
+						>
+							<Plus className="h-8 w-8" />
+						</Button>
+						<div className="text-center mt-2 justify-center">
+							<span className="text-xs text-center mt-2">
+								Add Family Members
+							</span>
+						</div>
+					</div>
+					{familyMembers.map((member) => (
+						<div
+							className="flex flex-col items-center"
+							key={member.id}
+						>
 							<Button
+								key={member.id}
 								variant="outline"
-								className="flex h-24 flex-col items-center justify-center gap-2 rounded-full border-hubGreen border-2"
-								onClick={() => setShowAddMember(true)}
+								className="size-24 p-0 flex items-center justify-center rounded-full"
+								onClick={() => {
+									setSelectedMember(member);
+									setShowMemberDetails(true);
+								}}
 							>
-								<Plus className="h-8 w-8" />
+								<Avatar className="size-full">
+									<AvatarImage
+										src={member.image}
+										alt={member.name}
+									/>
+									<AvatarFallback>
+										<UserRound className="size-full" />
+									</AvatarFallback>
+								</Avatar>
 							</Button>
-							<div className="text-center mt-2 justify-center">
-								<span className="text-xs text-center mt-2">
-									Add Family Members
+							<div className="flex flex-col justify-center mt-2 text-center">
+								<span className="text-xs font-bold">
+									{member.name}
+								</span>
+								<span className="text-xs text-muted-foreground">
+									{member.relationship}
 								</span>
 							</div>
 						</div>
-						{familyMembers.map((member) => (
-							<div className="flex flex-col" key={member.id}>
-								<Button
-									key={member.id}
-									variant="outline"
-									className="flex h-24 flex-col items-center justify-center gap-2 rounded-full"
-									onClick={() => {
-										setSelectedMember(member);
-										setShowMemberDetails(true);
-									}}
-								>
-									<Avatar className="h-12 w-12">
-										<AvatarImage
-											src={member.image}
-											alt={member.name}
-										/>
-										<AvatarFallback>
-											<UserRound className="h-6 w-6" />
-										</AvatarFallback>
-									</Avatar>
-								</Button>
-								<div className="flex flex-col justify-center mt-2 text-center">
-									<span className="text-xs font-bold">
-										{member.name}
-									</span>
-									<span className="text-xs text-muted-foreground">
-										{member.relationship}
-									</span>
-								</div>
-							</div>
-						))}
-					</div>
+					))}
 				</div>
 			</div>
 
 			{/* R.H.S - Family Request */}
-			<div className="md:w-1/4 rounded-lg border p-4">
+			<div className="md:w-2/6 rounded-lg border p-4">
 				<h2 className="mb-4 text-xl font-semibold">Family Request</h2>
 				<Separator className="mb-2" />
 				{familyRequests.length === 0 ? (
@@ -189,22 +210,23 @@ export default function Family() {
 						</p>
 					</div>
 				) : (
-					<div className="space-y-4">
-						{familyRequests.map((request) => (
-							<div key={request.id}>
+					<div className="space-y-10">
+						{familyRequests.map((request, i) => (
+							<div key={request.id + i}>
 								<div className="flex items-center justify-between rounded-lg p-4 md:hidden">
 									<div className="flex items-center gap-4">
 										<Avatar>
 											<AvatarImage
 												src={request.image}
 												alt={request.name}
+												className="size-full"
 											/>
 											<AvatarFallback>
-												<UserRound className="h-4 w-4" />
+												<UserRound className="size-full" />
 											</AvatarFallback>
 										</Avatar>
 										<div>
-											<p className="font-bold text-lg">
+											<p className="font-semibold text-lg">
 												{request.name}
 											</p>
 											<p className="text-xs text-muted-foreground">
@@ -230,8 +252,8 @@ export default function Family() {
 										</Button>
 									</div>
 								</div>
-								<div className="hidden md:flex">
-									<div className="flext items-center gap-4">
+								<div className="hidden md:flex items-start gap-x-2">
+									<div className="flex items-center gap-4">
 										<Avatar>
 											<AvatarImage
 												src={request.image}
@@ -254,7 +276,7 @@ export default function Family() {
 												</p>
 											</div>
 										</div>
-										<div className="flex gap-2">
+										<div className="grid grid-cols-2 gap-x-2">
 											<Button
 												variant="default"
 												size="lg"

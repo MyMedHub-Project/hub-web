@@ -17,13 +17,13 @@ import {
 import {
 	Command,
 	CommandEmpty,
-	CommandGroup,
 	CommandInput,
-	CommandItem
+	CommandItem,
+	CommandList
 } from "@/components/ui/command";
 import { cn } from "@/lib/utils";
 
-const labs = [
+const labsData = [
 	{
 		value: "medilife-diagnostics-1",
 		label: "MediLife Diagnostics",
@@ -42,6 +42,7 @@ const labs = [
 ];
 
 export default function LabOrderForm() {
+	const [labs] = useState(labsData);
 	const [open, setOpen] = useState(false);
 	const [selectedLab, setSelectedLab] = useState<string | null>(null);
 	const [date, setDate] = useState<Date>();
@@ -103,8 +104,8 @@ export default function LabOrderForm() {
 										<CommandEmpty>
 											No lab found.
 										</CommandEmpty>
-										<CommandGroup>
-											{labs.map((lab) => (
+										<CommandList>
+											{labs?.map((lab) => (
 												<CommandItem
 													key={lab.value}
 													value={lab.value}
@@ -137,7 +138,7 @@ export default function LabOrderForm() {
 													</div>
 												</CommandItem>
 											))}
-										</CommandGroup>
+										</CommandList>
 									</Command>
 								</PopoverContent>
 							</Popover>
