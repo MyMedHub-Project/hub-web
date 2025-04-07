@@ -125,8 +125,11 @@ const DashboardSideBar = ({ user }: { user: User }) => {
 										)}
 									>
 										{/* <Image src={item.icon} key={item.label} alt=""/> */}
-										<span className="text-xs">
+										<span className="text-xs sr-only">
 											{item.label}
+										</span>
+										<span className="items-center">
+											{item.icon}
 										</span>
 									</Link>
 								);
