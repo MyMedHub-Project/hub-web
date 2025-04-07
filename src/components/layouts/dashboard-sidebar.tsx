@@ -18,66 +18,78 @@ import {
 	DialogTrigger
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
+import {
+	AppointmentIconSVGComponent,
+	ChatIconSVGComponent,
+	ConditionIconSVGComponent,
+	FamilyIconSVGComponent,
+	HelpIconSVGComponent,
+	HomeIconSVGComponent,
+	OrderIconSVGComponent,
+	ResultsIconSVGComponent,
+	SettingsSVGComponent,
+	TreatmentIconSVGComponents
+} from "../icons";
 
 const menuItems = [
 	{
 		items: [
 			{
-				icon: "",
+				icon: <HomeIconSVGComponent />,
 				label: "Dashboard",
 				href: `/`,
 				visible: ["patient", "doctor", "institution"]
 			},
 			{
-				icon: "",
+				icon: <ConditionIconSVGComponent />,
 				label: "My Conditions",
 				href: "/conditions",
 				visible: ["patient", "institution"]
 			},
 			{
-				icon: "",
+				icon: <TreatmentIconSVGComponents />,
 				label: "Treatment Plans",
 				href: "/treatment-plans",
 				visible: ["doctor"]
 			},
 			{
-				icon: "",
+				icon: <AppointmentIconSVGComponent />,
 				label: "Appointments",
 				href: "/appointments",
 				visible: ["patient", "doctor", "institution"]
 			},
 			{
-				icon: "",
+				icon: <OrderIconSVGComponent />,
 				label: "Orders",
 				href: "/orders",
 				visible: ["patient", "doctor", "institution"]
 			},
 			{
-				icon: "",
+				icon: <ResultsIconSVGComponent />,
 				label: "Lab Results",
 				href: "/results",
 				visible: ["doctor"]
 			},
 			{
-				icon: "",
+				icon: <ChatIconSVGComponent />,
 				label: "Messages",
 				href: `/messaging`,
 				visible: ["patient", "doctor", "institution"]
 			},
 			{
-				icon: "",
+				icon: <FamilyIconSVGComponent />,
 				label: "My Family",
 				href: "/family",
 				visible: ["patient", "doctor", "institution"]
 			},
 			{
-				icon: "",
+				icon: <SettingsSVGComponent />,
 				label: "Settings",
 				href: `/settings`,
 				visible: ["patient", "doctor", "institution"]
 			},
 			{
-				icon: "",
+				icon: <HelpIconSVGComponent />,
 				label: "Help/Support",
 				href: `/support`,
 				visible: ["patient", "doctor", "institution"]
