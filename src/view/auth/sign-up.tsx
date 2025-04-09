@@ -410,7 +410,7 @@ const SignUpPage = () => {
 																"dd/MM/yyy"
 															)
 														) : (
-															<span>
+															<span className="text-sm">
 																Pick a date
 															</span>
 														)}
@@ -533,7 +533,7 @@ const SignUpPage = () => {
 										>
 											<FormControl>
 												<SelectTrigger className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
-													<SelectValue placeholder="Select gneder" />
+													<SelectValue placeholder="Select gender" />
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
