@@ -2,6 +2,16 @@ import { AvatarIcon } from "@radix-ui/react-icons";
 import { ChevronDown, MessageCircleIcon } from "lucide-react";
 import { format } from "date-fns";
 import { User } from "next-auth";
+import Link from "next/link";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import { Routes } from "@/core/routing";
 import { BellSVGComponent, SearchIconSVGComponent } from "../icons";
 
 const DashboardNavbar = async ({ user }: { user: User }) => (
@@ -41,18 +51,41 @@ const DashboardNavbar = async ({ user }: { user: User }) => (
 					1
 				</div>
 			</div>
-			<div className="flex items-center bg-hubGreenLight py-3 px-4 rounded-full gap-x-1.5">
-				<AvatarIcon width={36} height={36} className="rounded-full" />
-				<div className="flex flex-col">
-					<span className="font-semibold max-w-32 truncate">
-						{user?.firstname} {user?.lastname}
-					</span>
-					<span className="text-sm text-hubBlack/80 max-w-32 truncate">
-						{user?.email}
-					</span>
-				</div>
-				<ChevronDown className="size-4" />
-			</div>
+
+			<DropdownMenu>
+				<DropdownMenuTrigger>
+					<div className="flex items-center bg-hubGreenLight py-3 px-4 rounded-full gap-x-1.5">
+						<AvatarIcon
+							width={36}
+							height={36}
+							className="rounded-full"
+						/>
+						<div className="flex flex-col">
+							<span className="font-semibold max-w-32 truncate">
+								{user?.firstname} {user?.lastname}
+							</span>
+							<span className="text-sm text-hubBlack/80 max-w-32 truncate">
+								{user?.email}
+							</span>
+						</div>
+						<ChevronDown className="size-4" />
+					</div>
+				</DropdownMenuTrigger>
+				<DropdownMenuContent>
+					<DropdownMenuLabel>
+						<Link href={Routes.profile.view}>My Account</Link>
+					</DropdownMenuLabel>
+					<DropdownMenuSeparator />
+					<DropdownMenuItem className="p-0">
+						<Link
+							href={Routes.profile.view}
+							className="size-full p-2"
+						>
+							Profile
+						</Link>
+					</DropdownMenuItem>
+				</DropdownMenuContent>
+			</DropdownMenu>
 		</div>
 	</div>
 );

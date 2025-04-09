@@ -5,6 +5,7 @@ import { auth } from "@/auth";
 // import axiosInstance from "@/core/axios";
 import { Routes } from "@/core/routing";
 import LoginAuthPage from "@/view/auth/login-auth-page";
+import { TokenDisplay } from "@/app/(roles)/chunks";
 
 const LoginAuth = async () => {
 	const session = await auth();
@@ -17,9 +18,12 @@ const LoginAuth = async () => {
 		redirect(Routes.root);
 	}
 
-	console.log(session.user?.twoFactor?.token);
-
-	return <LoginAuthPage />;
+	return (
+		<>
+			<TokenDisplay token={session.user?.twoFactor?.token} />
+			<LoginAuthPage />
+		</>
+	);
 };
 
 export default LoginAuth;

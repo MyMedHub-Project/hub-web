@@ -1,3 +1,4 @@
+import { UserTypes } from "@/constants/enums";
 import "next-auth";
 
 declare module "next-auth" {
@@ -8,7 +9,7 @@ declare module "next-auth" {
 
 	interface User {
 		id: string;
-		type: string;
+		type: UserTypes;
 		firstname?: string;
 		lastname?: string;
 		email?: string;

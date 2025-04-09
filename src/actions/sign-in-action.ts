@@ -13,8 +13,15 @@ export const handleSignIn = async (values: any) => {
 	} catch (error) {
 		if (error instanceof AuthError) {
 			if (error.name === "CredentialsSignin") {
-				return "An unexpected error occured, please try again.";
-			} else return error.message;
+				return "An unexpected error occured. please try again.";
+			} else {
+				const errMessage = error.message
+					.split(":")[0]
+					?.split(".")[0]
+					?.trim();
+
+				return errMessage;
+			}
 		}
 	}
 };

@@ -1,6 +1,6 @@
+import merge from "deepmerge";
 import { IAppConfig } from "@/types/structs";
 import { env, BASE_URL, APP_URL, isDev } from "./env.mjs";
-import merge from "deepmerge";
 
 const appConfig: IAppConfig = {
 	env: Object.defineProperties(

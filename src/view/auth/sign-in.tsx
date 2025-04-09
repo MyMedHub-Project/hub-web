@@ -131,8 +131,7 @@ const SignInPage = () => {
 		const err = await handleSignIn(values);
 
 		if (err) {
-			const errMessage = err.split(":")[0];
-			setError(errMessage);
+			setError(err);
 			setIsLoading(false);
 		} else {
 			router.push(Routes.auth["sign-in-verification"]);
