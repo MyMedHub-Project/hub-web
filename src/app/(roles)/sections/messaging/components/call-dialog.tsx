@@ -17,7 +17,8 @@ interface CallDialogPops {
 }
 
 const CallDialog = ({ children, type }: CallDialogPops) => {
-	console.log("call type", type);
+	if (type) {
+	}
 
 	return (
 		<Dialog>

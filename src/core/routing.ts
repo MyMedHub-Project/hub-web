@@ -11,5 +11,9 @@ export const Routes = {
 		"account-created": "/auth/onboarding/account-created",
 		"forgot-password": "/auth/onboarding/forgot-password",
 		"reset-password": "/auth/onboarding/reset-password"
+	},
+	profile: {
+		view: "/profile",
+		edit: "/profile/edit"
 	}
 };

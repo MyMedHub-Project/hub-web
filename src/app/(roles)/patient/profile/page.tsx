@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation";
-// import { Session } from "next-auth";
 import { auth } from "@/auth";
 import { Routes } from "@/core/routing";
 import { getProfile } from "@/actions/profile-action";
+import { ErrorFetchingProfile } from "../../chunks";
 import About from "./about";
 import Bio from "./bio";
 import Contact from "./contact";
@@ -10,7 +10,6 @@ import EditButton from "./edit-button";
 import Health from "./health";
 
 const ProfilePage = async () => {
-	// todo: fetch user profile here and pass it down to needing component. EMERGNECY CONTACT IS AVAILABLE ON PROFILE.
 	const session = await auth();
 
 	if (!session) {
@@ -22,7 +21,11 @@ const ProfilePage = async () => {
 	let profile = null;
 
 	if (user) {
-		profile = await getProfile(user.cat);
+		profile = await getProfile(user.cat, user.type);
+	}
+
+	if (!profile) {
+		return <ErrorFetchingProfile />;
 	}
 
 	const {

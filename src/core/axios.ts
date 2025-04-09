@@ -9,8 +9,7 @@ const axiosInstance = axios.create({
 		Accept: "application/json",
 		"Content-Type": "application/json"
 	},
-	timeout: 60 * 1000,
-	timeoutErrorMessage: "An error occured, check your internet connection"
+	timeout: 60 * 1000
 });
 
 axiosInstance.interceptors.request.use(

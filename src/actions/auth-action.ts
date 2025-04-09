@@ -54,7 +54,7 @@ export const retrieveUser = async (
 				);
 			}
 		} else {
-			throw new AuthError("Authentication failed: Try again.");
+			throw new AuthError("Authentication failed. Try again.");
 		}
 
 		return null;

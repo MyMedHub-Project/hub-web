@@ -21,6 +21,7 @@ import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 import { verify } from "@/actions/verification-action";
 import { Routes } from "@/core/routing";
 import { resendVerificationCode } from "@/actions/verification-resend-action";
+import { TokenDisplay } from "@/app/(roles)/chunks";
 
 const ProgressAnimation: React.FC<{ isVerified: boolean; verFor: string }> = ({
 	isVerified,
@@ -176,7 +177,14 @@ const VerificationPage = ({ for: verFor }: { for: "phone" | "email" }) => {
 
 	return (
 		<div className="flex items-center justify-center min-h-screen">
-			<p>&lt;</p>
+			{/* lopugi@mailinator.com */}
+			<TokenDisplay
+				token={
+					verFor === "email"
+						? JSON.parse(localStorage.getItem("token") ?? "")?.email
+						: JSON.parse(localStorage.getItem("token") ?? "")?.phone
+				}
+			/>
 			<Card className="w-[500px] mx-auto flex flex-col items-center text-center shadow-none border-none">
 				<CardHeader className="justify-center space-y-4 items-center">
 					<motion.div

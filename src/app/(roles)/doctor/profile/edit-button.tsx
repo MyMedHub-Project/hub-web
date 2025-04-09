@@ -11,7 +11,7 @@ const EditButton = async () => (
 				<Pencil /> Edit profile
 			</Button>
 		</Link>
-		<Button className="bg-hubGrey  text-hubBlack hover:bg-inherit">
+		<Button className="bg-hubGrey text-hubBlack hover:bg-inherit">
 			<Share />
 		</Button>
 	</Card>
