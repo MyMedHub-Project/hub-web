@@ -24,7 +24,7 @@ export const ErrorFetchingProfile = () => (
 
 export const TokenDisplay = ({ token }: { token?: string }) => (
 	<div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-		<Card className="bg-gray-100 border-gray-300 px-4 py-2 shadow-sm">
+		<Card className="bg-gray-100 border-gray-300 px-4 py-2 shadow-xs">
 			<p className="text-sm font-mono text-gray-800">token-{token}</p>
 		</Card>
 	</div>

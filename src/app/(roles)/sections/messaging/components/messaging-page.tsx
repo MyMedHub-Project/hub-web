@@ -24,7 +24,7 @@ const MessagingPage = () => {
 							<div className="size-[60px] rounded-full flex items-center justify-center border-4">
 								<User2 className="size-[70%] " />
 							</div>
-							<div className="flex-1 grid grid-cols-[auto,1fr] gap-y-2 gap-x-2">
+							<div className="flex-1 grid grid-cols-[auto_1fr] gap-y-2 gap-x-2">
 								<h3 className="h-fit font-semibold flex items-center gap-x-2 after:block after:size-2 after:rounded-full after:bg-hubBlue">
 									Dr. Dolor Manchi
 								</h3>

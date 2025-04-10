@@ -15,7 +15,7 @@ import { Routes } from "@/core/routing";
 import { BellSVGComponent, SearchIconSVGComponent } from "../icons";
 
 const DashboardNavbar = async ({ user }: { user: User }) => (
-	<div className="grid grid-cols-3 gap-5 items-center justify-between p-5 text-hubBlack max-w-screen top-0 sticky bg-[#f7f8fa] shadow-sm z-50">
+	<div className="grid grid-cols-3 gap-5 items-center justify-between p-5 text-hubBlack max-w-screen top-0 sticky bg-[#f7f8fa] shadow-xs z-50">
 		{/* USER NAME */}
 		<div className="flex flex-col leading-relaxed">
 			<h2 className="text-xl font-bold leading-tight">
@@ -34,7 +34,7 @@ const DashboardNavbar = async ({ user }: { user: User }) => (
 			<input
 				type="text"
 				placeholder="Search for"
-				className="bg-transparent text-hubBlack outline-none w-[200px] p-3"
+				className="bg-transparent text-hubBlack outline-hidden w-[200px] p-3"
 			/>
 		</div>
 		{/* icons */}

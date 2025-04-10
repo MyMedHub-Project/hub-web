@@ -21,7 +21,7 @@ const Review = () => (
 			</Button>
 		</CardHeader>
 
-		<div className="mb-4 px-4 border-0 shadow-sm">
+		<div className="mb-4 px-4 border-0 shadow-xs">
 			<div className="pt-4">
 				<h3 className="mb-1">John Doe</h3>
 				<div className="flex mb-1">

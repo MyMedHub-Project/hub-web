@@ -23,7 +23,7 @@ const PhoneNoInput = () => (
 		<Input
 			type="tel"
 			placeholder="Phone number"
-			className="flex-grow rounded-l-none"
+			className="grow rounded-l-none"
 		/>
 	</div>
 );

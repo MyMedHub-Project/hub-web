@@ -224,7 +224,7 @@ const GenerateOrder = () => {
 										>
 											<span className="">icon</span>
 										</div>
-										<div className="flex-grow">
+										<div className="grow">
 											<h3 className="font-medium">
 												{order.title}
 											</h3>

@@ -10,7 +10,7 @@ import { AppointDoctor } from "@/types/types";
 const DoctorCard = ({ data }: { data: AppointDoctor }) => (
 	<Card className="w-full max-w-[280px] rounded bg-hubGrey overflow-hidden">
 		<CardContent className="p-2 flex flex-col items-center text-center">
-			<Avatar className="size-16 border-4 border-hubGrey200 shadow-sm mb-3">
+			<Avatar className="size-16 border-4 border-hubGrey200 shadow-xs mb-3">
 				<AvatarImage src={data.avatar} alt="Dr. Dolor" />
 				<AvatarFallback>DR</AvatarFallback>
 			</Avatar>

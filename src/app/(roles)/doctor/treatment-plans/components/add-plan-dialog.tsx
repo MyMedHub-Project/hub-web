@@ -351,7 +351,7 @@ const AddPlanDialog = () => {
 												className={cn("w-[750px] p-0")}
 											>
 												<Command>
-													<CommandList className="!max-h-[200px] px-4 z-20">
+													<CommandList className="max-h-[200px]! px-4 z-20">
 														<CommandEmpty>
 															No framework found.
 														</CommandEmpty>

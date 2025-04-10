@@ -6,7 +6,7 @@ const PlanItem = ({ data }: { data: any }) => (
 	<Card className="bg-hubGrey px-4 py-3 space-y-2 rounded-md">
 		<CardHeader className="p-0 flex flex-row items-center justify-between">
 			<h3 className="font-semibold">{data.treatment} Treatment</h3>
-			<Button className="bg-hubGrey200 size-fit p-1.5 !mt-0">
+			<Button className="bg-hubGrey200 size-fit p-1.5 mt-0!">
 				<ChevronRight className="size-4 text-hubBlack" />
 			</Button>
 		</CardHeader>

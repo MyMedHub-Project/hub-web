@@ -9,7 +9,7 @@ const AppointmentCard = ({ data }: { data: AppointmentData }) => (
 	<Card className="w-full shadow-lg rounded-lg overflow-hidden">
 		<CardContent className="p-4  space-y-2">
 			<div className="flex items-center space-x-4">
-				<div className="flex-shrink-0 size-8 rounded-full">
+				<div className="shrink-0 size-8 rounded-full">
 					{data.profileImage !== "" ? (
 						<Image
 							src={data.profileImage}
@@ -41,14 +41,14 @@ const AppointmentCard = ({ data }: { data: AppointmentData }) => (
 			<div className="flex justify-between gap-x-2 mt-3">
 				<Button
 					variant="outline"
-					className="flex-1 flex-grow bg-hubGreenLight text-hubGreen hover:bg-hubGreen/30"
+					className="flex-1 grow bg-hubGreenLight text-hubGreen hover:bg-hubGreen/30"
 				>
 					<RotateCw className="size-5" />
 					Reschedule
 				</Button>
 				<Button
 					variant="outline"
-					className="w-10 px-2 flex-grow bg-hubGrey hover:bg-hubGrey200"
+					className="w-10 px-2 grow bg-hubGrey hover:bg-hubGrey200"
 				>
 					<X className="size-5" />
 					Cancel

@@ -427,7 +427,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 				</Form>
 			</CardContent>
 
-			<CardFooter className="grid grid-cols-2 gap-x-5 !mt-2">
+			<CardFooter className="grid grid-cols-2 gap-x-5 mt-2!">
 				<Button
 					type="submit"
 					className="bg-hubGreen hover:bg-hubGreen/95"
@@ -437,7 +437,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 
 				<Dialog>
 					<DialogTrigger asChild className=" mx-auto block">
-						<Button className="bg-transparent text-hubRed w-full shadow-none hover:shadow-sm hover:bg-transparent">
+						<Button className="bg-transparent text-hubRed w-full shadow-none hover:shadow-xs hover:bg-transparent">
 							Delete Account
 						</Button>
 					</DialogTrigger>

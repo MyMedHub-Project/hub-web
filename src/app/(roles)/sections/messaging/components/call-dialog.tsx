@@ -45,7 +45,7 @@ const CallDialog = ({ children, type }: CallDialogPops) => {
 					</DialogDescription>
 				</DialogHeader>
 
-				<DialogFooter className="flex gap-x-5 px-8 py-4 bg-hubGrey/30 rounded-xl shadow">
+				<DialogFooter className="flex gap-x-5 px-8 py-4 bg-hubGrey/30 rounded-xl shadow-sm">
 					<div className="flex flex-col items-center gap-y-1">
 						<DialogClose asChild>
 							<Button

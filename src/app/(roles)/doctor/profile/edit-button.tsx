@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Routes } from "@/core/routing";
 
 const EditButton = async () => (
-	<Card className="bg-tansparent shadow-none border-none grid grid-cols-[1fr,auto] gap-x-5">
+	<Card className="bg-tansparent shadow-none border-none grid grid-cols-[1fr_auto] gap-x-5">
 		<Link href={Routes.profile.edit} className="w-full">
 			<Button className="w-full bg-hubGrey text-hubBlack hover:bg-inherit">
 				<Pencil /> Edit profile

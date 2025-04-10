@@ -196,7 +196,7 @@ export default function LabOrderForm() {
 
 						<div className="space-y-2">
 							<Label>Add a Note</Label>
-							<Textarea className="resize-none bg-gray-100 shadow-sm" />
+							<Textarea className="resize-none bg-gray-100 shadow-xs" />
 						</div>
 
 						<div className="space-y-2">

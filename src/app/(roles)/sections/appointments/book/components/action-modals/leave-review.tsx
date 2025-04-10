@@ -15,7 +15,7 @@ const LeaveReviewDialog = () => (
 			<DialogTitle className="text-center">
 				Rate your experience with Dr. Dolor Manchi
 			</DialogTitle>
-			<div className="flex gap-x-2 !mt-2.5 mx-auto">
+			<div className="flex gap-x-2 mt-2.5! mx-auto">
 				{[1, 2, 3, 4].map((i) => (
 					<Star
 						key={i}

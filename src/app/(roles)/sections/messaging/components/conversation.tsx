@@ -21,7 +21,7 @@ const messages = Array(5)
 
 const Conversation = () => (
 	<Card className="flex-1 p-4 flex flex-col overflow-y-hidden">
-		<header className="p-3 grid grid-cols-[auto,1fr,auto,auto] items-center bg-hubGrey rounded">
+		<header className="p-3 grid grid-cols-[auto_1fr_auto_auto] items-center bg-hubGrey rounded">
 			<ArrowLeft />
 			<div className="flex items-center gap-x-1">
 				<div className="size-[40px] border-2 rounded-full">

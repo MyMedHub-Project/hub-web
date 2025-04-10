@@ -27,7 +27,7 @@ const ActionSection = () => {
 					<h2 className="font-bold">Treatment Plans</h2>
 					<Dialog defaultOpen={false}>
 						<DialogTrigger asChild className=" mx-auto block">
-							<Button className="bg-hubGreen size-fit p-2 !m-0">
+							<Button className="bg-hubGreen size-fit p-2 m-0!">
 								<Plus className="size-4" />
 							</Button>
 						</DialogTrigger>
