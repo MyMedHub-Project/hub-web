@@ -50,7 +50,7 @@ const TermsModal = () => {
 	}, [role]);
 
 	return (
-		<DialogContent className="max-sm:w-full max-sm:rounded-none max-sm:rounded-t-3xl max-sm:h-[90%] max-sm:my-auto max-sm:bottom-0 max-sm:top-auto max-sm:translate-y-0 max-w-[600px] h-[550px] flex flex-col px-0 p-0 rounded-3xl overflow-hidden gap-0 border-none">
+		<DialogContent className="max-sm:w-full max-sm:rounded-none max-sm:rounded-t-3xl max-sm:h-[90%] max-sm:my-auto max-sm:bottom-0 max-sm:top-auto max-sm:translate-y-0 w-[80%] max-w-[900px] h-[550px] flex flex-col px-0 p-0 rounded-3xl overflow-hidden gap-0 border-none">
 			<DialogHeader className="bg-[#0D1717] pt-10 pb-7 gap-4">
 				<div className="flex justify-center">
 					<span className="max-sm:hidden">
@@ -61,11 +61,11 @@ const TermsModal = () => {
 					</span>
 				</div>
 
-				<DialogTitle className="max-sm:text-[20px] text-2xl font-bold text-center">
+				<DialogTitle className="max-sm:text-[20px] text-4xl font-bold text-center">
 					Terms and Conditions
 				</DialogTitle>
 
-				<DialogDescription className="max-sm:text-[14px] max-sm:w-[80%] mx-auto text-sm text-center">
+				<DialogDescription className="max-sm:text-[14px] max-sm:w-[80%] mx-auto text-md text-center">
 					By signing up as a{" "}
 					{role.charAt(0).toUpperCase() + role.slice(1)}, you agree to
 					the following terms and conditons:
