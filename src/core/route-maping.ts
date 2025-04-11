@@ -1,8 +1,7 @@
-export const routeMappings: Record<
-	"patient" | "institution_provider" | "institution",
-	Record<string, string>
-> = {
-	patient: {
+import { UserTypes } from "@/constants/enums";
+
+export const routeMappings: Record<string, Record<string, string>> = {
+	[UserTypes.PATIENT]: {
 		dashboard: "/patient/",
 		conditions: "/patient/conditions",
 		appointments: "/sections/appointments",
@@ -14,7 +13,7 @@ export const routeMappings: Record<
 
 		profile: "/patient/profile"
 	},
-	institution_provider: {
+	[UserTypes.DOCTOR]: {
 		dashboard: "/doctor/",
 		"treatment-plans": "/doctor/treatment-plans",
 		appointments: "/sections/appointments",
@@ -27,7 +26,7 @@ export const routeMappings: Record<
 
 		profile: "/doctor/profile"
 	},
-	institution: {
+	[UserTypes.INSTITUTION]: {
 		dashboard: "/institution/",
 		conditions: "/institution/conditions",
 		appointments: "/sections/appointments",

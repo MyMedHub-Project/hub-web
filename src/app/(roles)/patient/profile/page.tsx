@@ -1,32 +1,18 @@
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
-import { Routes } from "@/core/routing";
-import { getProfile } from "@/actions/profile-action";
 import { ErrorFetchingProfile } from "../../chunks";
 import About from "./about";
 import Bio from "./bio";
 import Contact from "./contact";
 import EditButton from "./edit-button";
 import Health from "./health";
+import { getSessionProfile } from "@/hooks/getSessionProfile";
+import { Routes } from "@/core/routing";
 
 const ProfilePage = async () => {
-	const session = await auth();
+	const { isAuthenticated, profile } = await getSessionProfile();
 
-	if (!session) {
-		redirect(Routes.auth["sign-in"]);
-	}
-
-	const { user } = session;
-
-	let profile = null;
-
-	if (user) {
-		profile = await getProfile(user.cat, user.type);
-	}
-
-	if (!profile) {
-		return <ErrorFetchingProfile />;
-	}
+	if (!isAuthenticated) redirect(Routes.auth["sign-in"]);
+	if (!profile) return <ErrorFetchingProfile />;
 
 	const {
 		address,

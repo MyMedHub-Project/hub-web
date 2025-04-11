@@ -4,6 +4,7 @@ import { getServerSession } from "@/hooks/getServerSession";
 
 export async function getSessionProfile(): Promise<SessionProfile> {
 	const resp: SessionProfile = {
+		session: null,
 		user: undefined,
 		isAuthenticated: false,
 		isLoading: false,

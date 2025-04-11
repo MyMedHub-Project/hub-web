@@ -1,15 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import TermsModal from "./terms/terms-modal";
 import { Button } from "@/components/button";
 import { Label } from "@/components/form";
-import {
-	HospitalSVGComponent,
-	LogoSVGComponent,
-	PatientSVGComponent
-} from "@/components/icons";
+import { HospitalSVGComponent, PatientSVGComponent } from "@/components/icons";
+import { MobileLogoSVGComponent } from "@/components/icons/mobile";
 import {
 	Card,
 	CardContent,
@@ -21,7 +18,6 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
-import { MobileLogoSVGComponent } from "@/components/icons/mobile";
 
 const OnboardingPage = ({}) => {
 	const { role, setRole } = useContext(OnboardingContext);

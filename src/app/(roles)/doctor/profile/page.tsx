@@ -1,36 +1,22 @@
 import { redirect } from "next/navigation";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { auth } from "@/auth";
-import { Routes } from "@/core/routing";
-import { getProfile } from "@/actions/profile-action";
 import { ErrorFetchingProfile } from "../../chunks";
 import About from "./about";
 import Bio from "./bio";
-import Services from "./services";
-import Days from "./schedule/days";
-import Time from "./schedule/time";
-import Note from "./schedule/note";
 import { ScheduleProvider } from "./context/Schedule";
 import EditButton from "./edit-button";
+import Days from "./schedule/days";
+import Note from "./schedule/note";
+import Time from "./schedule/time";
+import Services from "./services";
+import { getSessionProfile } from "@/hooks/getSessionProfile";
+import { Routes } from "@/core/routing";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 
 const ProfilePage = async () => {
-	const session = await auth();
+	const { isAuthenticated, profile } = await getSessionProfile();
 
-	if (!session) {
-		redirect(Routes.auth["sign-in"]);
-	}
-
-	const { user } = session;
-
-	let profile = null;
-
-	if (user) {
-		profile = await getProfile(user.cat, user.type);
-	}
-
-	if (!profile) {
-		return <ErrorFetchingProfile />;
-	}
+	if (!isAuthenticated) redirect(Routes.auth["sign-in"]);
+	if (!profile) return <ErrorFetchingProfile />;
 
 	const {
 		address,

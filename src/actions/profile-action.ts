@@ -5,7 +5,7 @@ import axiosInstance from "@/core/axios";
 import { Endpoints } from "@/core/endpoints";
 import { UserTypes } from "@/constants/enums";
 import { getEndPoint } from "@/lib/utils";
-import { ProfileResponse } from "@/types/types";
+import { ProfileResponse } from "@/types/api.types";
 
 export const getProfile = async (cat: string, role: UserTypes) => {
 	const path = Endpoints.profile + getEndPoint(role);
