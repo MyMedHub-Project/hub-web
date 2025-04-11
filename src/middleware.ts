@@ -1,64 +1,86 @@
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { auth } from "./auth";
-import { Routes } from "./core/routing";
 import { routeMappings } from "./core/route-maping";
+import { Routes } from "./core/routing";
+
+// Public paths that don't require authentication
+const PUBLIC_PATHS = ["/auth", "/api", "/_next", "/favicon.ico"];
+
+// Helper function to check if the path is public
+const isPublicPath = (path: string) =>
+	PUBLIC_PATHS.some((publicPath) => path.startsWith(publicPath));
 
 export const middleware = async (request: NextRequest) => {
-	if (request.method === "POST") {
-		return NextResponse.next();
-	}
+	// Allow POST requests to pass through
+	if (request.method === "POST") return NextResponse.next();
 
-	const session = await auth();
 	const path = request.nextUrl.pathname;
 
+	// Redirect root path
 	if (path === "/") {
 		return NextResponse.redirect(new URL("/dashboard", request.url));
 	}
 
+	// Handle invalid paths
 	if (path.startsWith("sections")) {
 		return NextResponse.rewrite(new URL("/404", request.url));
 	}
 
+	// If the path is public, skip authentication
+	if (isPublicPath(path)) return NextResponse.next();
+
+	// Authenticate the user
+	const session = await auth();
+
+	// If it is an auth path and there is no session, allow the request to pass
+	if (!session && path.includes("auth")) return NextResponse.next();
+
+	// If there is no session, redirect to sign-in page
 	if (!session) {
-		if (path.includes("auth")) {
-			return NextResponse.next();
-		} else {
-			return NextResponse.redirect(
-				new URL(Routes.auth["sign-in"], request.url)
-			);
-		}
+		// Redirect to sign-in page
+		return NextResponse.redirect(
+			new URL(Routes.auth["sign-in"], request.url)
+		);
 	}
 
+	// If there is a session, get the role
 	const role = session?.user?.type;
+
+	// If it is an auth path and there is no role, allow the request to pass
+	if (!role && path.includes("auth")) return NextResponse.next();
+
+	// If there is no role, redirect to sign-in page
 	if (!role) {
-		if (path.includes("auth")) {
-			return NextResponse.next();
-		} else {
-			return NextResponse.redirect(
-				new URL(Routes.auth["sign-in"], request.url)
-			);
-		}
+		return NextResponse.redirect(
+			new URL(Routes.auth["sign-in"], request.url)
+		);
 	}
 
-	// New Role-Based Dynamic Routing Logic
+	// Get the current path
 	const pathSegments = path.split("/").filter(Boolean);
-	const roleMapping =
-		routeMappings[
-			role as "patient" | "institution_provider" | "institution"
-		];
-	const validRoutes = Object.keys(roleMapping);
+	if (pathSegments.length < 1) return NextResponse.next();
+	const currentPath = pathSegments[0];
 
-	if (pathSegments.length >= 1 && validRoutes.includes(pathSegments[0])) {
-		if (roleMapping && roleMapping[pathSegments[0]]) {
-			// Construct the new path by replacing the first segment
-			const newPath = `${roleMapping[pathSegments[0]]}${pathSegments.length > 1 ? `/${pathSegments.slice(1).join("/")}` : ""}`;
+	// Get the paths available for the role
+	const rolePaths = routeMappings[role];
+	if (!rolePaths) return NextResponse.next();
 
-			return NextResponse.rewrite(new URL(newPath, request.url));
-		}
-	}
+	// Get the valid paths for the role
+	const validPaths = Object.keys(rolePaths);
 
-	return NextResponse.next();
+	// Check if the current path is valid
+	const isValidPath = validPaths.includes(currentPath);
+	if (!isValidPath) return NextResponse.next();
+
+	// Get the path for the role
+	const rolePath = rolePaths[currentPath];
+	if (!rolePath) return NextResponse.next();
+
+	// Construct the new path by replacing the first segment
+	const newPath = `${rolePath}${pathSegments.length > 1 ? `/${pathSegments.slice(1).join("/")}` : ""}`;
+
+	// Rewrite the path
+	return NextResponse.rewrite(new URL(newPath, request.url));
 };
 
 export const config = {
