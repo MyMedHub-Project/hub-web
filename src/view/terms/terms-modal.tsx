@@ -1,8 +1,5 @@
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
-import PatientTermsData from "./patient-terms-data";
-import InstitutionTermsData from "./institution-terms.data";
-import { TermsType } from "./term-data-type";
 import { Spinner, WhiteLogoSVGComponent } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -16,6 +13,9 @@ import {
 import { Label } from "@/components/ui/label";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
 import { MobileWhiteLogoSVGComponent } from "@/components/icons/mobile";
+import { TermsType } from "./term-data-type";
+import InstitutionTermsData from "./institution-terms.data";
+import PatientTermsData from "./patient-terms-data";
 // import DoctorTermsData from "./doctor-terms-data";
 
 const TermsModal = () => {
