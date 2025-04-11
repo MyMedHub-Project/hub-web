@@ -1,3 +1,6 @@
+import { Session, User } from "next-auth";
+import { Profile } from "@/types/api.types";
+
 export interface Provider {
 	id: number;
 	name: string;
@@ -29,4 +32,15 @@ export interface AppointmentData {
 		type: string;
 	};
 	// status: "confirmed" | "pending" | "cancelled";
+}
+
+export interface UserSession {
+	session: Session | null;
+	user: User | undefined;
+	isAuthenticated: boolean;
+	isLoading: boolean;
+}
+
+export interface SessionProfile extends UserSession {
+	profile: Profile | undefined;
 }
