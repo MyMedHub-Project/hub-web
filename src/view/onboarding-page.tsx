@@ -4,11 +4,7 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { Button } from "@/components/button";
 import { Label } from "@/components/form";
-import {
-	HospitalSVGComponent,
-	LogoSVGComponent,
-	PatientSVGComponent
-} from "@/components/icons";
+import { HospitalSVGComponent, PatientSVGComponent } from "@/components/icons";
 import {
 	Card,
 	CardContent,
@@ -20,43 +16,50 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
+import { MobileLogoSVGComponent } from "@/components/icons/mobile";
 import TermsModal from "./terms/terms-modal";
 
 const OnboardingPage = ({}) => {
 	const { role, setRole } = useContext(OnboardingContext);
 
 	return (
-		<div className="flex items-center justify-center min-h-screen">
-			<Card className="w-[600px] shadow-none border-none">
-				<CardHeader>
-					<CardTitle className="text-2xl font-bold text-center">
-						Welcome to
-					</CardTitle>
-					<div className="flex justify-center">
-						<LogoSVGComponent />
+		<div className="flex items-center justify-center min-h-screen font-normal">
+			<Card className="w-[600px] shadow-none border-none gap-y-6">
+				<CardHeader className="gap-4 max-sm:gap-6">
+					<div className="flex flex-col gap-y-2 max-sm:gap-y-1">
+						<CardTitle className=" max-sm:text-[14px] text-[16px] font-bold text-center">
+							Welcome to
+						</CardTitle>
+
+						<div className="flex justify-center">
+							<MobileLogoSVGComponent />
+						</div>
 					</div>
-				</CardHeader>
-				<CardContent>
-					<p className="text-center mb-5">
+
+					<p className="max-sm:text-[14px] text-center">
 						Choose Your Role to Get Started
 					</p>
+				</CardHeader>
+
+				<CardContent className="py-0 max-sm:flex flex-col items-center">
 					<RadioGroup
 						onValueChange={(value: "patient" | "institution") =>
 							setRole(value)
 						}
 						defaultValue="patient"
-						className="grid grid-cols-2 gap-x-5"
+						className="grid max-sm:grid-cols-1 max-sm:w-[85%] max-sm:max-w-[327px] grid-cols-2 gap-5 items-center"
 					>
 						<Card
 							className={cn(
-								"rounded-2xl shadow-none border",
-								role === "patient" && "border-hubPurple/50"
+								"rounded-2xl",
+								role === "patient" &&
+									"border-hubPurple/50 border-2 drop-shadow-lg"
 							)}
 						>
 							<RadioGroupItem
 								value="patient"
 								id="patient"
-								className="sr-only"
+								className="sr-only "
 							/>
 							<Label
 								htmlFor="patient"
@@ -70,8 +73,9 @@ const OnboardingPage = ({}) => {
 						</Card>
 						<Card
 							className={cn(
-								"rounded-2xl shadow-none border",
-								role === "institution" && "border-hubOrange/50"
+								"rounded-2xl",
+								role === "institution" &&
+									"border-hubOrange/50 border-2 drop-shadow-lg"
 							)}
 						>
 							<RadioGroupItem
@@ -91,12 +95,14 @@ const OnboardingPage = ({}) => {
 						</Card>
 					</RadioGroup>
 				</CardContent>
-				<CardFooter className="items-center justify-center">
-					<div className="w-[350px] flex flex-col items-center gap-y-4">
-						<p className="text-center font-light text-[#808080]">
+
+				<CardFooter className="items-center justify-center max-sm:text-[14px] py-5">
+					<div className="w-[327px] flex flex-col items-center gap-y-4 max-sm:gap-y-6 max-sm:pt-8">
+						<p className="max-sm:text-[14px] text-center text-[#808080]">
 							Join MyMedHub to access comprehensive healthcare
 							services tailed to your needs
 						</p>
+
 						<Dialog>
 							<DialogTrigger asChild>
 								<Button
@@ -108,6 +114,7 @@ const OnboardingPage = ({}) => {
 							</DialogTrigger>
 							<TermsModal />
 						</Dialog>
+
 						<p>
 							Already have an account?{" "}
 							<Link

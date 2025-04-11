@@ -649,7 +649,7 @@ const SignUpPage = () => {
 				<p className="mt-2 text-sm text-center">
 					Already have an account?{" "}
 					<Link
-						href="/auth/onboarding/sign-in"
+						href={Routes.auth["sign-in"]}
 						className="text-blue-500 hover:underline"
 					>
 						Log In

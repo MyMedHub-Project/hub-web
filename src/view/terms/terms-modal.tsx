@@ -12,10 +12,11 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import OnboardingContext from "@/app/auth/onboarding/onboarding-context";
+import { MobileWhiteLogoSVGComponent } from "@/components/icons/mobile";
+import { TermsType } from "./term-data-type";
+import InstitutionTermsData from "./institution-terms.data";
 import PatientTermsData from "./patient-terms-data";
 // import DoctorTermsData from "./doctor-terms-data";
-import InstitutionTermsData from "./institution-terms.data";
-import { TermsType } from "./term-data-type";
 
 const TermsModal = () => {
 	const router = useRouter();
@@ -49,22 +50,29 @@ const TermsModal = () => {
 	}, [role]);
 
 	return (
-		<DialogContent className="min-w-[800px] h-full max-h-[550px] flex flex-col bg-hubGrey px-0 pt-0 rounded-3xl overflow-hidden">
-			<DialogHeader className="bg-[#0D1717]  pt-5 pb-3">
+		<DialogContent className="max-sm:w-full max-sm:rounded-none max-sm:rounded-t-3xl max-sm:h-[90%] max-sm:my-auto max-sm:bottom-0 max-sm:top-auto max-sm:translate-y-0 w-[80%] max-w-[900px] h-[550px] flex flex-col px-0 p-0 rounded-3xl overflow-hidden gap-0 border-none">
+			<DialogHeader className="bg-[#0D1717] pt-10 pb-7 gap-4">
 				<div className="flex justify-center">
-					<WhiteLogoSVGComponent />
+					<span className="max-sm:hidden">
+						<WhiteLogoSVGComponent />
+					</span>
+					<span className="hidden max-sm:block">
+						<MobileWhiteLogoSVGComponent />
+					</span>
 				</div>
-				<DialogTitle className="text-2xl font-bold text-center pt-5">
+
+				<DialogTitle className="max-sm:text-[20px] text-4xl font-bold text-center">
 					Terms and Conditions
 				</DialogTitle>
-				<DialogDescription className="text-sm text-center">
+
+				<DialogDescription className="max-sm:text-[14px] max-sm:w-[80%] mx-auto text-md text-center">
 					By signing up as a{" "}
 					{role.charAt(0).toUpperCase() + role.slice(1)}, you agree to
 					the following terms and conditons:
 				</DialogDescription>
 			</DialogHeader>
 
-			<div className="flex-1 overflow-y-auto text-sm px-10 text-hubBlack">
+			<div className="flex-1 overflow-y-auto text-sm p-6 text-hubBlack bg-hubGrey">
 				<ul className="space-y-2">
 					{termsData.map((term, index) => (
 						<li key={index}>
@@ -87,14 +95,15 @@ const TermsModal = () => {
 						checked={termsAgreed}
 						onCheckedChange={() => setTermsAgreed(!termsAgreed)}
 					/>
+
 					<Label htmlFor="terms" className="text-xs font-semibold">
 						I accept these Terms & Conditions
 					</Label>
 				</div>
 
-				<DialogFooter className="mt-3.5">
+				<DialogFooter className="mt-5">
 					<Button
-						className="w-1/2 gap-x-2 mx-auto bg-hubGreen hover:bg-hubGreen"
+						className="max-sm:w-full w-1/2 gap-x-2 mx-auto bg-hubGreen hover:bg-hubGreen"
 						disabled={!termsAgreed || isLoading}
 						onClick={(e) =>
 							handleClick(e.target as HTMLButtonElement)
