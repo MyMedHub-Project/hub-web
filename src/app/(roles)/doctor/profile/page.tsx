@@ -1,4 +1,7 @@
 import { redirect } from "next/navigation";
+import { Routes } from "@/core/routing";
+import { getSessionProfile } from "@/hooks/getSessionProfile";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { ErrorFetchingProfile } from "../../chunks";
 import About from "./about";
 import Bio from "./bio";
@@ -8,14 +11,11 @@ import Days from "./schedule/days";
 import Note from "./schedule/note";
 import Time from "./schedule/time";
 import Services from "./services";
-import { getSessionProfile } from "@/hooks/getSessionProfile";
-import { Routes } from "@/core/routing";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
 
 const ProfilePage = async () => {
 	const { isAuthenticated, profile } = await getSessionProfile();
 
-	if (!isAuthenticated) redirect(Routes.auth["sign-in"]);
+	if (!isAuthenticated) redirect(Routes.AUTH.SIGN_IN.ROOT);
 	if (!profile) return <ErrorFetchingProfile />;
 
 	const {
@@ -32,11 +32,11 @@ const ProfilePage = async () => {
 		lastname,
 		// notificationMode,
 		// passwordRecoveryMode,
-		phone,
+		phone
 		// phoneVerified,
-		profileImage,
-		providerSpecialization,
-		rating
+		// profileImage,
+		// providerSpecialization,
+		// rating
 		// timezone,
 		// type
 	} = profile;
@@ -50,10 +50,10 @@ const ProfilePage = async () => {
 						lastname,
 						phone,
 						email,
-						profileImage,
-						address,
-						providerSpecialization,
-						rating
+						// profileImage,
+						address
+						// providerSpecialization,
+						// rating
 					}}
 				/>
 				<EditButton />

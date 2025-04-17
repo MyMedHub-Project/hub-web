@@ -18,12 +18,14 @@ export const middleware = async (request: NextRequest) => {
 
 	// Redirect root path
 	if (path === "/") {
-		return NextResponse.redirect(new URL("/dashboard", request.url));
+		return NextResponse.redirect(
+			new URL(Routes.DASHBOARD.ROOT, request.url)
+		);
 	}
 
 	// Handle invalid paths
 	if (path.startsWith("sections")) {
-		return NextResponse.rewrite(new URL("/404", request.url));
+		return NextResponse.rewrite(new URL(Routes.NOT_FOUND, request.url));
 	}
 
 	// If the path is public, skip authentication
@@ -39,7 +41,7 @@ export const middleware = async (request: NextRequest) => {
 	if (!session) {
 		// Redirect to sign-in page
 		return NextResponse.redirect(
-			new URL(Routes.auth["sign-in"], request.url)
+			new URL(Routes.AUTH.SIGN_IN.ROOT, request.url)
 		);
 	}
 
@@ -52,7 +54,7 @@ export const middleware = async (request: NextRequest) => {
 	// If there is no role, redirect to sign-in page
 	if (!role) {
 		return NextResponse.redirect(
-			new URL(Routes.auth["sign-in"], request.url)
+			new URL(Routes.AUTH.SIGN_IN.ROOT, request.url)
 		);
 	}
 

@@ -1,17 +1,17 @@
 import { redirect } from "next/navigation";
+import { getSessionProfile } from "@/hooks/getSessionProfile";
+import { Routes } from "@/core/routing";
 import { ErrorFetchingProfile } from "../../chunks";
 import About from "./about";
 import Bio from "./bio";
 import Contact from "./contact";
 import EditButton from "./edit-button";
 import Health from "./health";
-import { getSessionProfile } from "@/hooks/getSessionProfile";
-import { Routes } from "@/core/routing";
 
 const ProfilePage = async () => {
 	const { isAuthenticated, profile } = await getSessionProfile();
 
-	if (!isAuthenticated) redirect(Routes.auth["sign-in"]);
+	if (!isAuthenticated) redirect(Routes.AUTH.SIGN_IN.ROOT);
 	if (!profile) return <ErrorFetchingProfile />;
 
 	const {
@@ -29,9 +29,9 @@ const ProfilePage = async () => {
 		// maritalStatus,
 		// notificationMode,
 		// passwordRecoveryMode,
-		phone,
+		phone
 		// phoneVerified,
-		profileImage
+		// profileImage
 		// pushNotificationEnabled,
 		// timezone,
 		// type
@@ -45,7 +45,7 @@ const ProfilePage = async () => {
 					lastname,
 					phone,
 					email,
-					profileImage,
+					// profileImage,
 					address
 				}}
 			/>

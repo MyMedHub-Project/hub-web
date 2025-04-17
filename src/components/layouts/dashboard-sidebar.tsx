@@ -4,6 +4,19 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { memo, useCallback, useMemo } from "react";
+import { cn } from "@/lib/utils";
+import { useClientSession } from "@/hooks/useClientSession";
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogOverlay,
+	DialogTitle,
+	DialogTrigger
+} from "@/components/ui/dialog";
 import {
 	AppointmentIconSVGComponent,
 	ChatIconSVGComponent,
@@ -17,19 +30,6 @@ import {
 	TreatmentIconSVGComponents
 } from "../icons";
 import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogOverlay,
-	DialogTitle,
-	DialogTrigger
-} from "@/components/ui/dialog";
-import { useClientSession } from "@/hooks/useClientSession";
 
 const menuItems = [
 	{

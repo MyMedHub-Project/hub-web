@@ -5,9 +5,11 @@ import {
 	CardDescription,
 	CardHeader
 } from "@/components/ui/card";
-import InstitutionTermsData from "@/view/terms/institution-terms.data";
-import PatientTermsData from "@/view/terms/patient-terms-data";
-import { TermsType } from "@/view/terms/term-data-type";
+import {
+	InstitutionTermsContent,
+	PatientTermsContent,
+	TermsType
+} from "@/view/auth/common/TermsModal";
 
 const TermsAndConditions = () => {
 	const [role] = useState<"patient" | "institution">("patient");
@@ -16,13 +18,13 @@ const TermsAndConditions = () => {
 	useEffect(() => {
 		switch (role) {
 			case "patient":
-				setTermsData(PatientTermsData);
+				setTermsData(PatientTermsContent);
 				break;
 			// case "doctor":
 			// 	setTermsData(DoctorTermsData);
 			// 	break;
 			case "institution":
-				setTermsData(InstitutionTermsData);
+				setTermsData(InstitutionTermsContent);
 				break;
 			default:
 				[];

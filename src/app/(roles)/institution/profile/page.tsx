@@ -1,3 +1,4 @@
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import About from "./about";
 import Bio from "./bio";
 import Edit from "./edit";
@@ -5,7 +6,6 @@ import Services from "./services";
 import HourSetting from "./schedule/hour-setting";
 import Days from "./schedule/available-days";
 import Note from "./schedule/note";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
 
 const ProfilePage = () => (
 	<div className="w-full px-10 flex flex-col lg:flex-row justify-center gap-x-10">

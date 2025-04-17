@@ -1,11 +1,12 @@
 "use client";
 
 import { AvatarIcon } from "@radix-ui/react-icons";
-import { ChevronDown, MessageCircleIcon } from "lucide-react";
 import { format } from "date-fns";
+import { ChevronDown, MessageCircleIcon } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";
-import { BellSVGComponent, SearchIconSVGComponent } from "../icons";
+import { useClientSession } from "@/hooks/useClientSession";
+import { Routes } from "@/core/routing";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -14,8 +15,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { Routes } from "@/core/routing";
-import { useClientSession } from "@/hooks/useClientSession";
+import { BellSVGComponent, SearchIconSVGComponent } from "../icons";
 
 const DashboardNavbar = () => {
 	const { isLoading, user } = useClientSession();
@@ -89,12 +89,12 @@ const DashboardNavbar = () => {
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
 						<DropdownMenuLabel>
-							<Link href={Routes.profile.view}>My Account</Link>
+							<Link href={Routes.PROFILE.ROOT}>My Account</Link>
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem className="p-0">
 							<Link
-								href={Routes.profile.view}
+								href={Routes.PROFILE.ROOT}
 								className="size-full p-2"
 							>
 								Profile

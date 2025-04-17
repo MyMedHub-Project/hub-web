@@ -1,19 +1,38 @@
 export const Routes = {
-	root: "/",
-	onboarding: "/auth/onboarding",
-	auth: {
-		"sign-in": "/auth/sign-in",
-		"sign-in-verification": "/auth/sign-in/verification",
-		"sign-up": "/auth/onboarding/sign-up/",
-		"verify-phone": "/auth/onboarding/verify-phone",
-		"verify-email": "/auth/onboarding/verify-email",
-		"create-admin": "/auth/onboarding/create-admin",
-		"account-created": "/auth/onboarding/account-created",
-		"forgot-password": "/auth/onboarding/forgot-password",
-		"reset-password": "/auth/onboarding/reset-password"
+	ROOT: "/",
+	ONBOARDING: "/auth/onboarding",
+	AUTH: {
+		ONBOARDING: {
+			ROOT: "/auth/onboarding",
+			INSTITUTION: {
+				ROOT: "/auth/onboarding/institution",
+				ADMIN: "/auth/onboarding/institution/admin"
+			},
+			PATIENT: "/auth/onboarding/patient",
+			SUCCESS: "/auth/onboarding/success",
+			VERIFY_EMAIL: "/auth/onboarding/verify-email",
+			VERIFY_PHONE: "/auth/onboarding/verify-phone"
+		},
+		FORGOT_PASSWORD: {
+			ROOT: "/auth/forgot-password",
+			RESET: "/auth/forgot-password/reset",
+			SUCCESS: "/auth/forgot-password/success",
+			VERIFICATION: "/auth/forgot-password/verification"
+		},
+		SIGN_IN: {
+			ROOT: "/auth/sign-in",
+			VERIFICATION: "/auth/sign-in/verification"
+		}
 	},
-	profile: {
-		view: "/profile",
-		edit: "/profile/edit"
-	}
+	PROFILE: {
+		ROOT: "/profile",
+		EDIT: "/profile/edit"
+	},
+	DASHBOARD: {
+		ROOT: "/home",
+		PATIENTS: "/dashboard/patients",
+		APPOINTMENTS: "/dashboard/appointments",
+		SETTINGS: "/dashboard/settings"
+	},
+	NOT_FOUND: "/404"
 };

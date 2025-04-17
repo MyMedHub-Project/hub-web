@@ -26,3 +26,17 @@ export type ProfileResponse = {
 	message: string;
 	status: string;
 };
+
+export type ResendVerificationReq = {
+	type: "user" | "institution";
+	data: {
+		countryCode?: string;
+		id: string;
+		type: "phone" | "email";
+	};
+};
+
+export type ResendVerificationResponse = {
+	message: string;
+	status: string;
+};

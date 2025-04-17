@@ -39,6 +39,12 @@
 					"sibling",
 					"index"
 				],
+				"pathGroups": [
+					{
+						"pattern": "@/**",
+						"group": "internal"
+					}
+				],
 				"newlines-between": "never"
 			}
 		],

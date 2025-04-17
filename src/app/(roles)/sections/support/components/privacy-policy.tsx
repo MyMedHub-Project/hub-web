@@ -5,24 +5,26 @@ import {
 	CardDescription,
 	CardHeader
 } from "@/components/ui/card";
-import InstitutionTermsData from "@/view/terms/institution-terms.data";
-import PatientTermsData from "@/view/terms/patient-terms-data";
-import { TermsType } from "@/view/terms/term-data-type";
+import {
+	InstitutionTermsContent,
+	PatientTermsContent,
+	TermsType
+} from "@/view/auth/common/TermsModal";
 
 const PrivacyPolicy = () => {
 	const [role] = useState<"patient" | "institution">("patient");
-	const [termsData, setTermsData] = useState<TermsType[]>([]);
+	const [termsContent, setTermsContent] = useState<TermsType[]>([]);
 
 	useEffect(() => {
 		switch (role) {
 			case "patient":
-				setTermsData(PatientTermsData);
+				setTermsContent(PatientTermsContent);
 				break;
 			// case "doctor":
-			// 	setTermsData(DoctorTermsData);
+			// 	setTermsContent(DoctorTermsContent);
 			// 	break;
 			case "institution":
-				setTermsData(InstitutionTermsData);
+				setTermsContent(InstitutionTermsContent);
 				break;
 			default:
 				[];
@@ -36,7 +38,7 @@ const PrivacyPolicy = () => {
 			</CardHeader>
 			<CardDescription>Last Updated: 12 April, 2024</CardDescription>
 			<CardContent className="px-0 mt-5 space-y-2">
-				{termsData.map((term, index) => (
+				{termsContent.map((term, index) => (
 					<p key={index} className="text-sm">
 						<span className="font-semibold">{term.title}: </span>{" "}
 						{term.content}

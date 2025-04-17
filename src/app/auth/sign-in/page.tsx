@@ -1,6 +1,5 @@
-import React from "react";
-import SignInPage from "@/view/auth/sign-in";
+import SignInView from "@/view/auth/sign-in/index";
 
-const SignIn = async () => <SignInPage />;
-
-export default SignIn;
+export default async function SignIn() {
+	return <SignInView />;
+}

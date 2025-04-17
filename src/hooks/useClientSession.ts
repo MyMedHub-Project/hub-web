@@ -13,8 +13,6 @@ export function useClientSession(): UserSession {
 
 	const { data: session, status } = useSession();
 
-	console.log(session, status);
-
 	resp.session = session;
 	resp.isAuthenticated = status === "authenticated";
 	resp.isLoading = status === "loading";

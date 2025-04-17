@@ -36,7 +36,7 @@ export default async function DashboardLayout({
 }>) {
 	// Get session from cached auth to avoid duplicate auth checks
 	const session = await auth();
-	if (!session?.user) redirect(Routes.auth["sign-in"]);
+	if (!session?.user) redirect(Routes.AUTH.SIGN_IN.ROOT);
 
 	return (
 		<div className="min-h-screen bg-[#f7f8fa] relative">

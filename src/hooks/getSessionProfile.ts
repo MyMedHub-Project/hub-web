@@ -1,6 +1,8 @@
-import { SessionProfile } from "../types/types";
-import { getProfile } from "@/actions/profile-action";
+"use server";
+
+import { getProfile } from "@/actions/getProfile";
 import { getServerSession } from "@/hooks/getServerSession";
+import { SessionProfile } from "../types/types";
 
 export async function getSessionProfile(): Promise<SessionProfile> {
 	const resp: SessionProfile = {
@@ -18,8 +20,18 @@ export async function getSessionProfile(): Promise<SessionProfile> {
 	resp.isLoading = session?.isLoading;
 
 	if (session.isAuthenticated && session?.user) {
-		const profile = await getProfile(session.user.cat, session.user.type);
-		resp.profile = profile;
+		const profileResponse = await getProfile({
+			cat: session.user.cat || "",
+			role: session.user.type
+		});
+
+		if (profileResponse instanceof Error) {
+			console.error(profileResponse);
+		}
+
+		if (!(profileResponse instanceof Error)) {
+			resp.profile = profileResponse;
+		}
 	}
 
 	return resp;

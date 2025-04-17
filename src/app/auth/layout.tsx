@@ -6,7 +6,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<div className="min-h-[80svh] w-full overflow-x-hidden flex justify-center items-center">
+		<div className="flex-grow w-full overflow-x-hidden flex flex-col items-center justify-center max-sm:justify-start">
 			{children}
 		</div>
 	);

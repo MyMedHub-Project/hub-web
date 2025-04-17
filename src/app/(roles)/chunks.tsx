@@ -15,7 +15,9 @@ export const ErrorFetchingProfile = () => (
 					asChild
 					className="bg-hubGreen hover:bg-hubGreen/90 text-white"
 				>
-					<Link href={Routes.root}>Go back to dashboard</Link>
+					<Link href={Routes.DASHBOARD.ROOT}>
+						Go back to dashboard
+					</Link>
 				</Button>
 			</CardContent>
 		</Card>

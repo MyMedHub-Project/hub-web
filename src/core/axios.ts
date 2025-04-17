@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import { AuthError } from "next-auth";
 import appConfig from "../../config";
 
 // Create a simple in-memory cache for GET requests
@@ -90,7 +91,6 @@ axiosInstance.interceptors.response.use(
 		// Check if error is due to canceled request (using cache)
 		if (axios.isCancel(error)) {
 			const errorMessage = error?.message || "";
-			const errorConfig = error?.config || {};
 
 			try {
 				return Promise.resolve({
@@ -98,10 +98,10 @@ axiosInstance.interceptors.response.use(
 					status: 200,
 					statusText: "OK",
 					headers: {},
-					config: errorConfig,
 					cached: true
 				});
 			} catch (e) {
+				console.log(e);
 				// If parsing fails, let it continue to error handling
 			}
 		}
@@ -112,3 +112,85 @@ axiosInstance.interceptors.response.use(
 );
 
 export default axiosInstance;
+
+export const transformError = (
+	domain: string,
+	error: any,
+	message?: string
+) => {
+	let formattedError = null;
+	const errLog = {
+		domain,
+		message: "Something went wrong, please try again later",
+		error: ""
+	};
+
+	switch (true) {
+		case error instanceof AxiosError:
+			const errData = error.response?.data;
+			formattedError = new Error(
+				message || errData?.message || errLog.message
+			);
+
+			// if (errData?.message["validation-error"]) {
+			// 	formattedError = new Error(
+			// 		Object.values(errData?.message["validation-error"])[0]
+			// 	);
+			// }
+
+			if (
+				errData?.message ===
+				'ERROR: duplicate key value violates unique constraint "uni_users_email" (SQLSTATE 23505)'
+			) {
+				formattedError = new Error(
+					"User with given email already exist"
+				);
+			}
+
+			if (
+				String(errData?.message).includes(
+					"device: struct validation failed"
+				)
+			) {
+				formattedError = new Error(
+					"Device information is required to login"
+				);
+			}
+
+			if (
+				errData?.message ===
+				'ERROR: duplicate key value violates unique constraint "uni_users_phone" (SQLSTATE 23505)'
+			) {
+				formattedError = new Error(
+					"User with given phone number already exist"
+				);
+			}
+
+			errLog.message = errData?.message;
+			errLog.error = errData;
+			break;
+
+		case error instanceof AuthError:
+			formattedError = new Error(message || error.message);
+
+			if (error.name === "CredentialsSignin") {
+				formattedError = new Error(message || errLog.message);
+			}
+
+			errLog.message = error.message;
+			errLog.error = error?.toString() || "";
+			break;
+
+		default:
+			formattedError = new Error(message || errLog.message);
+			errLog.message = error.message;
+			errLog.error = error.stack;
+			break;
+	}
+
+	console.log(errLog);
+	return (
+		formattedError ||
+		new Error("Something went wrong, please try again later")
+	);
+};

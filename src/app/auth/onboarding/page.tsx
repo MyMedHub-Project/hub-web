@@ -1,5 +1,5 @@
-import OnboardingPage from "@/view/onboarding-page";
+import OnboardingView from "@/view/auth/onboarding";
 
-const Onboarding = () => <OnboardingPage />;
+const Onboarding = () => <OnboardingView />;
 
 export default Onboarding;

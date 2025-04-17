@@ -44,3 +44,7 @@ export interface UserSession {
 export interface SessionProfile extends UserSession {
 	profile: Profile | undefined;
 }
+
+export type LoaderState = "verified" | "verifying" | "failed" | "error";
+
+export type BtnStatus = "active" | "loading" | "disabled";

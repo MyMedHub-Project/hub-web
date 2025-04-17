@@ -1,4 +1,4 @@
-import { OnboardingProvider } from "./onboarding-context";
+import { OnboardingProvider } from "./context";
 
 const OnboardingLayout = ({ children }: { children: React.ReactNode }) => (
 	<OnboardingProvider>{children}</OnboardingProvider>

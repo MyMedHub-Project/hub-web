@@ -20,8 +20,13 @@ declare module "next-auth" {
 			state: string;
 			street: string;
 		};
-		cat: string;
-		refreshCat: string;
-		twoFactor: { id: string; token: string } | null;
+		cat?: string;
+		refreshCat?: string;
+		twoFactor?: {
+			id: string;
+			token: string;
+			type: string;
+			value: string;
+		} | null;
 	}
 }

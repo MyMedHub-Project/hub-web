@@ -1,7 +1,7 @@
 import NextAuth, { User } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 import Credentials from "next-auth/providers/credentials";
-import { retrieveUser } from "./actions/auth-action";
+import { Login, login } from "./actions/signIn";
 
 /**
  * NextAuth Configuration
@@ -15,12 +15,35 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 				password: { label: "Password", type: "password" },
 				data: {}
 			},
-			authorize: async (credentials) =>
-				await retrieveUser(
-					credentials.email as string,
-					credentials.password as string,
-					credentials.data
-				)
+
+			authorize: async (credentials) => {
+				if (credentials?.data) {
+					const data = JSON.parse(
+						credentials.data as string
+					) as Login.Response["data"];
+
+					return {
+						cat: data?.cat,
+						refreshCat: data?.refreshCat,
+						twoFactor: data?.twoFactor,
+						...data?.user
+					} as User;
+				}
+
+				const resp = await login({
+					email: credentials.email as string,
+					password: credentials.password as string
+				});
+
+				if (resp instanceof Error) return null;
+
+				return {
+					cat: resp?.cat,
+					refreshCat: resp?.refreshCat,
+					twoFactor: resp?.twoFactor,
+					...resp?.user
+				} as User;
+			}
 		})
 	],
 
