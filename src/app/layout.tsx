@@ -55,7 +55,13 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en">
-			<body className={cn("bg-white style-scrollbar", inter.className)}>
+			<body
+				className={cn(
+					"bg-white style-scrollbar",
+					" overflow-x-hidden",
+					inter.className
+				)}
+			>
 				<SessionProvider session={session}>
 					<AppLayout>{children}</AppLayout>
 				</SessionProvider>

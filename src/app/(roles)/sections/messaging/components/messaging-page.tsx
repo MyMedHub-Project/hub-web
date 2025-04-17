@@ -6,7 +6,7 @@ import Conversation from "./conversation";
 const MessagingPage = () => {
 	const arr = Array(7).fill(null);
 	return (
-		<div className=" h-full max-h-[calc(100vh-135px)] flex-1 -mb-2.5 text-hubBlack flex gap-x-1">
+		<div className="pl-4 w-full h-full max-h-[calc(100vh-135px)] flex-1 -mb-2.5 text-hubBlack flex gap-x-1">
 			<Card className="w-[400px] flex flex-col overflow-y-hidden">
 				<CardHeader className="pb-2">
 					<h2 className="font-semibold ml-1 mb-1">Chats</h2>

@@ -29,9 +29,9 @@ const actions = [
 	}
 ];
 const HeroCards = () => (
-	<div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl">
+	<div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
 		{actions.map((action) => (
-			<Link href={action.href} key={action.title}>
+			<Link href={action.href} key={action.title} className="w-full">
 				<Card className="p-5 bg-hubGrey border-none hover:shadow-md transition-shadow">
 					<div className="flex items-center gap-3">
 						<div className="p-2 rounded-lg"></div>
