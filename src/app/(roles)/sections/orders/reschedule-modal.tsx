@@ -39,7 +39,7 @@ export function RescheduleModal({
 
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent className="w-[425px] bg-white text-hubBlack">
+			<DialogContent className="w-[425px] bg-white text-hub-black">
 				<DialogHeader>
 					<DialogTitle>Reschedule Lab Order</DialogTitle>
 					<span className="text-xs">
@@ -64,7 +64,7 @@ export function RescheduleModal({
 									<CalendarIcon className="left-0 mr-2 h-4 w-4 " />
 								</Button>
 							</PopoverTrigger>
-							<PopoverContent className="w-auto p-0 bg-hubGrey fill-transparent">
+							<PopoverContent className="w-auto p-0 bg-hub-grey fill-transparent">
 								<Calendar
 									mode="single"
 									selected={date}
@@ -91,14 +91,14 @@ export function RescheduleModal({
 					<Button
 						disabled={!date}
 						onClick={() => date && onReschedule(date, time)}
-						className="bg-hubGreen w-full"
+						className="bg-hub-green w-full"
 					>
 						Reschedule
 					</Button>
 					<Button
 						variant="outline"
 						onClick={() => onOpenChange(false)}
-						className="bg-hubGrey hover:bg-destructive hover:text-white w-full"
+						className="bg-hub-grey hover:bg-destructive hover:text-white w-full"
 					>
 						Cancel
 					</Button>

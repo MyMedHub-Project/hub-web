@@ -2,7 +2,7 @@ import React from "react";
 import ProvidersList from "./providers-list";
 
 const HealthProviders = () => (
-	<div className="text-hubBlack min-h-screen">
+	<div className="text-hub-black min-h-screen">
 		<ProvidersList />
 	</div>
 );

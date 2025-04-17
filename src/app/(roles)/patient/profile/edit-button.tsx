@@ -5,13 +5,13 @@ import { Card } from "@/components/ui/card";
 import { Routes } from "@/core/routing";
 
 const EditButton = async () => (
-	<Card className="bg-tansparent shadow-none border-none grid grid-cols-[1fr,auto] gap-x-5">
+	<Card className="bg-tansparent shadow-none border-none grid grid-cols-[1fr_auto] gap-x-5">
 		<Link href={Routes.PROFILE.EDIT} className="w-full">
-			<Button className="w-full bg-hubGrey text-hubBlack hover:bg-inherit">
+			<Button className="w-full bg-hub-grey text-hub-black hover:bg-inherit">
 				<Pencil /> Edit profile
 			</Button>
 		</Link>
-		<Button className="bg-hubGrey  text-hubBlack hover:bg-inherit">
+		<Button className="bg-hub-grey  text-hub-black hover:bg-inherit">
 			<Share />
 		</Button>
 	</Card>

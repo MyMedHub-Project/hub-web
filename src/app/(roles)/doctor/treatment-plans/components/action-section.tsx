@@ -27,7 +27,7 @@ const ActionSection = () => {
 					<h2 className="font-bold">Treatment Plans</h2>
 					<Dialog defaultOpen={false}>
 						<DialogTrigger asChild className=" mx-auto block">
-							<Button className="bg-hubGreen size-fit p-2 !m-0">
+							<Button className="bg-hub-green size-fit p-2 m-0!">
 								<Plus className="size-4" />
 							</Button>
 						</DialogTrigger>
@@ -36,7 +36,7 @@ const ActionSection = () => {
 				</div>
 				<div className="relative h-10">
 					<Search className="absolute size-5 left-2.5 top-1/2 -translate-y-1/2" />
-					<Input className="size-full py-0 pl-7 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg" />
+					<Input className="size-full py-0 pl-7 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg" />
 				</div>
 			</CardHeader>
 

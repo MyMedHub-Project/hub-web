@@ -25,13 +25,13 @@ const CallDialog = ({ children, type }: CallDialogPops) => {
 			<DialogTrigger asChild>
 				<Button
 					variant="outline"
-					className="size-10 flex items-center justify-center rounded bg-hubGrey200 hover:bg-hubGreen/50 cursor-pointer"
+					className="size-10 flex items-center justify-center rounded bg-hub-grey200 hover:bg-hub-green/50 cursor-pointer"
 				>
 					{children}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="max-w-[700px] h-[500px] bg-blue-900 flex flex-col items-center justify-center gap-y-20">
-				<Button className="size-10 rounded-full flex items-center justify-center bg-hubGrey/30 absolute top-10 right-10">
+				<Button className="size-10 rounded-full flex items-center justify-center bg-hub-grey/30 absolute top-10 right-10">
 					<Minimize2 className="size-8 text-primary-foreground" />
 				</Button>
 
@@ -45,7 +45,7 @@ const CallDialog = ({ children, type }: CallDialogPops) => {
 					</DialogDescription>
 				</DialogHeader>
 
-				<DialogFooter className="flex gap-x-5 px-8 py-4 bg-hubGrey/30 rounded-xl shadow">
+				<DialogFooter className="flex gap-x-5 px-8 py-4 bg-hub-grey/30 rounded-xl shadow-sm">
 					<div className="flex flex-col items-center gap-y-1">
 						<DialogClose asChild>
 							<Button
@@ -87,7 +87,7 @@ const CallDialog = ({ children, type }: CallDialogPops) => {
 							<Button
 								type="button"
 								variant="secondary"
-								className="size-10 bg-hubRed rounded-full flex items-center justify-center"
+								className="size-10 bg-hub-red rounded-full flex items-center justify-center"
 							>
 								<Phone className="size-8 fill-white text-white" />
 							</Button>

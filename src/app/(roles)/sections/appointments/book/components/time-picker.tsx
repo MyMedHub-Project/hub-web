@@ -29,8 +29,8 @@ const AppointmentTimePicker = () => {
 					className={cn(
 						"rounded-full p-2 text-sm transition-colors",
 						selectedSlot === time.id
-							? "bg-hubGreen text-hubGrey200"
-							: " bg-hubGrey hover:bg-hubGrey/80 text-hubBlack/50"
+							? "bg-hub-green text-hub-grey200"
+							: " bg-hub-grey hover:bg-hub-grey/80 text-hub-black/50"
 					)}
 				>
 					<span>{`${time.start} - ${time.end}`}</span>

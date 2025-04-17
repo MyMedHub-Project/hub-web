@@ -134,7 +134,7 @@ export default function Family() {
 	];
 
 	return (
-		<div className="flex h-screen gap-4 p-4 flex-col md:flex-row text-hubBlack">
+		<div className="flex h-screen gap-4 p-4 flex-col md:flex-row text-hub-black">
 			<div className="md:w-4/6 rounded-lg border p-4">
 				<h2 className="mb-4 text-xl font-semibold">Family Members</h2>
 				<div className="relative mb-4 bg-gray-200">
@@ -150,7 +150,7 @@ export default function Family() {
 					<div className="flex flex-col items-center">
 						<Button
 							variant="outline"
-							className="flex size-24 flex-col items-center justify-center gap-2 rounded-full border-hubGreen border-2"
+							className="flex size-24 flex-col items-center justify-center gap-2 rounded-full border-hub-green border-2"
 							onClick={() => setShowAddMember(true)}
 						>
 							<Plus className="h-8 w-8" />
@@ -239,7 +239,7 @@ export default function Family() {
 										<Button
 											variant="default"
 											size="lg"
-											className="bg-hubGreen"
+											className="bg-hub-green"
 										>
 											Accept
 										</Button>
@@ -280,7 +280,7 @@ export default function Family() {
 											<Button
 												variant="default"
 												size="lg"
-												className="bg-hubGreen"
+												className="bg-hub-green"
 											>
 												Accept
 											</Button>
@@ -302,7 +302,7 @@ export default function Family() {
 			{/* R.H.S Ends */}
 
 			<Dialog open={showAddMember} onOpenChange={setShowAddMember}>
-				<DialogContent className="bg-white text-hubBlack">
+				<DialogContent className="bg-white text-hub-black">
 					<DialogHeader>
 						<DialogTitle>Add a Family Member</DialogTitle>
 						<DialogDescription>
@@ -350,7 +350,7 @@ export default function Family() {
 									<Button
 										size="icon"
 										variant="ghost"
-										className="h-7 w-7 bg-hubGreenLight"
+										className="h-7 w-7 bg-hub-green-light"
 										onClick={() => setShowInvite(true)}
 									>
 										<Plus className="h-4 w-4" />
@@ -366,7 +366,7 @@ export default function Family() {
 				open={showMemberDetails}
 				onOpenChange={setShowMemberDetails}
 			>
-				<DialogContent className="bg-white text-hubBlack">
+				<DialogContent className="bg-white text-hub-black">
 					<DialogHeader>
 						<div className="flex items-center justify-between w-full">
 							<div className="flex items-center gap-4">
@@ -418,7 +418,7 @@ export default function Family() {
 				open={showDeleteConfirm}
 				onOpenChange={setShowDeleteConfirm}
 			>
-				<DialogContent className="max-w-[425px] bg-white text-hubBlack">
+				<DialogContent className="max-w-[425px] bg-white text-hub-black">
 					<DialogHeader className="p-5 space-y-4 leading-normal">
 						<DialogTitle className="text-center text-md font-extrabold">
 							Remove {selectedMember?.name}
@@ -456,7 +456,7 @@ export default function Family() {
 			{/* Delete Confirmation Dialog ends */}
 
 			<Dialog open={showInvite} onOpenChange={setShowInvite}>
-				<DialogContent className="bg-white text-hubBlack w-[450px] mx-auto">
+				<DialogContent className="bg-white text-hub-black w-[450px] mx-auto">
 					<DialogHeader>
 						<DialogTitle>Send invitation</DialogTitle>
 						<DialogDescription className="text-[13px]">
@@ -513,7 +513,7 @@ export default function Family() {
 					<div className="w-full flex gap-2 justify-between">
 						<div className="w-full">
 							<Button
-								className="bg-hubGreen w-full"
+								className="bg-hub-green w-full"
 								onClick={() => setShowInvite(false)}
 							>
 								Send Invite

@@ -17,19 +17,19 @@ const About = () => (
 			</CardTitle>
 			<CardContent className="pl-0 space-y-2">
 				<div className="text-sm flex gap-x-1">
-					<Cross className="fill-hubPurple text-hubGrey size-5" />{" "}
+					<Cross className="fill-hub-purple text-hub-grey size-5" />{" "}
 					Cardiologist
 				</div>
 				<div className="flex gap-x-1 text-sm">
-					<Luggage className="fill-hubPurple text-hubGrey size-5" /> 6
-					years in practice
+					<Luggage className="fill-hub-purple text-hub-grey size-5" />{" "}
+					6 years in practice
 				</div>
 				<div className="flex gap-x-1 text-sm">
-					<LocateFixedIcon className="fill-hubPurple text-hubGrey size-5" />
+					<LocateFixedIcon className="fill-hub-purple text-hub-grey size-5" />
 					No. 25, Sakura street, Lokoja, Kogi State, Nigeria
 				</div>
 				<div className="flex gap-x-1 text-sm">
-					<Star className="fill-hubOrange text-hubGrey size-5" />
+					<Star className="fill-hub-orange text-hub-grey size-5" />
 					4.4{" "}
 					<Dialog>
 						<DialogTrigger asChild>

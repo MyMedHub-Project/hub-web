@@ -2,7 +2,7 @@ import BookingSection from "./components/booking-section";
 import DoctorProfileSection from "./components/doctor-profile-section";
 
 const BookAppointment = () => (
-	<div className="w-full h-full flex flex-col lg:flex-row gap-4 text-hubBlack">
+	<div className="w-full h-full flex flex-col lg:flex-row gap-4 text-hub-black">
 		<div className="bg-white/50 border rounded-md p-5 flex flex-1 flex-col lg:w-2/3">
 			<DoctorProfileSection />
 		</div>

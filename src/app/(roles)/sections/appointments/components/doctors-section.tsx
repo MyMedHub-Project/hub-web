@@ -54,7 +54,7 @@ const DoctorsSection = () => {
 							<Search className="absolute top-2.5 left-2 h-4 w-4 items-center" />
 							<Input
 								placeholder="Search by name, specialty..."
-								className="bg-hubGrey px-8 text-sm text-muted-foreground"
+								className="bg-hub-grey px-8 text-sm text-muted-foreground"
 							/>
 						</div>
 						<Sheet>
@@ -73,7 +73,7 @@ const DoctorsSection = () => {
 										<Select>
 											<SelectTrigger
 												defaultValue=""
-												className="cursor-pointer bg-hubGrey p-4"
+												className="cursor-pointer bg-hub-grey p-4"
 											>
 												<Label>Select Location</Label>
 												<SelectContent className="py-2">
@@ -98,7 +98,7 @@ const DoctorsSection = () => {
 										<Select>
 											<SelectTrigger
 												defaultValue=""
-												className="cursor-pointer bg-hubGrey p-4"
+												className="cursor-pointer bg-hub-grey p-4"
 											>
 												<Label>Cardiology</Label>
 												<SelectContent className="py-2">
@@ -141,14 +141,14 @@ const DoctorsSection = () => {
 										<Button
 											size="lg"
 											variant="default"
-											className="bg-hubGreen text-white hover:bg-hubGreen/80 w-full"
+											className="bg-hub-green text-white hover:bg-hub-green/80 w-full"
 										>
 											Filter
 										</Button>
 										<Button
 											size="lg"
 											variant="destructive"
-											className="bg-hubGreenLight text-hubGreen hover:text-white w-full"
+											className="bg-hub-green-light text-hub-green hover:text-white w-full"
 										>
 											Reset
 										</Button>

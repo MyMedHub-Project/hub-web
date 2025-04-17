@@ -9,8 +9,8 @@ const Hour: React.FC<{ day: string }> = ({ day }) => {
 	const [active, setActive] = useState(false);
 
 	return (
-		<Card className="bg-hubGrey p-4">
-			<CardTitle className="flex justify-between text-hubBlack font-semibold">
+		<Card className="bg-hub-grey p-4">
+			<CardTitle className="flex justify-between text-hub-black font-semibold">
 				{day}
 
 				{!active ? (

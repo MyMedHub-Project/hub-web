@@ -35,13 +35,13 @@ const DateFormField = ({ form, label, name }: DateFormFieldProps) => (
 				<Popover>
 					<PopoverTrigger
 						asChild
-						className="w-full px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+						className="w-full px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 					>
 						<FormControl>
 							<Button
 								variant="outline"
 								className={cn(
-									"w-full h-12 px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg",
+									"w-full h-12 px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg",
 									!field.value && "text-muted-foreground"
 								)}
 							>

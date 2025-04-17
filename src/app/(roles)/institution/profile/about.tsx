@@ -13,28 +13,28 @@ const About = () => (
 			</CardTitle>
 			<CardContent className="pl-0 space-y-2">
 				<div className="flex gap-x-1">
-					<LocateFixedIcon className="fill-hubPurple text-hubGrey" />
+					<LocateFixedIcon className="fill-hub-purple text-hub-grey" />
 					No. 25, Sakura street, Lokoja, Kogi State, Nigeria
 				</div>
 				<div className="flex gap-x-1">
-					<Phone className="fill-hubPurple text-hubGrey" /> +234 123
+					<Phone className="fill-hub-purple text-hub-grey" /> +234 123
 					4567
 				</div>
 				<div className="flex gap-x-1">
-					<Mail className="fill-hubPurple text-hubGrey" />
+					<Mail className="fill-hub-purple text-hub-grey" />
 					info@fmchospital.com
 				</div>
 				<div className="flex gap-x-1">
-					<Circle className="fill-hubPurple text-hubGrey" />
+					<Circle className="fill-hub-purple text-hub-grey" />
 					<a
 						href="www.fmchospital.com"
-						className="text-hubBlue underline"
+						className="text-hub-blue underline"
 					>
 						www.fmchospital.com
 					</a>
 				</div>
 				<div className="flex gap-x-1">
-					<Star className="fill-hubOrange text-hubGrey" />
+					<Star className="fill-hub-orange text-hub-grey" />
 					4.4 <span className="underline">(100+ reviews)</span>
 				</div>
 			</CardContent>

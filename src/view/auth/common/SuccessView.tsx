@@ -18,7 +18,7 @@ export default function SuccessView({
 	pageTitle
 }: SuccessView) {
 	return (
-		<Card className="flex-grow w-[450px] flex flex-col items-center justify-center my-5 border-none shadow-none max-sm:w-[85%] gap-5">
+		<Card className="grow w-[450px] flex flex-col items-center justify-center my-5 border-none shadow-none max-sm:w-[85%] gap-5">
 			<div className="pb-5">
 				<SuccessSVGComponent />
 			</div>

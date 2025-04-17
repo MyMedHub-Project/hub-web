@@ -12,9 +12,9 @@ const MessageItem = ({ message }: { message: Message }) => (
 		) : null}
 		<Card
 			className={cn(
-				"bg-hubGrey p-4 text-sm rounded-2xl flex flex-col gap-y-3",
+				"bg-hub-grey p-4 text-sm rounded-2xl flex flex-col gap-y-3",
 				message.senderId === 0
-					? "flex-1 rounded-bl-none bg-hubGreen/80 text-white"
+					? "flex-1 rounded-bl-none bg-hub-green/80 text-white"
 					: "rounded-br-none w-[calc(100%-40px)]"
 			)}
 		>

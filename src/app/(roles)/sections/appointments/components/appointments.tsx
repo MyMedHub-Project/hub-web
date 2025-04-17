@@ -22,7 +22,7 @@ const Appointments = () => {
 	);
 
 	return (
-		<div className="p-4 rounded-lg space-y-3 bg-hubGrey divide-y">
+		<div className="p-4 rounded-lg space-y-3 bg-hub-grey divide-y">
 			<h1 className="text-lg">Upcoming Appointments</h1>
 			<div className="mt-4 space-y-3 max-h-[calc(100%-40px)] overflow-y-hidden custom-scrollbar">
 				{appointments.map((appointment, i) => (

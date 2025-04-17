@@ -16,7 +16,7 @@ const NotificationCard = () => (
 			</Button>
 			<div className="flex items-center justify-between w-full">
 				<div className="space-y-1">
-					<AlertTitle className="font-medium text-hubRed">
+					<AlertTitle className="font-medium text-hub-red">
 						New Invoice!
 					</AlertTitle>
 					<AlertDescription className="text-pink-600">
@@ -28,7 +28,7 @@ const NotificationCard = () => (
 			<div className="mt-2 flex justify-end">
 				<Button
 					variant="link"
-					className="text-pink-500 font-medium hover:text-pink-600 bg-hubPurpleLight"
+					className="text-pink-500 font-medium hover:text-pink-600 bg-hub-purple-light"
 				>
 					View
 					<ArrowRight className="w-4 h-4 ml-1" />

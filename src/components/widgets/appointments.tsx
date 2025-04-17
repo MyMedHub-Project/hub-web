@@ -52,7 +52,7 @@ const AppointmentCard = memo(
 						<Button
 							variant="ghost"
 							size="icon"
-							className="h-8 w-8 text-hubBlue"
+							className="h-8 w-8 text-hub-blue"
 						>
 							<MessageCircle className="h-5 w-5" />
 							<span className="sr-only">Send message</span>
@@ -70,7 +70,7 @@ const AppointmentCard = memo(
 				<div className="mt-4 flex gap-2">
 					<Button
 						variant="secondary"
-						className="flex-1 bg-hubGreenLight text-hubGreen hover:bg-hubGreen hover:text-hubGreenLight"
+						className="flex-1 bg-hub-green-light text-hub-green hover:bg-hub-green hover:text-hub-green-light"
 						onClick={appointment.onReschedule}
 					>
 						<RefreshCcw className="mr-2 h-4 w-4" />
@@ -92,7 +92,7 @@ const AppointmentCard = memo(
 AppointmentCard.displayName = "AppointmentCard";
 
 const UpcomingAppointments = memo(() => (
-	<div className="rounded-lg bg-hubGrey p-6 text-hubBlack">
+	<div className="rounded-lg bg-hub-grey p-6 text-hub-black">
 		<h2 className="text-lg font-semibold mb-2">Upcoming Appointments</h2>
 		<Separator />
 		<div className="space-y-4 mt-4">

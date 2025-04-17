@@ -177,7 +177,7 @@ const AddPlanDialog = () => {
 	};
 
 	return (
-		<DialogContent className="max-w-[800px] bg-white text-hubBlack">
+		<DialogContent className="max-w-[800px] bg-white text-hub-black">
 			<DialogTitle>Add a Treatment Plan</DialogTitle>
 			<DialogDescription></DialogDescription>
 
@@ -208,8 +208,8 @@ const AddPlanDialog = () => {
 														role="combobox"
 														className={cn(
 															!field.value
-																? "w-full flex items-center justify-center bg-transparent border border-hubGreen text-hubGreen text-sm hover:bg-transparent hover:scale-1"
-																: "w-fit border-none py-1 px-2 flex items-center gap-x-2 bg-hubGrey/80 rounded-full hover:bg-bg-hubGrey/50"
+																? "w-full flex items-center justify-center bg-transparent border border-hub-green text-hub-green text-sm hover:bg-transparent hover:scale-1"
+																: "w-fit border-none py-1 px-2 flex items-center gap-x-2 bg-hub-grey/80 rounded-full hover:bg-bg-hub-grey/50"
 														)}
 													>
 														{!field.value ? (
@@ -219,10 +219,10 @@ const AddPlanDialog = () => {
 															</>
 														) : (
 															<>
-																<div className="size-6 flex items-center justify-center rounded-full border-2 border-hubGrey200">
+																<div className="size-6 flex items-center justify-center rounded-full border-2 border-hub-grey200">
 																	<User className="size-[80%]" />
 																</div>
-																<p className="text-hubBlue text-xs">
+																<p className="text-hub-blue text-xs">
 																	{
 																		patients.find(
 																			(
@@ -287,7 +287,7 @@ const AddPlanDialog = () => {
 																						patient.name
 																					}
 																				</p>
-																				<span className="text-hubBlack/70 text-xs">
+																				<span className="text-hub-black/70 text-xs">
 																					{
 																						patient.address
 																					}
@@ -327,7 +327,7 @@ const AddPlanDialog = () => {
 													<Button
 														variant="outline"
 														role="combobox"
-														className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 hover:scale-1 shadow-none rounded-lg"
+														className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 hover:scale-1 shadow-none rounded-lg"
 													>
 														<div className="w-full flex items-center justify-between">
 															<p>
@@ -351,7 +351,7 @@ const AddPlanDialog = () => {
 												className={cn("w-[750px] p-0")}
 											>
 												<Command>
-													<CommandList className="!max-h-[200px] px-4 z-20">
+													<CommandList className="max-h-[200px]! px-4 z-20">
 														<CommandEmpty>
 															No framework found.
 														</CommandEmpty>
@@ -379,7 +379,7 @@ const AddPlanDialog = () => {
 																				false
 																			);
 																		}}
-																		className="bg-hubGrey flex justify-between items-center gap-2 mt-2 p-2.5"
+																		className="bg-hub-grey flex justify-between items-center gap-2 mt-2 p-2.5"
 																	>
 																		<div>
 																			<p className="font-medium">
@@ -415,11 +415,11 @@ const AddPlanDialog = () => {
 								)}
 							/>
 							{selectedCondition ? (
-								<div className="w-[calc(100%-50px)] px-3 pt-2 pb-1 rounded bg-white border border-hubGrey200 absolute right-1/2 translate-x-1/2 bottom-2">
+								<div className="w-[calc(100%-50px)] px-3 pt-2 pb-1 rounded bg-white border border-hub-grey200 absolute right-1/2 translate-x-1/2 bottom-2">
 									<p className="text-sm mb-1">
 										Prescriptions
 									</p>
-									<div className="bg-hubGrey p-2.5 rounded-lg">
+									<div className="bg-hub-grey p-2.5 rounded-lg">
 										<FormField
 											control={form.control}
 											name="medicine"
@@ -437,7 +437,7 @@ const AddPlanDialog = () => {
 														}
 													>
 														<FormControl>
-															<SelectTrigger className="px-6 bg-white text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
+															<SelectTrigger className="px-6 bg-white text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
 																<SelectValue placeholder="Medicine" />
 															</SelectTrigger>
 														</FormControl>
@@ -463,7 +463,7 @@ const AddPlanDialog = () => {
 																<Input
 																	placeholder="Dosage"
 																	{...field}
-																	className="flex-1 px-3 bg-white text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+																	className="flex-1 px-3 bg-white text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 																/>
 															</FormControl>
 															<FormMessage />
@@ -487,7 +487,7 @@ const AddPlanDialog = () => {
 																}
 															>
 																<FormControl>
-																	<SelectTrigger className="px-3 bg-white text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
+																	<SelectTrigger className="px-3 bg-white text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
 																		<SelectValue placeholder="dosage" />
 																	</SelectTrigger>
 																</FormControl>
@@ -517,7 +517,7 @@ const AddPlanDialog = () => {
 															}
 														>
 															<FormControl>
-																<SelectTrigger className="px-3 bg-white text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
+																<SelectTrigger className="px-3 bg-white text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
 																	<SelectValue placeholder="Frequency" />
 																</SelectTrigger>
 															</FormControl>
@@ -543,7 +543,7 @@ const AddPlanDialog = () => {
 																<Input
 																	placeholder="Duration"
 																	{...field}
-																	className="flex-1 px-3 bg-white text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+																	className="flex-1 px-3 bg-white text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 																/>
 															</FormControl>
 															<FormMessage />
@@ -565,7 +565,7 @@ const AddPlanDialog = () => {
 																}
 															>
 																<FormControl>
-																	<SelectTrigger className="px-3 bg-white text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
+																	<SelectTrigger className="px-3 bg-white text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
 																		<SelectValue placeholder="Duration" />
 																	</SelectTrigger>
 																</FormControl>
@@ -586,7 +586,7 @@ const AddPlanDialog = () => {
 										onClick={() =>
 											setSelectedCondition(null)
 										}
-										className="w-full mt-3 border border-hubGreen text-hubGreen text-sm hover:scale-1 "
+										className="w-full mt-3 border border-hub-green text-hub-green text-sm hover:scale-1 "
 									>
 										<Plus className="size-4 mr-2" /> Add
 										Medication
@@ -597,7 +597,7 @@ const AddPlanDialog = () => {
 							<div className="space-y-5">
 								<Button
 									// disabled={isLoading}
-									className="mt-32 w-full gap-x-2 bg-hubGreen hover:bg-hubGreen/95 disabled:bg-hubGreen/90 disabled:text-secondary"
+									className="mt-32 w-full gap-x-2 bg-hub-green hover:bg-hub-green/95 disabled:bg-hub-green/90 disabled:text-secondary"
 									type="submit"
 								>
 									Create Plan

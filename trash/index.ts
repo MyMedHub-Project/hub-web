@@ -177,7 +177,7 @@
 // 					className={cn(
 // 						"size-12 text-center text-2xl bg-[#D4DFD5]/10",
 // 						className,
-// 						enableFailState ? "border-hubRed/50" : "border-inherit"
+// 						enableFailState ? "border-hub-red/50" : "border-inherit"
 // 					)}
 // 					maxLength={1}
 // 					value={digit}
@@ -295,8 +295,8 @@
 // 					className={cn(
 // 						"size-12 text-center text-2xl bg-[#D4DFD5]/10",
 // 						className,
-// 						isError ? "border-hubRed/50" : "border-inherit",
-// 						tokenVerified ? "border-hubGreen/50" : ""
+// 						isError ? "border-hub-red/50" : "border-inherit",
+// 						tokenVerified ? "border-hub-green/50" : ""
 // 					)}
 // 					maxLength={1}
 // 					value={digit}
@@ -445,7 +445,7 @@
 // 					className={cn(
 // 						"size-12 text-center text-2xl bg-[#D4DFD5]/10",
 // 						className,
-// 						isError ? "border-hubRed/50" : "border-inherit"
+// 						isError ? "border-hub-red/50" : "border-inherit"
 // 					)}
 // 					maxLength={1}
 // 					value={digit}

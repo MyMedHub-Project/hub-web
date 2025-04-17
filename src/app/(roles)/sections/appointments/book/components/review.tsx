@@ -5,10 +5,10 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import LeaveReviewDialog from "./action-modals/leave-review";
 
 const Review = () => (
-	<Card className="bg-hubGrey divide-y-2">
+	<Card className="bg-hub-grey divide-y-2">
 		<CardHeader className="flex flex-row justify-between items-center">
 			<div className="flex items-center gap-x-1">
-				<UserPen className="size-8 text-hubPurple" />
+				<UserPen className="size-8 text-hub-purple" />
 				<div>
 					<h2 className="">Reviews</h2>
 					<p className="text-xs text-muted-foreground">
@@ -21,17 +21,17 @@ const Review = () => (
 			</Button>
 		</CardHeader>
 
-		<div className="mb-4 px-4 border-0 shadow-sm">
+		<div className="mb-4 px-4 border-0 shadow-xs">
 			<div className="pt-4">
 				<h3 className="mb-1">John Doe</h3>
 				<div className="flex mb-1">
 					{[1, 2, 3, 4].map((i) => (
 						<Star
 							key={i}
-							className="size-4 fill-hubOrange text-hubOrange"
+							className="size-4 fill-hub-orange text-hub-orange"
 						/>
 					))}
-					<Star className="size-4 text-hubOrange" />
+					<Star className="size-4 text-hub-orange" />
 				</div>
 				<p className="text-sm">
 					Dr. Dolor provided excellent care and was very thorough in
@@ -42,7 +42,7 @@ const Review = () => (
 			<Dialog>
 				<DialogTrigger asChild>
 					<Button
-						className="w-full mt-3 bg-hubGreenLight hover:bg-hubGreen/30 text-hubGreen font-medium"
+						className="w-full mt-3 bg-hub-green-light hover:bg-hub-green/30 text-hub-green font-medium"
 						variant="ghost"
 					>
 						<Plus className="size-4 mr-2" />

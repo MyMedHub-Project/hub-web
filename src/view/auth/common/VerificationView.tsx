@@ -79,7 +79,7 @@ export const VerificationView = ({
 	};
 
 	return (
-		<Card className="flex-grow w-[500px] flex flex-col items-center justify-center my-5 border-none shadow-none max-sm:w-[85%] max-sm:justify-start">
+		<Card className="grow w-[500px] flex flex-col items-center justify-center my-5 border-none shadow-none max-sm:w-[85%] max-sm:justify-start">
 			{error ? <ErrorToast error={error} /> : null}
 
 			<OnboardingViewHeader
@@ -88,7 +88,7 @@ export const VerificationView = ({
 				showProgressBar={false}
 			/>
 
-			<CardContent className="w-full max-w-[450px] pb-10 flex flex-col gap-6 max-sm:flex-grow">
+			<CardContent className="w-full max-w-[450px] pb-10 flex flex-col gap-6 max-sm:grow">
 				<CodeInput
 					onComplete={handleCodeCompletion}
 					initialValue={initialCodeValue}
@@ -104,25 +104,25 @@ export const VerificationView = ({
 
 					<>
 						{loaderState === "verified" ? (
-							<div className="text-hubGreen items-center gap-2 flex">
+							<div className="text-hub-green items-center gap-2 flex">
 								<Check className="size-5" />
 								<span className="text-sm">verified</span>
 							</div>
 						) : null}
 
 						{loaderState === "verifying" ? (
-							<Spinner className="text-hubGreen/70 size-5" />
+							<Spinner className="text-hub-green/70 size-5" />
 						) : null}
 
 						{loaderState === "failed" ? (
-							<div className="text-hubRed items-center gap-2 flex">
+							<div className="text-hub-red items-center gap-2 flex">
 								<X className="size-5" />
 								<span className="text-sm">Invalid code</span>
 							</div>
 						) : null}
 
 						{loaderState === "error" ? (
-							<div className="text-hubRed items-center gap-2 flex">
+							<div className="text-hub-red items-center gap-2 flex">
 								<X className="size-5" />
 								<span className="text-sm">
 									Error, try again

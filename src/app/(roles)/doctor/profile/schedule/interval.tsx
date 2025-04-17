@@ -31,19 +31,19 @@ const Interval: React.FC<{
 			</div>
 			<div className="flex justify-between gap-x-2">
 				<Button
-					className="p-6 px-4  flex-1 justify-start rounded-xl bg-white text-hubBlack hover:bg-white disabled:bg-hubGrey200 disabled:opacity-100"
+					className="p-6 px-4  flex-1 justify-start rounded-xl bg-white text-hub-black hover:bg-white disabled:bg-hub-grey200 disabled:opacity-100"
 					disabled={!hasInterval}
 				>
 					<Input
 						type="checkbox"
 						checked={hasInterval ? availability : true}
 						onChange={() => setAvailability(!availability)}
-						className="size-5 border-2 border-hubGreen"
+						className="size-5 border-2 border-hub-green"
 					/>
 					<Label className="ml-2">Mark as Unavailable</Label>
 				</Button>
 				<Button
-					className="p-6 rounded-xl bg-white text-hubBlack hover:bg-white disabled:bg-hubGrey200 disabled:opacity-100"
+					className="p-6 rounded-xl bg-white text-hub-black hover:bg-white disabled:bg-hub-grey200 disabled:opacity-100"
 					disabled={!hasInterval}
 					onClick={() => setHasInterval(false)}
 				>

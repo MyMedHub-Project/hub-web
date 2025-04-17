@@ -13,7 +13,7 @@ export const FormSubmitButton = ({
 }: FormSubmitButtonProps) => (
 	<Button
 		disabled={loadingState === "disabled"}
-		className="max-sm:text-sm max-sm:h-12 w-full gap-x-2 bg-hubGreen hover:bg-hubGreen/95 disabled:bg-hubGreen/90 disabled:text-secondary h-12"
+		className="max-sm:text-sm max-sm:h-12 w-full gap-x-2 bg-hub-green hover:bg-hub-green/95 disabled:bg-hub-green/90 disabled:text-secondary h-12"
 		type="submit"
 	>
 		{label}

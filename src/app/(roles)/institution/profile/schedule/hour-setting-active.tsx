@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import Interval from "./interval";
 
 const HourSettingActive = () => (
-	<Card className="bg-hubGrey p-4">
-		<CardTitle className="flex justify-between text-hubBlack font-semibold">
+	<Card className="bg-hub-grey p-4">
+		<CardTitle className="flex justify-between text-hub-black font-semibold">
 			Monday
 			<ChevronUp className="size-5" />
 		</CardTitle>
@@ -13,7 +13,7 @@ const HourSettingActive = () => (
 			<Interval />
 			<Interval />
 		</div>
-		<Button className=" w-full h-11 mt-3 text-lg bg-hubPurple/20 text-hubPurple hover:bg-hubPurple/25">
+		<Button className=" w-full h-11 mt-3 text-lg bg-hub-purple/20 text-hub-purple hover:bg-hub-purple/25">
 			<Plus />
 			Add Interval
 		</Button>

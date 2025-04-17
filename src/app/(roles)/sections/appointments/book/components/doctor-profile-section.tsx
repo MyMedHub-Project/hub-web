@@ -9,15 +9,15 @@ const DoctorProfileSection = () => (
 	<div className="flex-1 space-y-5">
 		<About />
 		<div className="flex gap-x-2">
-			<Button className="w-full bg-hubGreenLight hover:bg-hubGreen/30 text-hubGreen text-xs">
+			<Button className="w-full bg-hub-green-light hover:bg-hub-green/30 text-hub-green text-xs">
 				<CalendarDays className="size-5" />
 				Book Appointment
 			</Button>
-			<Button variant="outline" className="bg-hubGrey">
-				<MessageCircleMore className="fill-hubBlack text-hubGrey" />
+			<Button variant="outline" className="bg-hub-grey">
+				<MessageCircleMore className="fill-hub-black text-hub-grey" />
 			</Button>
-			<Button variant="outline" className="bg-hubGrey">
-				<Heart className="fill-hubRed text-hubRed" />
+			<Button variant="outline" className="bg-hub-grey">
+				<Heart className="fill-hub-red text-hub-red" />
 			</Button>
 		</div>
 		<Bio />

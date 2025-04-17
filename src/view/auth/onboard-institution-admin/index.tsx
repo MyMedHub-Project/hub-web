@@ -77,7 +77,7 @@ const OnboardInstitutionAdminView = () => {
 				showProgressBar={false}
 			/>
 
-			<CardContent className="w-full pb-10 flex flex-col max-sm:flex-grow">
+			<CardContent className="w-full pb-10 flex flex-col max-sm:grow">
 				<Form {...form}>
 					<form
 						className="flex flex-col gap-6"

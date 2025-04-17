@@ -80,7 +80,7 @@ const TermsModal = () => {
 				</DialogDescription>
 			</DialogHeader>
 
-			<div className="flex-1 overflow-y-auto text-sm p-6 text-hubBlack bg-hubGrey">
+			<div className="flex-1 overflow-y-auto text-sm p-6 text-hub-black bg-hub-grey">
 				<ul className="space-y-2">
 					{termsContent.map((term, index) => (
 						<li key={index}>

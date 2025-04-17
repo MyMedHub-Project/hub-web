@@ -15,8 +15,8 @@ const ProfilePage = () => (
 			<Bio />
 			<Services />
 		</div>
-		<div className="lg:w-1/3 h-full py-5 px-3 space-y-5 border border-hubGrey rounded-xl">
-			<Card className="bg-transparent shadow-none border-t-0 border-x-0 border-b-2 rounded-none border-hubGrey space-y-2">
+		<div className="lg:w-1/3 h-full py-5 px-3 space-y-5 border border-hub-grey rounded-xl">
+			<Card className="bg-transparent shadow-none border-t-0 border-x-0 border-b-2 rounded-none border-hub-grey space-y-2">
 				<CardTitle className="text-xl">
 					Set Your Appointment Availability
 				</CardTitle>

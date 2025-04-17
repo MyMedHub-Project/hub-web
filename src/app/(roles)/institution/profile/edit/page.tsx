@@ -295,12 +295,12 @@ const Edit = () => {
 
 			<Dialog>
 				<DialogTrigger asChild className=" mx-auto block">
-					<Button className="bg-transparent text-hubRed hover:bg-transparent">
+					<Button className="bg-transparent text-hub-red hover:bg-transparent">
 						Delete Account
 					</Button>
 				</DialogTrigger>
 				<DialogContent>
-					<DialogHeader className="text-center text-hubBlack">
+					<DialogHeader className="text-center text-hub-black">
 						<DialogTitle className="text-center text-xl mb-4">
 							Delete Account
 						</DialogTitle>
@@ -311,10 +311,10 @@ const Edit = () => {
 						</DialogDescription>
 					</DialogHeader>
 					<DialogFooter className="gap-x-3 mt-2">
-						<Button className="bg-hubGrey hover:bg-hubGrey text-hubBlack w-1/2 h-10 py-4">
+						<Button className="bg-hub-grey hover:bg-hub-grey text-hub-black w-1/2 h-10 py-4">
 							Cancel
 						</Button>
-						<Button className="bg-hubRed hover:bg-hubRed text-hubGrey w-1/2 h-10 py-4">
+						<Button className="bg-hub-red hover:bg-hub-red text-hub-grey w-1/2 h-10 py-4">
 							Delete
 						</Button>
 					</DialogFooter>

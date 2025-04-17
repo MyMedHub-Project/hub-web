@@ -26,7 +26,7 @@ const BookingSection = () => (
 		</CardHeader>
 		<CardContent className="space-y-4 p-0">
 			{/* Doctor Info */}
-			<div className="flex flex-col items-center gap-y-1 mt-4 p-3 bg-hubGrey rounded-lg">
+			<div className="flex flex-col items-center gap-y-1 mt-4 p-3 bg-hub-grey rounded-lg">
 				<Avatar className="size-20 border">
 					<AvatarImage
 						src="/placeholder.svg?height=48&width=48"
@@ -43,7 +43,7 @@ const BookingSection = () => (
 				<Input
 					id="reason"
 					placeholder="Follow-up on test results"
-					className="p-3 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+					className="p-3 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 				/>
 			</div>
 
@@ -71,11 +71,11 @@ const BookingSection = () => (
 			<div className="space-y-2">
 				<Label>Appointment Type</Label>
 				<RadioGroup defaultValue="virtual" className="space-y-2">
-					<div className="bg-hubGreenLight flex items-center space-x-2 rounded-md border p-3">
+					<div className="bg-hub-green-light flex items-center space-x-2 rounded-md border p-3">
 						<RadioGroupItem
 							value="virtual"
 							id="virtual"
-							className="bg-transparent border-hubGreen focus:bg-hubGreen"
+							className="bg-transparent border-hub-green focus:bg-hub-green"
 						/>
 						<Label
 							htmlFor="virtual"
@@ -84,11 +84,11 @@ const BookingSection = () => (
 							Virtual Consultation
 						</Label>
 					</div>
-					<div className="bg-hubGreenLight flex items-center space-x-2 rounded-md border p-3">
+					<div className="bg-hub-green-light flex items-center space-x-2 rounded-md border p-3">
 						<RadioGroupItem
 							value="in-person"
 							id="in-person"
-							className="bg-transparent border-hubGreen focus:bg-hubGreen"
+							className="bg-transparent border-hub-green focus:bg-hub-green"
 						/>
 						<Label
 							htmlFor="in-person"
@@ -104,7 +104,7 @@ const BookingSection = () => (
 				<Label htmlFor="note">Additional note</Label>
 				<Textarea
 					id="note"
-					className="h-24 resize-none p-3 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+					className="h-24 resize-none p-3 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 					placeholder="Add note"
 				/>
 			</div>
@@ -115,7 +115,7 @@ const BookingSection = () => (
 				<DialogTrigger asChild>
 					<Button
 						variant="outline"
-						className="w-full bg-hubGreen text-hubGrey200 hover:bg-hubGreen/70"
+						className="w-full bg-hub-green text-hub-grey200 hover:bg-hub-green/70"
 					>
 						Book Appointment
 					</Button>

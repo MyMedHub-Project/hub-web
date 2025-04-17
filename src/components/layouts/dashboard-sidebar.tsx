@@ -137,13 +137,13 @@ const LogoutButton = memo(() => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild className=" mx-auto block">
-				<Button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-hubRed bg-transparent">
+				<Button className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-hub-red bg-transparent">
 					Logout
 				</Button>
 			</DialogTrigger>
-			<DialogOverlay className="bg-hubGrey200/80">
+			<DialogOverlay className="bg-hub-grey200/80">
 				<DialogContent className="bg-white max-w-[500px] px-5 py-10">
-					<DialogHeader className="text-center text-hubBlack">
+					<DialogHeader className="text-center text-hub-black">
 						<DialogTitle className="text-center text-xl mb-4">
 							Log Out
 						</DialogTitle>
@@ -153,13 +153,13 @@ const LogoutButton = memo(() => {
 					</DialogHeader>
 					<DialogFooter className="gap-x-3 mt-2">
 						<DialogClose asChild>
-							<Button className="bg-hubGrey hover:bg-hubGrey text-hubBlack w-1/2 h-10 py-4">
+							<Button className="bg-hub-grey hover:bg-hub-grey text-hub-black w-1/2 h-10 py-4">
 								Cancel
 							</Button>
 						</DialogClose>
 						<Button
 							onClick={handleLogout}
-							className="bg-hubRed hover:bg-hubRed text-hubGrey w-1/2 h-10 py-4"
+							className="bg-hub-red hover:bg-hub-red text-hub-grey w-1/2 h-10 py-4"
 						>
 							Log Out
 						</Button>

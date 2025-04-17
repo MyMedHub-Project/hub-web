@@ -23,7 +23,7 @@ const HourSetting = () => {
 				) : null}
 			</div>
 			<Button
-				className="w-full h-11 mt-3 text-lg bg-hubGreen/20 text-hubGreen hover:bg-hubGreen/25 transition-colors disabled:bg-hubPurple/30 disabled:text-hubPurple"
+				className="w-full h-11 mt-3 text-lg bg-hub-green/20 text-hub-green hover:bg-hub-green/25 transition-colors disabled:bg-hub-purple/30 disabled:text-hub-purple"
 				disabled={hasInterval}
 				onClick={() => setHasInterval(true)}
 			>

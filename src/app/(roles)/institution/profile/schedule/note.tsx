@@ -2,9 +2,9 @@ import { AlertCircleIcon } from "lucide-react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 
 const Note = () => (
-	<Card className="bg-hubBlue/10 text-hubBlue px-5 py-3">
+	<Card className="bg-hub-blue/10 text-hub-blue px-5 py-3">
 		<CardTitle className="flex items-center gap-x-2 mb-2">
-			<AlertCircleIcon className="fill-hubBlue text-hubGrey" />
+			<AlertCircleIcon className="fill-hub-blue text-hub-grey" />
 			Note
 		</CardTitle>
 		<CardContent className="p-0">

@@ -13,7 +13,7 @@ const DashboardNavbar = dynamic(
 	{
 		ssr: true,
 		loading: () => (
-			<div className="grid grid-cols-3 gap-5 items-center p-5 text-hubBlack shadow-sm bg-[#f7f8fa] animate-pulse">
+			<div className="grid grid-cols-3 gap-5 items-center p-5 text-hub-black shadow-xs bg-[#f7f8fa] animate-pulse">
 				<div className="h-16 bg-gray-200 rounded-md"></div>
 				<div className="h-10 bg-gray-200 rounded-md"></div>
 				<div className="h-10 bg-gray-200 rounded-md"></div>
@@ -40,7 +40,7 @@ export default async function DashboardLayout({
 
 	return (
 		<div className="min-h-screen bg-[#f7f8fa] relative">
-			<aside className="fixed top-0 left-0 h-full flex flex-col bg-hubBlackSec rounded-r-lg p-4 transition-transform duration-300 ease-in-out sm:translate-x-0 w-32 -translate-x-full">
+			<aside className="fixed top-0 left-0 h-full flex flex-col bg-hub-black-sec rounded-r-lg p-4 transition-transform duration-300 ease-in-out sm:translate-x-0 w-32 -translate-x-full">
 				<Link
 					href="/"
 					className="flex items-center gap-2 justify-center mt-4"

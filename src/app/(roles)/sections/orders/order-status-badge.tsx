@@ -13,9 +13,9 @@ export const StatusBadge = ({ status }: StatusBadgeProps) => (
 			"capitalize",
 			status === "pending" && "bg-muted text-muted-foreground",
 			status === "processing" &&
-				"bg-hubOrange text-orange-700 dark:bg-orange-900 dark:text-orange-400",
-			status === "completed" && "bg-hubGreenLight text-hubGreen",
-			status === "declined" && "bg-red-100 text-hubRed"
+				"bg-hub-orange text-orange-700 dark:bg-orange-900 dark:text-orange-400",
+			status === "completed" && "bg-hub-green-light text-hub-green",
+			status === "declined" && "bg-red-100 text-hub-red"
 		)}
 	>
 		{status}

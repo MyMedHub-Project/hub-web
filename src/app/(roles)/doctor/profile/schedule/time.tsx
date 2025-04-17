@@ -14,7 +14,7 @@ const Time = () => {
 
 	return (
 		<div className="space-y-3">
-			<Card className="px-5 py-3 bg-hubGrey rounded-lg flex items-center justify-between">
+			<Card className="px-5 py-3 bg-hub-grey rounded-lg flex items-center justify-between">
 				<CardContent className="p-0">
 					Use same hours for all days
 				</CardContent>
@@ -22,8 +22,8 @@ const Time = () => {
 					className={cn(
 						"relative  p-2.5 w-[60px] block rounded-full",
 						useSameTime
-							? "bg-hubGreen/10 hover:bg-hubGreen/15"
-							: "bg-hubGrey200 hover:bg-hubGrey200/95"
+							? "bg-hub-green/10 hover:bg-hub-green/15"
+							: "bg-hub-grey200 hover:bg-hub-grey200/95"
 					)}
 					onClick={() => setUseSameTime(!useSameTime)}
 				>
@@ -31,14 +31,14 @@ const Time = () => {
 						className={cn(
 							"absolute top-1/2 -translate-y-1/2 rounded-full size-6",
 							useSameTime
-								? "right-2 bg-hubGreen"
+								? "right-2 bg-hub-green"
 								: "left-2 bg-gray-700"
 						)}
 					></span>
 				</Button>
 			</Card>
 			{useSameTime ? (
-				<Card className="bg-hubGrey p-4">
+				<Card className="bg-hub-grey p-4">
 					<HourSetting />
 				</Card>
 			) : (

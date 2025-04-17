@@ -66,7 +66,7 @@ const ResetPasswordView = () => {
 	}, [tokenVerified, router]);
 
 	return (
-		<Card className="flex-grow w-[450px] flex flex-col items-center justify-center my-5 border-none shadow-none max-sm:w-[85%] max-sm:justify-start">
+		<Card className="grow w-[450px] flex flex-col items-center justify-center my-5 border-none shadow-none max-sm:w-[85%] max-sm:justify-start">
 			{error ? <ErrorToast error={error} /> : null}
 
 			<OnboardingViewHeader
@@ -75,7 +75,7 @@ const ResetPasswordView = () => {
 				showProgressBar={false}
 			/>
 
-			<CardContent className="w-full pb-10 flex flex-col max-sm:flex-grow">
+			<CardContent className="w-full pb-10 flex flex-col max-sm:grow">
 				<Form {...form}>
 					<form
 						method="POST"

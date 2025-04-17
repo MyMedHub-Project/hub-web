@@ -14,7 +14,7 @@ export const SubmitButton = ({
 	onClick
 }: SubmitButtonProps) => (
 	<Button
-		className="max-sm:bottom-0 w-full gap-x-2 bg-hubGreen hover:bg-hubGreen/95 disabled:bg-hubGreen/90 disabled:text-secondary h-12"
+		className="max-sm:bottom-0 w-full gap-x-2 bg-hub-green hover:bg-hub-green/95 disabled:bg-hub-green/90 disabled:text-secondary h-12"
 		disabled={loadingState === "disabled"}
 		onClick={onClick}
 	>

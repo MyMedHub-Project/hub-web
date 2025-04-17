@@ -31,8 +31,8 @@ const Days = () => {
 					className={cn(
 						"rounded-full size-11",
 						availableDays.sat
-							? "bg-hubGreen text-hubGrey hover:bg-hubGreen/90"
-							: "bg-hubGrey text-hubBlack hover:bg-hubGrey200"
+							? "bg-hub-green text-hub-grey hover:bg-hub-green/90"
+							: "bg-hub-grey text-hub-black hover:bg-hub-grey200"
 					)}
 					onClick={handleClick}
 				>
@@ -42,8 +42,8 @@ const Days = () => {
 					className={cn(
 						"rounded-full size-11",
 						availableDays.mon
-							? "bg-hubGreen text-hubGrey hover:bg-hubGreen/90"
-							: "bg-hubGrey text-hubBlack hover:bg-hubGrey200"
+							? "bg-hub-green text-hub-grey hover:bg-hub-green/90"
+							: "bg-hub-grey text-hub-black hover:bg-hub-grey200"
 					)}
 					onClick={handleClick}
 				>
@@ -53,8 +53,8 @@ const Days = () => {
 					className={cn(
 						"rounded-full size-11",
 						availableDays.tue
-							? "bg-hubGreen text-hubGrey hover:bg-hubGreen/90"
-							: "bg-hubGrey text-hubBlack hover:bg-hubGrey200"
+							? "bg-hub-green text-hub-grey hover:bg-hub-green/90"
+							: "bg-hub-grey text-hub-black hover:bg-hub-grey200"
 					)}
 					onClick={handleClick}
 				>
@@ -64,8 +64,8 @@ const Days = () => {
 					className={cn(
 						"rounded-full size-11",
 						availableDays.wed
-							? "bg-hubGreen text-hubGrey hover:bg-hubGreen/90"
-							: "bg-hubGrey text-hubBlack hover:bg-hubGrey200"
+							? "bg-hub-green text-hub-grey hover:bg-hub-green/90"
+							: "bg-hub-grey text-hub-black hover:bg-hub-grey200"
 					)}
 					onClick={handleClick}
 				>
@@ -75,8 +75,8 @@ const Days = () => {
 					className={cn(
 						"rounded-full size-11",
 						availableDays.thur
-							? "bg-hubGreen text-hubGrey hover:bg-hubGreen/90"
-							: "bg-hubGrey text-hubBlack hover:bg-hubGrey200"
+							? "bg-hub-green text-hub-grey hover:bg-hub-green/90"
+							: "bg-hub-grey text-hub-black hover:bg-hub-grey200"
 					)}
 					onClick={handleClick}
 				>
@@ -86,8 +86,8 @@ const Days = () => {
 					className={cn(
 						"rounded-full size-11",
 						availableDays.fri
-							? "bg-hubGreen text-hubGrey hover:bg-hubGreen/90"
-							: "bg-hubGrey text-hubBlack hover:bg-hubGrey200"
+							? "bg-hub-green text-hub-grey hover:bg-hub-green/90"
+							: "bg-hub-grey text-hub-black hover:bg-hub-grey200"
 					)}
 					onClick={handleClick}
 				>
@@ -97,8 +97,8 @@ const Days = () => {
 					className={cn(
 						"rounded-full size-11",
 						availableDays.sun
-							? "bg-hubGreen text-hubGrey hover:bg-hubGreen/90"
-							: "bg-hubGrey text-hubBlack hover:bg-hubGrey200"
+							? "bg-hub-green text-hub-grey hover:bg-hub-green/90"
+							: "bg-hub-grey text-hub-black hover:bg-hub-grey200"
 					)}
 					onClick={handleClick}
 				>

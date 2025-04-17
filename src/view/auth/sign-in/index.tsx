@@ -63,7 +63,7 @@ export const SignInView = () => {
 	};
 
 	return (
-		<Card className="flex-grow w-[450px] flex flex-col items-center justify-center my-5 border-none shadow-none max-sm:w-[85%] max-sm:justify-start">
+		<Card className="grow w-[450px] flex flex-col items-center justify-center my-5 border-none shadow-none max-sm:w-[85%] max-sm:justify-start">
 			{error ? <ErrorToast error={error} /> : null}
 
 			<OnboardingViewHeader title="Login" />
@@ -100,7 +100,7 @@ export const SignInView = () => {
 
 						<Link
 							href={Routes.AUTH.FORGOT_PASSWORD.ROOT}
-							className="text-hubBlue hover:underline"
+							className="text-hub-blue hover:underline"
 						>
 							Forgot Password
 						</Link>
@@ -113,7 +113,7 @@ export const SignInView = () => {
 					{"Don't have an account? "}
 					<Link
 						href={Routes.AUTH.ONBOARDING.ROOT}
-						className="text-hubBlue hover:underline "
+						className="text-hub-blue hover:underline "
 					>
 						Sign Up
 					</Link>

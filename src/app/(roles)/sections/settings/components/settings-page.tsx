@@ -19,17 +19,17 @@ const SettingsPage = () => {
 	];
 
 	return (
-		<div className="text-hubBlack pl-5">
+		<div className="text-hub-black pl-5">
 			<Card className="bg-transparent shadow-none border-x-0 border-t-0 border-b-2 rounded-none pb-5">
 				{settings.map((setting, index) => (
 					<Button
 						key={index}
 						onClick={() => setSelected(index)}
 						className={cn(
-							"bg-transparent text-hubBlack shadow-none mr-1",
+							"bg-transparent text-hub-black shadow-none mr-1",
 							selected === index
-								? "bg-hubGreen text-white hover:bg-hubGreen/80"
-								: "hover:bg-hubGreen/80"
+								? "bg-hub-green text-white hover:bg-hub-green/80"
+								: "hover:bg-hub-green/80"
 						)}
 					>
 						{setting.name}

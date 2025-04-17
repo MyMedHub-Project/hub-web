@@ -8,9 +8,9 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { AppointDoctor } from "@/types/types";
 
 const DoctorCard = ({ data }: { data: AppointDoctor }) => (
-	<Card className="w-full max-w-[280px] rounded bg-hubGrey overflow-hidden">
+	<Card className="w-full max-w-[280px] rounded bg-hub-grey overflow-hidden">
 		<CardContent className="p-2 flex flex-col items-center text-center">
-			<Avatar className="size-16 border-4 border-hubGrey200 shadow-sm mb-3">
+			<Avatar className="size-16 border-4 border-hub-grey200 shadow-xs mb-3">
 				<AvatarImage src={data.avatar} alt="Dr. Dolor" />
 				<AvatarFallback>DR</AvatarFallback>
 			</Avatar>
@@ -37,7 +37,7 @@ const DoctorCard = ({ data }: { data: AppointDoctor }) => (
 		</CardContent>
 
 		<CardFooter className="p-2 pt-0">
-			<Button className="w-full bg-hubGreenLight hover:bg-hubGreen/30 text-hubGreen text-xs">
+			<Button className="w-full bg-hub-green-light hover:bg-hub-green/30 text-hub-green text-xs">
 				<CalendarDays className="size-5" />
 				Book Appointment
 			</Button>

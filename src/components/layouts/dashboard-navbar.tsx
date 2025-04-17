@@ -24,7 +24,7 @@ const DashboardNavbar = () => {
 
 	if (isLoading) {
 		return (
-			<div className="grid grid-cols-3 gap-5 items-center justify-between p-5 text-hubBlack max-w-screen top-0 sticky bg-[#f7f8fa] shadow-sm z-50 animate-pulse">
+			<div className="grid grid-cols-3 gap-5 items-center justify-between p-5 text-hub-black max-w-screen top-0 sticky bg-[#f7f8fa] shadow-xs z-50 animate-pulse">
 				<div className="h-16 bg-gray-200 rounded-md"></div>
 				<div className="h-10 bg-gray-200 rounded-md"></div>
 				<div className="h-10 bg-gray-200 rounded-md"></div>
@@ -33,7 +33,7 @@ const DashboardNavbar = () => {
 	}
 
 	return (
-		<div className="grid grid-cols-3 gap-5 items-center justify-between p-5 text-hubBlack max-w-screen top-0 sticky bg-[#f7f8fa] shadow-sm z-50">
+		<div className="grid grid-cols-3 gap-5 items-center justify-between p-5 text-hub-black max-w-screen top-0 sticky bg-[#f7f8fa] shadow-xs z-50">
 			{/* USER NAME */}
 			<div className="flex flex-col leading-relaxed">
 				<h2 className="text-xl font-bold leading-tight">
@@ -43,34 +43,34 @@ const DashboardNavbar = () => {
 				<span className="text-gray-400 text-sm">{formattedDate}</span>
 			</div>
 			{/* SEARCH BAR */}
-			<div className="flex items-center gap-2 text-xs rounded-md bg-hubGrey px-2">
+			<div className="flex items-center gap-2 text-xs rounded-md bg-hub-grey px-2">
 				<div className="flex">
 					<SearchIconSVGComponent />
 				</div>
 				<input
 					type="text"
 					placeholder="Search for"
-					className="bg-transparent text-hubBlack outline-none w-[200px] p-3"
+					className="bg-transparent text-hub-black outline-hidden w-[200px] p-3"
 				/>
 			</div>
 			{/* icons */}
 			<div className="flex items-center gap-6 justify-end w-full ">
 				<div className="bg-white rounded-full w-7 h-7 flex items-center justify-center cursor-pointer relative">
 					<MessageCircleIcon />
-					<div className="absolute -top-1 -right-1 w-4 h-4 flex items-center justify-center bg-hubRed text-white rounded-full text-xs">
+					<div className="absolute -top-1 -right-1 w-4 h-4 flex items-center justify-center bg-hub-red text-white rounded-full text-xs">
 						1
 					</div>
 				</div>
 				<div className="bg-white rounded-full w-7 h-7 flex items-center justify-center cursor-pointer relative">
 					<BellSVGComponent />
-					<div className="absolute -top-1 -right-1 w-4 h-4 flex items-center justify-center bg-hubRed text-white rounded-full text-xs">
+					<div className="absolute -top-1 -right-1 w-4 h-4 flex items-center justify-center bg-hub-red text-white rounded-full text-xs">
 						1
 					</div>
 				</div>
 
 				<DropdownMenu>
 					<DropdownMenuTrigger>
-						<div className="flex items-center bg-hubGreenLight py-3 px-4 rounded-full gap-x-1.5">
+						<div className="flex items-center bg-hub-green-light py-3 px-4 rounded-full gap-x-1.5">
 							<AvatarIcon
 								width={36}
 								height={36}
@@ -80,7 +80,7 @@ const DashboardNavbar = () => {
 								<span className="font-semibold max-w-32 truncate">
 									{user?.firstname} {user?.lastname}
 								</span>
-								<span className="text-sm text-hubBlack/80 max-w-32 truncate">
+								<span className="text-sm text-hub-black/80 max-w-32 truncate">
 									{user?.email}
 								</span>
 							</div>

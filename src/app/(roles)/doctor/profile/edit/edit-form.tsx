@@ -144,7 +144,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 					<AvatarIcon className="size-full" />
 				)}
 				<div
-					className="absolute bottom-1.5 right-1 bg-hubGreen rounded-full size-7 flex items-center justify-center cursor-pointer"
+					className="absolute bottom-1.5 right-1 bg-hub-green rounded-full size-7 flex items-center justify-center cursor-pointer"
 					onClick={handleAvatarChange}
 				>
 					<Pencil className="size-4 text-white" />
@@ -165,7 +165,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 											<Input
 												placeholder="Dolor"
 												{...field}
-												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+												className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 											/>
 										</FormControl>
 										<FormMessage />
@@ -182,7 +182,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 											<Input
 												placeholder="Manchi"
 												{...field}
-												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+												className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 											/>
 										</FormControl>
 										<FormMessage />
@@ -199,7 +199,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 											<Input
 												placeholder="dolormanchi@gmail.com"
 												{...field}
-												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+												className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 											/>
 										</FormControl>
 										<FormMessage />
@@ -218,7 +218,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 												value={field.value}
 												placeholder="Phone number"
 												// {...field}
-												className="bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+												className="bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 											/>
 										</FormControl>
 										<FormMessage />
@@ -235,7 +235,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 											<Input
 												placeholder="No. 25, Sakura street"
 												{...field}
-												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+												className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 											/>
 										</FormControl>
 										<FormMessage />
@@ -252,7 +252,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 											<Input
 												placeholder="Lokoja"
 												{...field}
-												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+												className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 											/>
 										</FormControl>
 										<FormMessage />
@@ -269,7 +269,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 											countryCode={countryCode}
 											onChange={field.onChange}
 											placeholder="Choose your state"
-											className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+											className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 										/>
 										<FormMessage />
 									</FormItem>
@@ -291,7 +291,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 												field.onChange(value);
 											}}
 											placeholder="Choose your country"
-											className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+											className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 										/>
 										<FormMessage />
 									</FormItem>
@@ -307,7 +307,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 											onValueChange={field.onChange}
 											value={field.value}
 										>
-											<SelectTrigger className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
+											<SelectTrigger className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
 												<SelectValue placeholder="Select gender" />
 											</SelectTrigger>
 											<SelectContent className="bg-red-300 top-0 size-[400px]">
@@ -333,7 +333,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 											<Textarea
 												placeholder="Tell us a little bit about yourself"
 												{...field}
-												className="resize-none px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+												className="resize-none px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 											/>
 										</FormControl>
 										<FormMessage />
@@ -349,7 +349,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 										<Popover>
 											<PopoverTrigger
 												asChild
-												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+												className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 											>
 												<FormControl>
 													<Button
@@ -408,7 +408,7 @@ const EditForm = ({ profile }: { profile: any }) => {
 											defaultValue={field.name}
 										>
 											<FormControl>
-												<SelectTrigger className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
+												<SelectTrigger className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg">
 													<SelectValue placeholder="" />
 												</SelectTrigger>
 											</FormControl>
@@ -427,23 +427,23 @@ const EditForm = ({ profile }: { profile: any }) => {
 				</Form>
 			</CardContent>
 
-			<CardFooter className="grid grid-cols-2 gap-x-5 !mt-2">
+			<CardFooter className="grid grid-cols-2 gap-x-5 mt-2!">
 				<Button
 					type="submit"
-					className="bg-hubGreen hover:bg-hubGreen/95"
+					className="bg-hub-green hover:bg-hub-green/95"
 				>
 					Save
 				</Button>
 
 				<Dialog>
 					<DialogTrigger asChild className=" mx-auto block">
-						<Button className="bg-transparent text-hubRed w-full shadow-none hover:shadow-sm hover:bg-transparent">
+						<Button className="bg-transparent text-hub-red w-full shadow-none hover:shadow-xs hover:bg-transparent">
 							Delete Account
 						</Button>
 					</DialogTrigger>
-					<DialogOverlay className="bg-hubGrey200/80">
+					<DialogOverlay className="bg-hub-grey200/80">
 						<DialogContent className="bg-white max-w-[500px] px-5 py-10">
-							<DialogHeader className="text-center text-hubBlack">
+							<DialogHeader className="text-center text-hub-black">
 								<DialogTitle className="text-center text-xl mb-4">
 									Delete Account
 								</DialogTitle>
@@ -455,11 +455,11 @@ const EditForm = ({ profile }: { profile: any }) => {
 							</DialogHeader>
 							<DialogFooter className="gap-x-3 mt-2">
 								<DialogClose asChild>
-									<Button className="bg-hubGrey hover:bg-hubGrey text-hubBlack w-1/2 h-10 py-4">
+									<Button className="bg-hub-grey hover:bg-hub-grey text-hub-black w-1/2 h-10 py-4">
 										Cancel
 									</Button>
 								</DialogClose>
-								<Button className="bg-hubRed hover:bg-hubRed text-hubGrey w-1/2 h-10 py-4">
+								<Button className="bg-hub-red hover:bg-hub-red text-hub-grey w-1/2 h-10 py-4">
 									Delete
 								</Button>
 							</DialogFooter>

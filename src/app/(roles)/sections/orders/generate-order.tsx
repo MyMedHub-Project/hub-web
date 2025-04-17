@@ -75,13 +75,13 @@ const GenerateOrder = () => {
 						<Dialog>
 							<DialogTrigger>
 								<div
-									className="bg-hubGreen rounded-lg items-center p-1 cursor-pointer hover:bg-green-700 transition-colors"
+									className="bg-hub-green rounded-lg items-center p-1 cursor-pointer hover:bg-green-700 transition-colors"
 									onClick={handleNewOrder}
 								>
 									<Plus className="text-white" />
 								</div>
 							</DialogTrigger>
-							<DialogContent className="bg-white text-hubBlack space-y-2 w-[400px]">
+							<DialogContent className="bg-white text-hub-black space-y-2 w-[400px]">
 								<DialogHeader>
 									<DialogTitle>Select Order Type</DialogTitle>
 									<span className="text-sm font-normal">
@@ -92,8 +92,8 @@ const GenerateOrder = () => {
 
 								<div
 									className={cn(
-										"flex gap-3 items-center bg-hubGrey rounded-lg p-2 border hover:border-hubBlue  cursor-pointer",
-										orderType === "lab" && "border-hubBlue"
+										"flex gap-3 items-center bg-hub-grey rounded-lg p-2 border hover:border-hub-blue  cursor-pointer",
+										orderType === "lab" && "border-hub-blue"
 									)}
 									onClick={() => setOrderType("lab")}
 								>
@@ -120,9 +120,9 @@ const GenerateOrder = () => {
 								</div>
 								<div
 									className={cn(
-										"flex gap-3 items-center bg-hubGrey rounded-lg p-2 border hover:border-hubPurple cursor-pointer",
+										"flex gap-3 items-center bg-hub-grey rounded-lg p-2 border hover:border-hub-purple cursor-pointer",
 										orderType === "medication" &&
-											"border-hubPurple"
+											"border-hub-purple"
 									)}
 									onClick={() => setOrderType("medication")}
 								>
@@ -152,7 +152,7 @@ const GenerateOrder = () => {
 								<DialogFooter className="w-full">
 									<Dialog>
 										<DialogTrigger>
-											<Button className="w-full text-xs bg-hubGreen">
+											<Button className="w-full text-xs bg-hub-green">
 												Continue
 											</Button>
 										</DialogTrigger>
@@ -184,7 +184,7 @@ const GenerateOrder = () => {
 					</div>
 
 					{/* Tabs */}
-					<div className="bg-hubGrey grid grid-cols-3 mt-5 py-1 px-0.5 rounded-full">
+					<div className="bg-hub-grey grid grid-cols-3 mt-5 py-1 px-0.5 rounded-full">
 						{tabs.map((tab) => (
 							<div
 								key={tab.id}
@@ -192,7 +192,7 @@ const GenerateOrder = () => {
 								className={cn(
 									"w-full py-1 text-sm cursor-pointer transition-colors flex items-center justify-center",
 									activeTab === tab.id
-										? "bg-hubGreen text-white rounded-full"
+										? "bg-hub-green text-white rounded-full"
 										: "text-gray-600 bg-transparent"
 								)}
 							>
@@ -216,7 +216,7 @@ const GenerateOrder = () => {
 								<div
 									key={order.id}
 									onClick={() => orderClick(order.id)}
-									className="border rounded-lg p-3 space-y-2 cursor-pointer hover:border-hubGreen transition-colors"
+									className="border rounded-lg p-3 space-y-2 cursor-pointer hover:border-hub-green transition-colors"
 								>
 									<div className="flex items-center space-x-2">
 										<div
@@ -224,7 +224,7 @@ const GenerateOrder = () => {
 										>
 											<span className="">icon</span>
 										</div>
-										<div className="flex-grow">
+										<div className="grow">
 											<h3 className="font-medium">
 												{order.title}
 											</h3>
@@ -233,7 +233,7 @@ const GenerateOrder = () => {
 											</p>
 										</div>
 										{order.status === "processing" ? (
-											<div className="w-2 h-2 bg-hubOrange rounded-full"></div>
+											<div className="w-2 h-2 bg-hub-orange rounded-full"></div>
 										) : null}
 									</div>
 								</div>

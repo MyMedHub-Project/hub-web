@@ -31,7 +31,7 @@ const OnboardingView = () => {
 	// Todo: scale down for screen less than 327px
 
 	return (
-		<Card className="flex-grow flex flex-col items-center justify-center my-5 border-none shadow-none text-md max-sm:w-[85%] max-sm:justify-start">
+		<Card className="grow flex flex-col items-center justify-center my-5 border-none shadow-none text-md max-sm:w-[85%] max-sm:justify-start">
 			<CardHeader className="justify-center items-center gap-2 mt-[45px] max-sm:w-full">
 				<CardTitle className="text-md font-bold text-center">
 					Welcome to
@@ -53,7 +53,7 @@ const OnboardingView = () => {
 				</motion.div>
 			</CardHeader>
 
-			<CardContent className="w-full flex flex-col items-center gap-7 max-sm:flex-grow">
+			<CardContent className="w-full flex flex-col items-center gap-7 max-sm:grow">
 				<p className="text-center">Choose Your Role to Get Started</p>
 
 				<RadioGroup
@@ -67,7 +67,7 @@ const OnboardingView = () => {
 						className={cn(
 							"rounded-3xl h-[153px] w-[327px]",
 							role === "patient" &&
-								"border-hubPurple/50 border-2 drop-shadow-lg"
+								"border-hub-purple/50 border-2 drop-shadow-lg"
 						)}
 					>
 						<RadioGroupItem
@@ -90,7 +90,7 @@ const OnboardingView = () => {
 						className={cn(
 							"rounded-3xl h-[153px] w-[327px]",
 							role === "institution" &&
-								"border-hubOrange/50 border-2 drop-shadow-lg"
+								"border-hub-orange/50 border-2 drop-shadow-lg"
 						)}
 					>
 						<RadioGroupItem

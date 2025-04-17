@@ -22,7 +22,7 @@ const PasswordRecovery = () => {
 			<CardHeader className="p-0 text-lg font-bold">
 				Password Recovery
 			</CardHeader>
-			<CardDescription className="text-hubBlack">
+			<CardDescription className="text-hub-black">
 				Choose where you would like to receive the code to reset your
 				password when required.
 			</CardDescription>
@@ -31,9 +31,9 @@ const PasswordRecovery = () => {
 					<div
 						onClick={() => setChecked("email")}
 						className={cn(
-							"flex items-center justify-between gap-x-2 bg-hubGrey p-4 rounded border border-transparent",
+							"flex items-center justify-between gap-x-2 bg-hub-grey p-4 rounded border border-transparent",
 							checked === "email"
-								? "border-hubGreen bg-hubGreenLight"
+								? "border-hub-green bg-hub-green-light"
 								: ""
 						)}
 					>
@@ -41,12 +41,12 @@ const PasswordRecovery = () => {
 							htmlFor="email"
 							className="flex items-center gap-x-5"
 						>
-							<MailIcon className="fill-hubBlack text-hubGrey size-4" />
+							<MailIcon className="fill-hub-black text-hub-grey size-4" />
 							<div>
 								<h4 className="font-semibold">Email</h4>
-								<p className="text-sm text-hubBlack/50">
+								<p className="text-sm text-hub-black/50">
 									Your password reset code would be sent to{" "}
-									<span className="text-hubBlack">
+									<span className="text-hub-black">
 										johndoe@example.com
 									</span>
 								</p>
@@ -56,18 +56,18 @@ const PasswordRecovery = () => {
 							value="email"
 							id="email"
 							checked={checked === "email"}
-							className="size-[18px] rounded-full border border-hubBlack data-[state=checked]:border-hubGreen data-[state=checked]:bg-transparent"
+							className="size-[18px] rounded-full border border-hub-black data-[state=checked]:border-hub-green data-[state=checked]:bg-transparent"
 						>
-							<RadioGroupIndicator className="flex size-full items-center justify-center after:block after:size-2 after:rounded-full after:bg-hubGreen" />
+							<RadioGroupIndicator className="flex size-full items-center justify-center after:block after:size-2 after:rounded-full after:bg-hub-green" />
 						</RadioGroupItem>
 					</div>
 
 					<div
 						onClick={() => setChecked("phone")}
 						className={cn(
-							"flex items-center justify-between gap-x-2 bg-hubGrey p-4 rounded border border-transparent",
+							"flex items-center justify-between gap-x-2 bg-hub-grey p-4 rounded border border-transparent",
 							checked === "phone"
-								? "border-hubGreen bg-hubGreenLight"
+								? "border-hub-green bg-hub-green-light"
 								: ""
 						)}
 					>
@@ -75,12 +75,12 @@ const PasswordRecovery = () => {
 							htmlFor="phone"
 							className="flex items-center gap-x-5"
 						>
-							<Phone className="fill-hubBlack size-4" />
+							<Phone className="fill-hub-black size-4" />
 							<div>
 								<h4 className="font-semibold">Phone Number</h4>
-								<p className="text-sm text-hubBlack/50">
+								<p className="text-sm text-hub-black/50">
 									Your password reset code would be sent to
-									<span className="text-hubBlack">
+									<span className="text-hub-black">
 										+2348123456789
 									</span>
 								</p>
@@ -90,9 +90,9 @@ const PasswordRecovery = () => {
 							value="phone"
 							id="phone"
 							checked={checked === "phone"}
-							className="size-[18px] rounded-full border border-hubBlack data-[state=checked]:border-hubGreen data-[state=checked]:bg-transparent"
+							className="size-[18px] rounded-full border border-hub-black data-[state=checked]:border-hub-green data-[state=checked]:bg-transparent"
 						>
-							<RadioGroupIndicator className="flex size-full items-center justify-center after:block after:size-2 after:rounded-full after:bg-hubGreen" />
+							<RadioGroupIndicator className="flex size-full items-center justify-center after:block after:size-2 after:rounded-full after:bg-hub-green" />
 						</RadioGroupItem>
 					</div>
 				</RadioGroup>

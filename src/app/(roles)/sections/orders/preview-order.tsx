@@ -52,7 +52,7 @@ export default function LabOrderDetails({
 						<Button
 							variant="default"
 							size="sm"
-							className="bg-hubGreen"
+							className="bg-hub-green"
 						>
 							View Results
 						</Button>
@@ -63,13 +63,13 @@ export default function LabOrderDetails({
 								variant="default"
 								size="sm"
 								onClick={() => setShowReschedule(true)}
-								className="bg-hubGreen text-sm"
+								className="bg-hub-green text-sm"
 							>
 								Reschedule
 							</Button>
 							<Button
 								size="sm"
-								className="text-sm bg-gray-100 hover:bg-destructive text-hubBlack hover:text-white"
+								className="text-sm bg-gray-100 hover:bg-destructive text-hub-black hover:text-white"
 							>
 								Cancel Order
 							</Button>
@@ -78,7 +78,7 @@ export default function LabOrderDetails({
 				</CardHeader>
 
 				<CardContent className="space-y-6">
-					<div className="space-y-4 bg-hubGrey rounded-md p-2">
+					<div className="space-y-4 bg-hub-grey rounded-md p-2">
 						<div className="flex items-start justify-between">
 							<div className="flex flex-col">
 								<h2 className="font-semibold text-base">
@@ -120,7 +120,7 @@ export default function LabOrderDetails({
 								Prescription
 							</span>
 							<div className="flex gap-2 items-center">
-								<div className="bg-hubGrey p-2 flex gap-2 justify-between items-center rounded-lg w-full">
+								<div className="bg-hub-grey p-2 flex gap-2 justify-between items-center rounded-lg w-full">
 									<div className="flex gap-2 items-center">
 										<FileText className="h-4 w-4 text-muted-foreground" />
 										<div className="flex flex-col">
@@ -145,7 +145,7 @@ export default function LabOrderDetails({
 									<span className="text-muted-foreground text-sm">
 										Note{" "}
 									</span>
-									<span className="bg-hubGrey text-sm p-2 rounded-lg">
+									<span className="bg-hub-grey text-sm p-2 rounded-lg">
 										Give me your note here{" "}
 									</span>
 								</div>
@@ -195,7 +195,7 @@ export default function LabOrderDetails({
 								<span className="text-muted-foreground text-sm">
 									Reason for order decline
 								</span>
-								<span className="bg-hubGrey text-sm p-2 rounded-lg">
+								<span className="bg-hub-grey text-sm p-2 rounded-lg">
 									Invalid File Format!
 								</span>
 							</div>

@@ -54,7 +54,7 @@ const treatments = [
 export default function PatientsAndTreatments() {
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl">
-			<Card className="bg-hubGrey">
+			<Card className="bg-hub-grey">
 				<CardHeader className=" flex flex-row items-center justify-between space-y-0 pb-4">
 					<CardTitle className="text-base font-medium">
 						Patients
@@ -70,7 +70,7 @@ export default function PatientsAndTreatments() {
 							<div className="relative">
 								<AvatarIcon className="h-8 w-8"></AvatarIcon>
 								{patient.isOnline ? (
-									<span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-hubGreen ring-2 ring-white" />
+									<span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-hub-green ring-2 ring-white" />
 								) : (
 									<span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-gray-500 ring-2 ring-white" />
 								)}
@@ -82,7 +82,7 @@ export default function PatientsAndTreatments() {
 					))}
 				</CardContent>
 			</Card>
-			<Card className="bg-hubGrey">
+			<Card className="bg-hub-grey">
 				<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
 					<CardTitle className="text-base font-medium">
 						Treatment Plans

@@ -61,7 +61,7 @@ const Notifications = () => {
 										<Switch
 											checked={field.value}
 											onCheckedChange={field.onChange}
-											className="relative h-[30px] w-[50px] cursor-pointer rounded-full !bg-hubGreen/20 outline-none data-[state=checked]:!bg-hubGreen/40"
+											className="relative h-[30px] w-[50px] cursor-pointer rounded-full bg-hub-green/20! outline-hidden data-[state=checked]:bg-hub-green/40!"
 										></Switch>
 									</FormControl>
 								</FormItem>
@@ -84,7 +84,7 @@ const Notifications = () => {
 										<Switch
 											checked={field.value}
 											onCheckedChange={field.onChange}
-											className="relative h-[30px] w-[50px] cursor-pointer rounded-full !bg-hubGreen/20 outline-none data-[state=checked]:!bg-hubGreen/40"
+											className="relative h-[30px] w-[50px] cursor-pointer rounded-full bg-hub-green/20! outline-hidden data-[state=checked]:bg-hub-green/40!"
 										></Switch>
 									</FormControl>
 								</FormItem>
@@ -107,7 +107,7 @@ const Notifications = () => {
 										<Switch
 											checked={field.value}
 											onCheckedChange={field.onChange}
-											className="relative h-[30px] w-[50px] cursor-pointer rounded-full !bg-hubGreen/20 outline-none data-[state=checked]:!bg-hubGreen/40"
+											className="relative h-[30px] w-[50px] cursor-pointer rounded-full bg-hub-green/20! outline-hidden data-[state=checked]:bg-hub-green/40!"
 										></Switch>
 									</FormControl>
 								</FormItem>

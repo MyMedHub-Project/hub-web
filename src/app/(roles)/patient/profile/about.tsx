@@ -26,14 +26,15 @@ const About = ({ info }: { info: any }) => {
 				</CardTitle>
 				<CardContent className="pl-0 space-y-2">
 					<div className="flex gap-x-1">
-						<Mail className="fill-hubPurple text-hubGrey" /> {email}
+						<Mail className="fill-hub-purple text-hub-grey" />{" "}
+						{email}
 					</div>
 					<div className="flex gap-x-1">
-						<Phone className="fill-hubPurple text-hubGrey" />
+						<Phone className="fill-hub-purple text-hub-grey" />
 						{phone}
 					</div>
 					<div className="flex gap-x-1">
-						<LocateFixedIcon className="fill-hubPurple text-hubGrey" />
+						<LocateFixedIcon className="fill-hub-purple text-hub-grey" />
 						{`${address.street}, ${address.city}, ${address.state}, ${address.country}.`}
 					</div>
 				</CardContent>

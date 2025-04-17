@@ -2,9 +2,9 @@ import { AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const Contact = ({ contactInfo }: { contactInfo: any }) => (
-	<Card className="bg-hubGrey divide-y-2">
+	<Card className="bg-hub-grey divide-y-2">
 		<CardHeader className="pb-2 flex flex-row gap-x-1">
-			<AlertCircle className="fill-hubPurple text-hubGrey" />
+			<AlertCircle className="fill-hub-purple text-hub-grey" />
 			Emergency contact
 		</CardHeader>
 		<CardContent className="pt-2 space-y-1">

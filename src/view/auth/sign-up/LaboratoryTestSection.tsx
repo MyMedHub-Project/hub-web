@@ -70,11 +70,11 @@ const LaboratoryTestSection = ({
 			>
 				<div
 					className={`w-5 h-5 rounded-full border-[1.5px] flex items-center justify-center mr-2 ${
-						hasLaboratory ? "border-hubGreen" : "border-gray-400"
+						hasLaboratory ? "border-hub-green" : "border-gray-400"
 					} `}
 				>
 					{hasLaboratory ? (
-						<div className="w-[10px] h-[10px] rounded-full bg-hubGreen"></div>
+						<div className="w-[10px] h-[10px] rounded-full bg-hub-green"></div>
 					) : null}
 				</div>
 				<span className="font-normal">
@@ -95,7 +95,7 @@ const LaboratoryTestSection = ({
 								placeholder="Search tests..."
 								value={searchQuery}
 								onChange={handleSearchChange}
-								className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+								className="w-full p-2 border rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500"
 							/>
 						</div>
 
@@ -109,7 +109,7 @@ const LaboratoryTestSection = ({
 											}
 											className={`p-3 rounded w-full transition-colors cursor-pointer ${
 												selectedTests.includes(test)
-													? "bg-hubGreen text-white"
+													? "bg-hub-green text-white"
 													: "bg-gray-100 text-gray-500"
 											}`}
 										>

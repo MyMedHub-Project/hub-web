@@ -64,7 +64,7 @@ const Security = () => {
 	return (
 		<Card className="bg-transparent shadow-none border-none">
 			<CardHeader className="p-0 text-lg font-bold">Password</CardHeader>
-			<CardDescription className="text-hubBlack">
+			<CardDescription className="text-hub-black">
 				Change or view you password
 			</CardDescription>
 			<CardContent className="pl-0 pt-5">
@@ -88,7 +88,7 @@ const Security = () => {
 														: "password"
 												}
 												placeholder="*********"
-												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+												className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 												{...field}
 												value={password}
 												onChange={(e) => {
@@ -134,7 +134,7 @@ const Security = () => {
 														: "password"
 												}
 												placeholder="*********"
-												className="px-6 bg-hubGrey text-hubBlack border-0 border-b-2 border-b-hubGrey200 focus:border-0 focus:border-b-2 focus:border-b-hubGreen outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
+												className="px-6 bg-hub-grey text-hub-black border-0 border-b-2 border-b-hub-grey200 focus:border-0 focus:border-b-2 focus:border-b-hub-green outline-0 focus-visible:ring-0 focus:outline-0 shadow-none rounded-lg"
 												{...field}
 												onChange={(e) => {
 													field.onChange(e);

@@ -23,7 +23,7 @@ const Interval = () => (
 			<Card className="p-4 flex-1 flex items-center">
 				<Input
 					type="checkbox"
-					className="size-6 border-2 border-hubGreen"
+					className="size-6 border-2 border-hub-green"
 				/>
 				<Label className="ml-2">Mark as Unavailable</Label>
 			</Card>

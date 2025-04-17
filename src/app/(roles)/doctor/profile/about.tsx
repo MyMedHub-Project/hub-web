@@ -36,20 +36,20 @@ const About = ({ info }: { info: any }) => {
 				<CardContent className="pl-0 space-y-2">
 					{providerSpecialization !== "" ? (
 						<div className="flex gap-x-1">
-							<Cross className="fill-hubPurple text-hubGrey" />
+							<Cross className="fill-hub-purple text-hub-grey" />
 							{providerSpecialization}
 						</div>
 					) : null}
 					<div className="flex gap-x-1">
-						<Luggage className="fill-hubPurple text-hubGrey" /> 6
+						<Luggage className="fill-hub-purple text-hub-grey" /> 6
 						years in practice
 					</div>
 					<div className="flex gap-x-1">
-						<LocateFixedIcon className="fill-hubPurple text-hubGrey" />
+						<LocateFixedIcon className="fill-hub-purple text-hub-grey" />
 						{`${address.street}, ${address.city}, ${address.state}, ${address.country}.`}
 					</div>
 					<div className="flex gap-x-1">
-						<Star className="fill-hubOrange text-hubGrey" />
+						<Star className="fill-hub-orange text-hub-grey" />
 						{rating}{" "}
 						<span className="underline">(100+ reviews)</span>
 					</div>
