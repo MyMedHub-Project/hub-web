@@ -48,3 +48,27 @@ export interface SessionProfile extends UserSession {
 export type LoaderState = "verified" | "verifying" | "failed" | "error";
 
 export type BtnStatus = "active" | "loading" | "disabled";
+
+export interface AppointmentCardData {
+	id: string;
+	doctorName: string;
+	doctorSpecialization: string;
+	appointmentDate: string;
+	appointmentTime: string;
+	profileImage: string;
+}
+
+export interface NavItemData {
+	icon: React.ReactNode;
+	label: string;
+	href: string;
+}
+
+export type NavState = "open" | "closed";
+
+export interface Medication {
+	planId: string;
+	condition: string;
+	description: string;
+	reminder: string;
+}
