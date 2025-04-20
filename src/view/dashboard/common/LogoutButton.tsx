@@ -1,3 +1,5 @@
+"use client";
+
 import { memo, useCallback } from "react";
 import {
 	Dialog,
@@ -12,9 +14,17 @@ import {
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/auth";
 import { LogoutIconSVGComponent } from "@/components/icons";
+import { NavState } from "@/types/types";
 
-export const LogoutButton = memo(() => {
+interface LogoutButtonProps {
+	state?: NavState;
+	onStateChange: (state: NavState) => void;
+}
+
+export const LogoutButton = memo(({ onStateChange }: LogoutButtonProps) => {
 	const handleLogout = useCallback(() => signOut(), []);
+
+	const handleNavToggle = () => onStateChange("closed");
 
 	return (
 		<Dialog>
@@ -28,7 +38,7 @@ export const LogoutButton = memo(() => {
 				</Button>
 			</DialogTrigger>
 
-			<DialogContent className="bg-[#FBFCFC] max-w-[400px] px-5 py-10">
+			<DialogContent className="bg-[#FBFCFC] max-w-[400px] px-5 py-5 max-sm:w-[80%] rounded-lg">
 				<DialogHeader className="text-center text-hub-black flex flex-col gap-2">
 					<DialogTitle className="text-center text-xl">
 						Log Out
@@ -37,8 +47,14 @@ export const LogoutButton = memo(() => {
 						Are you sure you want to logout?
 					</DialogDescription>
 				</DialogHeader>
-				<DialogFooter className="gap-x-3 mt-2">
-					<DialogClose asChild>
+
+				<DialogFooter className="flex flex-row gap-2">
+					<DialogClose
+						asChild
+						onClick={() => {
+							handleNavToggle();
+						}}
+					>
 						<Button className="bg-hub-green/10 hover:bg-hub-green/30 text-hub-green w-1/2 h-10 py-4">
 							Cancel
 						</Button>

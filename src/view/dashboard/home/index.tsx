@@ -7,20 +7,20 @@ import {
 	TailedArrowRightIconSVGComponent,
 	XCloseIconSVGComponent
 } from "@/components/icons";
-import { SessionProfile } from "@/types/types";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { useNav } from "@/hooks/useNav";
+import { SessionProfile } from "@/types/types";
+import { AppointmentCard } from "@/view/dashboard/common/AppointmentCard";
 import { HomeShortcutTab } from "@/view/dashboard/common/HomeShortcutTab";
+import { MedicationMiniCard } from "@/view/dashboard/common/MedicationMiniCard";
+import { ProvidersMiniCard } from "@/view/dashboard/common/ProvidersMiniCard";
 import {
 	appointmentData,
 	medications,
 	recentlyContactedProviders
 } from "@/view/dashboard/home/helper";
-import { ProvidersMiniCard } from "@/view/dashboard/common/ProvidersMiniCard";
-import { MedicationMiniCard } from "@/view/dashboard/common/MedicationMiniCard";
-import { Separator } from "@/components/ui/separator";
-import { AppointmentCard } from "@/view/dashboard/common/AppointmentCard";
-import { ChatIconSVGComponent } from "../../../components/icons/index";
+import { ChatIconSVGComponent } from "../../../components/icons/dashboard";
 
 interface HomeViewProps {
 	session: SessionProfile;
@@ -34,7 +34,7 @@ const HomeView = ({ session }: HomeViewProps) => {
 	};
 
 	return (
-		<Card className="w-full mx-auto border-0 shadow-none px-[60px] max-sm:px-0">
+		<Card className="w-full mx-auto border-0 shadow-none px-[60px] pl-[114px] max-sm:px-0">
 			<CardHeader className="flex items-center justify-center gap-1 text-hub-black font-normal text-base border-0 max-sm:flex-col max-sm:h-[172px] max-sm:w-full max-sm:bg-hub-black max-sm:p-0 max-sm:m-0 max-sm:justify-center max-sm:text-sm">
 				<div className="w-full flex justify-between items-center max-sm:px-6">
 					<div className="w-full flex items-center gap-3">
@@ -71,15 +71,15 @@ const HomeView = ({ session }: HomeViewProps) => {
 
 			<Separator className="w-full border-hub-[#D4DFD5] bg-hub-[#D4DFD5] border-[1px]" />
 
-			<CardContent className="grid grid-cols-6 grid-rows-[176px_144px_340px] gap-8 p-6 m-0 border-0 max-sm:flex max-sm:flex-col max-sm:gap-6">
+			<CardContent className="grid grid-cols-6 grid-rows-[176px_144px_340px] gap-8 p-6 m-0 border-0 max-lg:grid-cols-2 max-sm:flex max-sm:flex-col max-sm:gap-6">
 				{/* Shortcut Tab Section*/}
 				<HomeShortcutTab
-					className="col-span-4"
+					className="col-span-4 max-lg:col-span-full"
 					role={session?.profile?.type ?? "patient"}
 				/>
 
 				{/* New Invoice Notification Section*/}
-				<div className="h-full w-full p-4 flex flex-col col-span-4 gap-4 text-sm justify-center bg-hub-purple/10 hover:shadow-md rounded-lg text-hub-purple max-sm:h-display-card-h">
+				<div className="h-full w-full p-4 flex flex-col col-span-4 gap-4 text-sm justify-center bg-hub-purple/10 hover:shadow-md rounded-lg text-hub-purple max-lg:col-span-full max-sm:h-display-card-h">
 					<h2 className="flex justify-between items-center">
 						<span className="text-base font-semibold">
 							New Invoice!
@@ -97,11 +97,11 @@ const HomeView = ({ session }: HomeViewProps) => {
 
 				{/* Upcoming Appointments Section*/}
 				<section
-					className="h-full w-full flex flex-col items-start gap-4 col-span-2 col-start-5 row-span-full p-4 bg-hub-grey rounded-lg max-sm:bg-transparent max-sm:p-0"
+					className="h-full w-full flex flex-col items-start gap-4 col-span-2 col-start-5 row-span-full p-4 bg-hub-grey rounded-lg max-lg:col-span-full max-lg:row-start-3 max-sm:bg-transparent max-sm:p-0"
 					title="Upcoming Appointments"
 				>
 					<div className="w-full flex text-base font-semibold justify-between items-center text-hub-black max-sm:text-sm">
-						<h1>Recently Contacted Providers</h1>
+						<h1>Upcoming Appointments</h1>
 
 						<Button className="bg-transparent p-0 h-4 w-4">
 							<TailedArrowRightIconSVGComponent className="hidden max-sm:block" />
@@ -123,9 +123,9 @@ const HomeView = ({ session }: HomeViewProps) => {
 				</section>
 
 				{/* Recently Contacted Providers Section*/}
-				<section className="h-full w-full flex flex-col items-start gap-4 col-span-2 bg-hub-grey p-4 rounded-lg max-sm:p-0 max-sm:bg-transparent max-sm:w-full max-sm:h-fit">
+				<section className="h-full w-full flex flex-col items-start gap-4 col-span-2 bg-hub-grey p-4 rounded-lg max-sm:p-0 max-sm:bg-transparent max-lg:col-span-1 max-lg:row-start-4 max-sm:w-full max-sm:h-fit">
 					<div className="w-full flex text-base font-semibold justify-between items-center text-hub-black max-sm:text-sm">
-						<h1>Recently Contacted Providers</h1>
+						<h1>Recent Providers</h1>
 
 						<Button className="bg-transparent p-0 h-4 w-4">
 							<TailedArrowRightIconSVGComponent className="hidden max-sm:block" />
@@ -147,7 +147,7 @@ const HomeView = ({ session }: HomeViewProps) => {
 				</section>
 
 				{/* Medications Section*/}
-				<section className="h-full w-full flex flex-col items-start gap-4 col-span-2 bg-hub-grey p-4 rounded-lg max-sm:p-0 max-sm:bg-transparent max-sm:w-full max-sm:h-fit">
+				<section className="h-full w-full flex flex-col items-start gap-4 col-span-2 bg-hub-grey p-4 rounded-lg max-sm:p-0 max-sm:bg-transparent max-lg:col-span-1 max-lg:row-start-4 max-sm:w-full max-sm:h-fit">
 					<div className="w-full flex text-base font-semibold justify-between items-center text-hub-black max-sm:text-sm">
 						<h1>Medications</h1>
 

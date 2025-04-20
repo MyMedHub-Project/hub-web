@@ -1,3 +1,5 @@
+"use client";
+
 import { X } from "lucide-react";
 import Link from "next/link";
 import { memo, useState } from "react";
@@ -44,7 +46,7 @@ const NavItem = ({ initialItem, navItems }: NavItemProps) => {
 					)}
 				>
 					<span className="flex items-center gap-4">
-						<span>{item.icon}</span>
+						<span className="size-5">{item.icon}</span>
 						<span>{item.label}</span>
 					</span>
 
@@ -100,7 +102,10 @@ const MobileNavMenu = ({
 
 			<CardFooter className="flex-grow mt-auto p-0 m-0 w-full flex items-end">
 				<div className="w-full flex justify-between items-center">
-					<LogoutButton />
+					<LogoutButton
+						onStateChange={handleNavToggle}
+						state={state}
+					/>
 
 					<p className="text-hub-subdue flex flex-col text-[10px] p-0 m-0">
 						<span>MyMedHub</span>

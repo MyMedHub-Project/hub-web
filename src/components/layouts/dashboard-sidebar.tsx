@@ -28,7 +28,7 @@ import {
 	ResultsIconSVGComponent,
 	SettingsSVGComponent,
 	TreatmentIconSVGComponents
-} from "../icons";
+} from "../icons/dashboard";
 import { Button } from "../ui/button";
 
 const menuItems = [

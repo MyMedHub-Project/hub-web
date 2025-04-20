@@ -72,3 +72,9 @@ export interface Medication {
 	description: string;
 	reminder: string;
 }
+
+export interface ProvidersMiniCardProps {
+	name: string;
+	specialty: string;
+	image: string;
+}

@@ -459,3 +459,25 @@
 // };
 
 // export default CodeInput;
+
+// Homepage Profile Section
+// <div className="h-[80px] flex items-center gap-2 bg-hub-green-light rounded-lg overflow-ellipsis p-6 max-sm:hidden">
+// {/* Avatar or Placeholder */}
+// <div className="flex items-center justify-center size-10 rounded-full bg-white text-hub-black font-bold">
+// 	{session.profile?.firstname.charAt(0)}
+// 	{session.profile?.lastname.charAt(0)}
+// </div>
+// {/* Profile Details */}
+// <h3 className="w-[12ch] flex flex-col truncate overflow-ellipsis whitespace-nowrap max-md:hidden">
+// 	<span className="text-hub-black text-start font-semibold truncate">
+// 		{session.profile?.firstname}{" "}
+// 		{session.profile?.lastname}
+// 	</span>
+
+// 	<span className="text-hub-green text-start text-xs truncate">
+// 		{session.profile?.email}
+// 	</span>
+// </h3>
+// {/* Dropdown Icon */}
+// <ArrowDropDownIconSVGComponent className="fill-hub-black h-5 w-5" />{" "}
+// </div>

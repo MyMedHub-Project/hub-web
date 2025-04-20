@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
 	BookAppointmentIconSVGComponent,
@@ -6,11 +8,11 @@ import {
 	MyConditionsIconSVGComponent,
 	PatientsIconSVGComponent,
 	SubscriptionIconSVGComponent,
-	TestResultsIconSVGComponent,
-	TreatmentIconSVGComponents
+	TestResultsIconSVGComponent
 } from "@/components/icons";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { TreatmentIconSVGComponents } from "@/components/icons/dashboard";
 
 interface HomeShortcutTabProps {
 	className?: string;

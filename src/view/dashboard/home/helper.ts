@@ -1,4 +1,8 @@
-import { AppointmentCardData, Medication } from "@/types/types";
+import {
+	AppointmentCardData,
+	Medication,
+	ProvidersMiniCardProps
+} from "@/types/types";
 
 export const appointmentData: AppointmentCardData[] = [
 	{

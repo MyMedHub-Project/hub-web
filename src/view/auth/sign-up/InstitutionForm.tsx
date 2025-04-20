@@ -1,4 +1,4 @@
-"use server";
+"use client";
 
 import { useState } from "react";
 import { UseFormReturn } from "react-hook-form";

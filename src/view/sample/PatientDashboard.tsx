@@ -3,6 +3,7 @@
 import React from "react";
 import { format } from "date-fns";
 import { X, MessageCircle, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 interface AppointmentProps {
 	name: string;
@@ -31,7 +32,11 @@ const Appointment: React.FC<AppointmentProps> = ({
 		<div className="flex items-center justify-between">
 			<div className="flex items-center gap-2">
 				<div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-					<img src="/avatar.png" alt={name} className="w-6 h-6" />
+					<Image
+						src="https://via.placeholder.com/150"
+						alt={name}
+						className="w-6 h-6"
+					/>
 				</div>
 				<span className="font-semibold">{name}</span>
 			</div>

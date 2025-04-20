@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 
 interface ProvidersMiniCardProps {

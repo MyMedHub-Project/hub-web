@@ -1,8 +1,8 @@
-import { ChevronRight } from "lucide-react";
-import { Button } from "@/components/button";
+"use client";
+
+import { AlarmClockIconSVGComponent } from "@/components/icons";
 import { Card } from "@/components/ui/card";
 import { Medication } from "@/types/types";
-import { AlarmClockIconSVGComponent } from "@/components/icons";
 
 interface MedicationMiniCardProps {
 	medication: Medication;
@@ -27,10 +27,10 @@ export const MedicationMiniCard = ({ medication }: MedicationMiniCardProps) => (
 				{medication.reminder}
 			</p>
 
-			<Button className="flex items-center gap-1 text-hub-blue m-0 p-0 h-fit w-fit bg-transparent">
+			{/* <Button className="flex items-center gap-1 text-hub-blue m-0 p-0 h-fit w-fit bg-transparent">
 				View Plan
 				<ChevronRight size={20} />
-			</Button>
+			</Button> */}
 		</div>
 	</Card>
 );
